@@ -1,1 +1,13 @@
-Test
+
+<form (submit)=SignUp() [formGroup]='signUpUser'>
+
+    FirstName :<input type="text" formControlName="FirstName" placeholder="FirstName" required=" ">
+    Last Name:<input type="text" formControlName="LastName" placeholder="LastName" required=" "><br>
+    Password<input type="password" formControlName="Password" placeholder="Password" required=" "><br>
+    Confirm Password<input type="password" formControlName="ConfirmfPassword" placeholder="Confirm Password" required=" "><br>
+    Email ID:<input type="email" formControlName="EmailId" placeholder="Email ID" required=" " ><br>
+    Company<input type="text" formControlName="Company" placeholder="Company Name" required=" "><br>
+    Phone Number<input type="text" formControlName="PhoneNum" placeholder="Phone Numeber" required=" "><br>
+    <input type="submit" value="SignUp">
+    
+</form>
