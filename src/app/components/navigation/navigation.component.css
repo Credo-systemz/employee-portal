@@ -1,0 +1,242 @@
+/* Navigation CSS */
+
+/* Logo styles */
+#logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background: none;
+}
+
+.flex-column {
+    flex-direction: column !important;
+    width: 240px;
+}
+/* Logo styles */
+
+/* Font icons CSS */
+
+.fa-bell {
+    color: #fff;
+    margin-right: 10px;
+    cursor: pointer
+}
+span.fa.fa-book {
+    color: #008B8B;
+}
+span.fa.fa-group {
+    color: #C71585;
+}
+span.fa.fa-pie-chart {
+    color: #FF4500;
+}
+.fa {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+li.nav-item.icon-nav {
+    padding: 0;
+}
+span.fa.fa-bell {
+    color: #DC143C;
+}
+
+/* Top-right-icon CSS */
+.icon-nav-link-book {
+    background: #AFEEEE;
+    border-radius: 8px 0px;
+}
+.icon-nav-link-chart {
+    background: #FFA07A;
+    border-radius: 8px 0px;
+}
+.icon-nav-link-pro {
+    background: #FF69B4;
+    border-radius: 8px 0px;
+}
+
+/* Font icons CSS */
+.navbar-brand {
+    padding: 6px 16px;
+    font-size: 16px
+}
+
+.navbar-nav {
+    width: 100%;
+    padding-right: 30px
+}
+
+.nav-item {
+    padding: 0px 8px;
+    margin: 0px 3px;
+    text-align: center;
+    border-radius: 5px
+}
+
+.nav-link {
+    padding: 5px
+}
+
+.navbar-collapse.collapse.in {
+    display: block !important
+}
+
+.right {
+    margin-left: auto
+}
+
+.notification {
+    color: #fff;
+    cursor: pointer
+}
+
+.notify-count {
+    color: #BDBDBD;
+    cursor: pointer
+}
+
+.nav-text {
+    display: none
+}
+
+
+/* Second nav css */
+nav.navbar.navbar-expand-lg.navbar-dark {
+    padding: 11px 7px 14px 115px;
+    background-color: #FFFFFF !important;
+
+}
+.navbar-dark .navbar-nav .active > .nav-link{
+    color: #1E90FF;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #D3D3D3;
+}
+.nav-item.active {
+    background-color: #F0F8FF;
+}
+.notification {
+    color: #A9A9A9;
+    cursor: pointer;
+    font-size: 22px;
+}
+ul.navbar-nav.mr-auto {
+    margin-left: 28px;
+}
+/* Nav brand logo css */
+.navbar-brand{
+    padding: 6px 16px;
+    font-size: 16px;
+    margin-left: 50px;
+    margin-top: 1px;
+}
+nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav {
+    padding: 18px 32px 26px 18px;
+    background-color: #F5F5F5;
+}
+/* Search box css */
+
+.form-group.has-search {
+    margin-right: 75px;
+}
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+/* Search box css */
+@media (max-width: 992px) {
+    .flex-column {
+        flex-direction: column !important;
+        width: 270px;
+    }
+.form-group.has-search {
+    text-align: center;
+    margin-left: 50px;
+    width: 100%;
+}
+ul.navbar-nav.mr-auto {
+    padding: 10px;
+}
+nav.navbar.navbar-expand-lg.navbar-dark{
+    padding: 0px!important;
+    background-color: #FFFFFF !important;
+} 
+}
+@media (max-width: 768px) {
+    .flex-column {
+        flex-direction: column !important;
+        width: auto;
+    }
+   
+    .nav-link span.fa {
+        padding: 10px;
+    }
+    li.nav-item.icon-nav {
+        padding: 7px;
+    }
+    nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav{
+        padding: 5px;
+        background-color: #F5F5F5;
+    }
+    .icon-nav-link-book {
+        background: #AFEEEE;
+        border-radius: 0px;
+    }
+    .icon-nav-link-chart {
+        background: #FFA07A;
+        border-radius:0px;
+    }
+    .icon-nav-link-pro {
+        background: #FF69B4;
+        border-radius:0px;
+    }
+    .nav-link {
+        padding: 15px;
+    }
+    .navbar-nav {
+        padding-right: 3px
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: left
+    }
+
+    .right {
+        margin-left: 3px
+    }
+
+    .navbar-toggler {
+        margin-left: auto
+    }
+
+    .nav-text {
+        display: inline-block
+    }
+}
+
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+}
+}
+/* Navigation CSS */
