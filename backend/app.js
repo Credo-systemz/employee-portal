@@ -30,7 +30,7 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 
 app.post("/register",(req,res)=>{
 
-    console.log("req.body");
+    console.log(req.body);
 
     req.body._id = new Date().getTime();
 
@@ -49,3 +49,4 @@ app.post("/register",(req,res)=>{
 });
 
 
+module.exports = app;

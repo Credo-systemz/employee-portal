@@ -27,8 +27,16 @@ export class UserLoginPageComponent implements OnInit {
    }
 
    SignUp(){
-    this.UserService.UserRegistraion(this.signUpUser.value)
-    this.signUpUser.reset() 
+     console.log(this.signUpUser.value);
+    this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
+      console.log(data);
+
+    },(error:any)=>{
+      console.log(error);
+    });
+
+
+  }
    }
   
-}
+
