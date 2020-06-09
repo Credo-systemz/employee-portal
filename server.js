@@ -4,10 +4,10 @@ const http = require('http');
 const app = require("./backend/app");
 
 const server = http.createServer(app);
-
-//  const server = http.createServer((req,res)=>{
-//     res.end("Welcome to nodeJs");
-// });
+/* 
+  const server = http.createServer((req,res)=>{
+         res.end("Welcome to nodeJs");
+ }); */
 
 
 server.listen(3000,()=>{

@@ -21,19 +21,16 @@
     "@angular/platform-browser": "~9.0.3",
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
-<<<<<<< H
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.8",
-=======
     "@fortawesome/fontawesome-free": "^5.13.0",
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.5.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
->>>>>>> 5aa526f443f8207156a12e928c08bce0a7a94e7a
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
