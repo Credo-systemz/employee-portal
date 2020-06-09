@@ -19,18 +19,14 @@ export class UserLoginPageComponent implements OnInit {
       'FirstName' : new FormControl(null,Validators.required),
       'LastName': new FormControl(null),
       'Password':new FormControl(null,[Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")]),
-      'ConfirmfPassword':new FormControl('',[Validators.required,this.CheckPassWord]),
+      'ConfirmfPassword':new FormControl('',Validators.required),
       'EmailId': new FormControl(null,[Validators.required,Validators.email]),
       'Company': new FormControl(null,Validators.maxLength(30)),
      'PhoneNum' :new FormControl(null,[Validators.maxLength(10),Validators.minLength(10)])
    });
    
    }
-   CheckPassWord(signUpUser:FormGroup){
-    let Password=signUpUser.get('Password').value;
-    let CheckPassWord=signUpUser.get('ConfirmPassword').value;
-    return Password===CheckPassWord ? null : {NotSame:true}
-  }
+   
 
    SignUp(){
      console.log(this.signUpUser.value);
