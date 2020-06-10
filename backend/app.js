@@ -48,5 +48,27 @@ app.post("/register",(req,res)=>{
 
 });
 
+app.post("/login",(req,res)=>{
 
+    console.log(req.body);
+
+     db.collection("userdata").find(req.body,{projection:{_id:1,Userame:1}}).toArray((error,data)=>{
+         
+        if(error){
+            res.status(400).json("Error in select query");
+        }
+
+        else{
+            var token="";
+            
+            if(data.length >0 ){
+
+                token =jwt.sign(data[0],'mykey');
+            }
+
+            res.json(token);
+        }
+     })
+
+});
 module.exports = app;
