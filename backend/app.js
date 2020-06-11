@@ -71,4 +71,36 @@ app.post("/login",(req,res)=>{
      })
 
 });
+
+var loggedUser;
+
+function verifyToken(req, res, next)
+{
+    var token = req.headers.authkey;
+
+    console.log(token);
+
+    if(!token)
+    {
+        return res.status(401).json("No token found");
+    }
+
+    jwt.verify(token, 'mykey', (error, data)=>{
+
+        if(error)
+        {
+            console.log(error);
+
+            return res.status(401).json("Token Mismatch");
+        }
+
+        loggedUser = data;
+
+        console.log(loggedUser);
+
+    });
+    
+    next();
+}
+
 module.exports = app;
