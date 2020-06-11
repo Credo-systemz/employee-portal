@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators,NgForm} from '@angular/forms';
 import { UserService } from '../user.service';
-import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-user-login-page',
