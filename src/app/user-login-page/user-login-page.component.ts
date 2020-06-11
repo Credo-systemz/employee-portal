@@ -11,7 +11,6 @@ export class UserLoginPageComponent implements OnInit {
 
   signUpUser:FormGroup;
   constructor(public UserService: UserService) { }
-
   
   ngOnInit(): void {
     let PasswordPattern='^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$'
