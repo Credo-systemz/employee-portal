@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup,Validators,NgForm} from '@angular/forms';
+import { FormControl,FormGroup,Validators,NgForm, FormBuilder} from '@angular/forms';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,9 +8,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-login-page.component.css']
 })
 export class UserLoginPageComponent implements OnInit {
-
+  
   signUpUser:FormGroup;
+
   constructor(public UserService: UserService) { }
+  
   
   ngOnInit(): void {
     let PasswordPattern='^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$'
@@ -19,13 +21,14 @@ export class UserLoginPageComponent implements OnInit {
       'FirstName' : new FormControl(null,Validators.required),
       'LastName': new FormControl(null),
       'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
-      'ConfirmfPassword':new FormControl('',Validators.required),
+      'ConfirmPassword':new FormControl(null,Validators.required),
       'EmailId': new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
       'Company': new FormControl(null,[Validators.minLength(5), Validators.maxLength(30)]),
      'MobileNo' :new FormControl(null,[Validators.minLength(10),Validators.maxLength(11)])
-   });
-   
+    });
+    
    }
+  
 get FnameCtrl(){
   return this.signUpUser.get('FirstName')
 }  
@@ -43,16 +46,17 @@ get CompanyCtrl(){
 }
 get MobileNoCtrl(){
   return this.signUpUser.get('MobileNo')
-}
+} 
+
    SignUp(){
-     console.log(this.signUpUser.value);
+     delete this.signUpUser.value.ConfirmPassword
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       console.log(data);
-
     },(error:any)=>{
       console.log(error);
     });
   }
+
+
    }
   
-
