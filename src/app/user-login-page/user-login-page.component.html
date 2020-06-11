@@ -1,11 +1,51 @@
 <form (submit)="SignUp()" [formGroup]='signUpUser'>
-    FirstName :<input type="text" formControlName="FirstName" placeholder="FirstName" required=" ">
-    Last Name:<input type="text" formControlName="LastName" placeholder="LastName" required=" "><br>
-    Password<input type="password" formControlName="Password" placeholder="Password" required=" "><br>
-    Confirm Password<input type="password" formControlName="ConfirmfPassword" placeholder="Confirm Password" required=" "><br>
-    Email ID:<input type="email" formControlName="EmailId" placeholder="Email ID" required=" " ><br>
-    Company<input type="text" formControlName="Company" placeholder="Company Name" required=" "><br>
-    Phone Number<input type="text" formControlName="PhoneNum" placeholder="Phone Numeber" required=" "><br>
-    <input type="submit" value="SignUp">
-  
-</form>
+    
+                <div class="form-group">
+                    <label for="InputFname">First Name :</label>
+                    <input type="text"  formControlName="FirstName" placeholder="First Name *">
+                    <div class="alert alert-danger" *ngIf='FnameCtrl.invalid && FnameCtrl.touched'>
+                       Please Enter Your First Name
+                    </div>    
+                </div>
+                <div class="form-group"><label for="InputLname">Last Name : </label>
+                    <input type="text" formControlName="LastName" placeholder="Last Name *" required=" "><br>
+                    <div class="alert alert-danger" *ngIf='LnameCtrl.invalid && LnameCtrl.touched'>
+                        Please Enter Your Last Name 
+                     </div>
+                </div>
+                <div class="form-group"><label for="InputPassword">Password : </label>
+                    <input type="password" formControlName="Password" placeholder="Password *" required=" "><br>
+                    <div class="alert alert-danger" *ngIf='PasswordCtrl.errors?.minlength && PasswordCtrl.touched'>
+                        Required atleast 8 Charactors
+                     </div>
+                    <div class="alert alert-danger" *ngIf='PasswordCtrl.errors?.required && PasswordCtrl.touched'>
+                        Please Enter Password
+                     </div>
+                
+                   </div>
+                <div class="form-group"><label for="InputConfirmPassword">Confirm Password : </label>
+                    <input type="password" #A formControlName="ConfirmPassword" placeholder="Confirm Password *" required=" "><br>
+                    <div class="alert alert-danger" *ngIf="signUpUser.get('ConfirmPassword').touched && signUpUser.get('Password').value!==signUpUser.get('ConfirmPassword').value">
+                     Password MisMatch 
+                     </div>  
+                </div>
+                <div class="form-group"><label for="InputEmail">Email :</label>
+                    <input type="email" formControlName="EmailId" placeholder="Email ID *" required=" " ><br>
+                    <div class="alert alert-danger" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
+                        Please Enter Valid Email
+                     </div>
+                   </div>
+                <div class="form-group"><label for="InputCompany">Company : </label>
+                    <input type="text" formControlName="Company" placeholder="Company Name *" required=" "><br>
+                    <div class="alert alert-danger" *ngIf='CompanyCtrl.invalid && CompanyCtrl.touched'>
+                        Please Enter Valid Compant Name
+                     </div>   
+                </div>
+                <div class="form-group"><label for="InputPhone">Mobile No : </label>
+                    <input type="text" formControlName="MobileNo" placeholder="Phone Numeber *"><br>
+                    <div class="alert alert-danger" *ngIf='MobileNoCtrl.invalid && MobileNoCtrl.touched'>
+                        Please Enter Valid Mobile No
+                     </div>     
+                </div>
+        <input type="submit" class="btn-success" [disabled]="signUpUser.invalid " value="SignUp">
+ </form>
