@@ -18,9 +18,11 @@
     <div class="col-lg-4 col-md-5">
       <div class="card bg-secondary shadow border-0">
         
-        <div class="card-body px-lg-5 py-lg-5">
-          <div class="text-center text-muted mb-4">
-            <small>Log In</small>
+        <div class="card-body px-lg-6 py-lg-5">
+          <div class="loginhere">
+            <div class="text-center" >
+              <div id="logintext">Log In Here</div>
+            </div>
           </div>
 
           <form (submit)="doLogin()" [formGroup]="loginForm">
@@ -32,6 +34,10 @@
                 </div>
                 <input class="form-control" placeholder="Email" type="email" formControlName="EmailId" required="">
               </div>
+              <div class="errorpopup" *ngIf='EmailIdCtrl.invalid && EmailIdCtrl.touched'>
+                Please Enter Valid Email
+             </div>
+              
             </div>
 
             <div class="form-group">
@@ -41,6 +47,13 @@
                 </div>
                 <input class="form-control" placeholder="Password" type="password" formControlName="Password" required="">
               </div>
+              <div class="errorpopup" *ngIf='PasswordCtrl.errors?.minlength && PasswordCtrl.touched'>
+                Required atleast 8 Charactors
+             </div>
+            <div class="errorpopup" *ngIf='PasswordCtrl.errors?.required && PasswordCtrl.touched'>
+                Please Enter Password
+             </div> 
+              
             </div>
 
 

@@ -6,12 +6,11 @@
     margin: 10px 36px;
 }
 .text-light {
-    color: white !important;
-}
-.text-light {
-    color: #333 !important;
-    font-weight: 500px;
-    font-family: fantasy;
+    color:gray !important;
+   font-weight: 500px;
+   margin-left: 10px;
+   margin-right: 10px;
+   font-size: medium;
 }
 .header {
     position: relative;
@@ -19,7 +18,35 @@
     margin-top: 122px;
 }
 // header css
+.loginhere{
+	background-color: #87d3f8;
+	color: white;
+	height: 35px;
+	border-radius: 5px;
+	padding-bottom: 20px;
+	margin-top: -15px;	
+	margin-bottom: 10%;
+	width: 50%;
+	margin-left: 60px;
+    box-shadow: lightslategray;;
+}
+.text-center{
+	padding-top: 5px;
 
+}
+#logintext{
+	font-weight: 650;
+	padding-bottom: -20px;
+}
+
+.errorpopup{
+background-color: transparent;
+color:#ff9494;
+padding-top: 10px;
+margin-left: 10px;
+margin-bottom: -30px;
+padding-bottom: 10px;
+}
 .header-fixed {
 	background-color:#292c2f;
 	box-shadow:0 1px 1px #ccc;
@@ -37,6 +64,16 @@
 	max-width: 1200px;
 	text-align: center;
 	margin: 0 auto;
+}
+button{
+	background-color: #87d3f8;
+	color:white;
+     border: none;
+}
+button:hover{
+	background-color: white;
+	color:grey;
+     border: none;
 }
 
 .header-fixed-placeholder{
