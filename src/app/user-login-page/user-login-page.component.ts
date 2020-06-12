@@ -50,12 +50,15 @@ get CompanyCtrl(){
 
 
    SignUp(){
+     //console.log(this.signUpUser.value)
      delete this.signUpUser.value.ConfirmPassword
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       console.log(data);
     },(error:any)=>{
       console.log(error);
     });
-  }
+ this.signUpUser.reset()
+ }
+  
    }
   
