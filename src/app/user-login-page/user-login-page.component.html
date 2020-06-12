@@ -5,6 +5,7 @@
 		<h1><a href="#">Hard<span>Graft</span></a></h1>
 
 		<nav>
+      <img src="/assets/images/usr.svg">
 			<a routerLink="/login">Login</a>
 		</nav>
 
@@ -25,9 +26,10 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
+                      <img src="/assets/images/name.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" formControlName="FirstName" placeholder="First Name" type="text">
+                    <input class="form-control"  formControlName="FirstName" placeholder="First Name" type="text">
                   </div>
                    <div class="alert alert-danger" *ngIf='FnameCtrl.invalid && FnameCtrl.touched'>
                            Please Enter Your First Name
@@ -36,6 +38,7 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
+                      <img src="/assets/images/name.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
                     <input class="form-control" formControlName="LastName" placeholder="Last Name" type="text">
@@ -47,6 +50,7 @@
                 <div class="form-group">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
+                        <img src="/assets/images/email.svg" class="mat-ic">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
                       <input class="form-control" formControlName="EmailId" placeholder="Email" type="email">
@@ -58,6 +62,7 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
+                      <img src="/assets/images/pwd.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control"  formControlName="Password" placeholder="Password *"type="password">
@@ -72,6 +77,7 @@
              <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
+                      <img src="/assets/images/pwd1.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control"  #A formControlName="ConfirmPassword" placeholder="Confirm Password *" type="password">
@@ -83,6 +89,7 @@
                      <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
+                      <img src="/assets/images/name.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control" formControlName="MobileNo" placeholder="Phone Number *" type="number">
@@ -94,6 +101,7 @@
                <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
+                      <img src="/assets/images/company.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control"  formControlName="Company" placeholder="Company Name *" type="text">
