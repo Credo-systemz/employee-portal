@@ -11,6 +11,11 @@ export class UserService {
   UserRegistraion(UserData){
     console.log(UserData)
     return this.http.post("http://localhost:3000/register",UserData);
+  }
+
+  userLogin(loginData){
+    console.log(loginData);
+    return this.http.post("http://localhost:3000/login",loginData);
 
   }
 }
