@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,3 +35,4 @@ import { FormsModule } from '@angular/forms';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-user-login-page',
@@ -10,7 +12,7 @@ import { UserService } from '../user.service';
 export class UserLoginPageComponent implements OnInit {
   
   signUpUser:FormGroup;
-
+  
   constructor(public UserService: UserService) { }
   
   
@@ -28,7 +30,7 @@ export class UserLoginPageComponent implements OnInit {
     });
     
    }
-  
+
 get FnameCtrl(){
   return this.signUpUser.get('FirstName')
 }  
@@ -50,12 +52,15 @@ get CompanyCtrl(){
 
 
    SignUp(){
+     //console.log(this.signUpUser.value)
      delete this.signUpUser.value.ConfirmPassword
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       console.log(data);
     },(error:any)=>{
       console.log(error);
     });
-  }
+ this.signUpUser.reset()
+ }
+  
    }
   
