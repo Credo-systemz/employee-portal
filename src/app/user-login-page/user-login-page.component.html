@@ -1,51 +1,115 @@
-<form (submit)="SignUp()" [formGroup]='signUpUser'>
-    
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1><a href="#">Hard<span>Graft</span></a></h1>
+
+		<nav>
+			<a routerLink="/login">Login</a>
+		</nav>
+
+	</div>
+	
+</header>
+<!-- Page content -->
+<div class="login-page">
+    <div class="header">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-5">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Sign In</small>
+              </div>
+              <form role="form" (submit)="SignUp()" [formGroup]='signUpUser'>               
                 <div class="form-group">
-                    <label for="InputFname">First Name :</label>
-                    <input type="text"  formControlName="FirstName" placeholder="First Name *">
-                    <div class="alert alert-danger" *ngIf='FnameCtrl.invalid && FnameCtrl.touched'>
-                       Please Enter Your First Name
-                    </div>    
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" formControlName="FirstName" placeholder="First Name" type="text">
+                  </div>
+                   <div class="alert alert-danger" *ngIf='FnameCtrl.invalid && FnameCtrl.touched'>
+                           Please Enter Your First Name
+                        </div>
                 </div>
-                <div class="form-group"><label for="InputLname">Last Name : </label>
-                    <input type="text" formControlName="LastName" placeholder="Last Name *" required=" "><br>
-                    <div class="alert alert-danger" *ngIf='LnameCtrl.invalid && LnameCtrl.touched'>
-                        Please Enter Your Last Name 
-                     </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" formControlName="LastName" placeholder="Last Name" type="text">
+                  </div>
+                   <div class="alert alert-danger" *ngIf='LnameCtrl.invalid && LnameCtrl.touched'>
+                            Please Enter Your Last Name 
+                         </div>
                 </div>
-                <div class="form-group"><label for="InputPassword">Password : </label>
-                    <input type="password" formControlName="Password" placeholder="Password *" required=" "><br>
-                    <div class="alert alert-danger" *ngIf='PasswordCtrl.errors?.minlength && PasswordCtrl.touched'>
-                        Required atleast 8 Charactors
-                     </div>
-                    <div class="alert alert-danger" *ngIf='PasswordCtrl.errors?.required && PasswordCtrl.touched'>
-                        Please Enter Password
-                     </div>
-                
-                   </div>
-                <div class="form-group"><label for="InputConfirmPassword">Confirm Password : </label>
-                    <input type="password" #A formControlName="ConfirmPassword" placeholder="Confirm Password *" required=" "><br>
-                    <div class="alert alert-danger" *ngIf="signUpUser.get('ConfirmPassword').touched && signUpUser.get('Password').value!==signUpUser.get('ConfirmPassword').value">
-                     Password MisMatch 
-                     </div>  
-                </div>
-                <div class="form-group"><label for="InputEmail">Email :</label>
-                    <input type="email" formControlName="EmailId" placeholder="Email ID *" required=" " ><br>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" formControlName="EmailId" placeholder="Email" type="email">
+                    </div>
                     <div class="alert alert-danger" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
-                        Please Enter Valid Email
-                     </div>
-                   </div>
-                <div class="form-group"><label for="InputCompany">Company : </label>
-                    <input type="text" formControlName="Company" placeholder="Company Name *" required=" "><br>
-                    <div class="alert alert-danger" *ngIf='CompanyCtrl.invalid && CompanyCtrl.touched'>
-                        Please Enter Valid Compant Name
-                     </div>   
+                              Please Enter Valid Email
+                           </div>
+                  </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control"  formControlName="Password" placeholder="Password *"type="password">
+                  </div>
+                   <div class="alert alert-danger" *ngIf='PasswordCtrl.errors?.minlength && PasswordCtrl.touched'>
+                            Required atleast 8 Charactors
+                         </div>
+                        <div class="alert alert-danger" *ngIf='PasswordCtrl.errors?.required && PasswordCtrl.touched'>
+                            Please Enter Password
+                         </div> 
                 </div>
-                <div class="form-group"><label for="InputPhone">Mobile No : </label>
-                    <input type="text" formControlName="MobileNo" placeholder="Phone Numeber *"><br>
-                    <div class="alert alert-danger" *ngIf='MobileNoCtrl.invalid && MobileNoCtrl.touched'>
-                        Please Enter Valid Mobile No
-                     </div>     
+             <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control"  #A formControlName="ConfirmPassword" placeholder="Confirm Password *" type="password">
+                  </div>
+                   <div class="alert alert-danger" *ngIf="signUpUser.get('ConfirmPassword').touched && signUpUser.get('Password').value!==signUpUser.get('ConfirmPassword').value">
+                         Password MisMatch 
+                         </div>  			  
                 </div>
-        <input type="submit" class="btn-success" [disabled]="signUpUser.invalid " value="SignUp">
- </form>
+                     <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" formControlName="MobileNo" placeholder="Phone Number *" type="number">
+                  </div>
+                  <div class="alert alert-danger" *ngIf='MobileNoCtrl.invalid && MobileNoCtrl.touched'>
+                            Please Enter Valid Mobile No
+                         </div>  			  
+                </div>
+               <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control"  formControlName="Company" placeholder="Company Name *" type="text">
+                  </div>
+                   <div class="alert alert-danger" *ngIf='CompanyCtrl.invalid && CompanyCtrl.touched'>
+                            Please Enter Valid Company Name
+                         </div>   			  
+                </div>
+                <div class="text-center">
+                  <button type="button" [disabled]="signUpUser.invalid"  class="btn btn-primary my-4">Sign in</button>
+                </div>
+              </form>
+            </div>       
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    

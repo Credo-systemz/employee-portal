@@ -19,12 +19,12 @@ export class UserLoginPageComponent implements OnInit {
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     this.signUpUser = new FormGroup({
       'FirstName' : new FormControl(null,Validators.required),
-      'LastName': new FormControl(null),
+      'LastName': new FormControl(null,Validators.required),
       'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'ConfirmPassword':new FormControl(null,Validators.required),
       'EmailId': new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
-      'Company': new FormControl(null,[Validators.minLength(5), Validators.maxLength(30)]),
-     'MobileNo' :new FormControl(null,[Validators.minLength(10),Validators.maxLength(11)])
+      'Company': new FormControl(null,[Validators.required,Validators.minLength(5), Validators.maxLength(30)]),
+     'MobileNo' :new FormControl(null,[Validators.required,Validators.minLength(10),Validators.maxLength(11)])
     });
     
    }
@@ -41,12 +41,13 @@ get PasswordCtrl(){
 get emailCtrl(){
   return this.signUpUser.get('EmailId')
 }
-get CompanyCtrl(){
-  return this.signUpUser.get('Company')
-}
 get MobileNoCtrl(){
   return this.signUpUser.get('MobileNo')
 } 
+get CompanyCtrl(){
+  return this.signUpUser.get('Company')
+}
+
 
    SignUp(){
      delete this.signUpUser.value.ConfirmPassword
