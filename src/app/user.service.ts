@@ -13,6 +13,11 @@ export class UserService {
     return this.http.post("http://localhost:3000/register",UserData);
   }
 
+  isLoggedIn(){
+    return !!localStorage.getItem("token");
+  }
+
+
   userLogin(loginData){
     console.log(loginData);
     return this.http.post("http://localhost:3000/login",loginData);
