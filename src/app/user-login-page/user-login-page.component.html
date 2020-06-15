@@ -49,7 +49,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" formControlName="EmailId" placeholder="Email" type="email">
+                      <input class="form-control" formControlName="EmailId" (blur)="checkemail(emailCtrl.value)"placeholder="Email" type="email">
                     </div>
                     <div class="alert alert-danger" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
                               Please Enter Valid Email

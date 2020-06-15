@@ -56,48 +56,63 @@ app.post("/register",async (req,res)=>{
 
 app.post("/login", (req,res)=>{
     
-     db.collection("userdata").find(req.body,{projection:{_id:1,Userame:1}}).toArray((error,data)=>{
+    //  db.collection("userdata").find(req.body,{projection:{_id:1,Userame:1}}).toArray((error,data)=>{
          
-        if(error){
-            res.status(400).json("Error in select query");
-        }
-        else{
-            var token="";
-            
-            if(data.length >0 ){
-
-                token =jwt.sign(data[0],'mykey');
-            }
-
-            res.json(token);
-        }
-         })
-    
-    // db.collection("userdata").find(req.body.EmailId).toArray((error,data)=>{
     //     if(error){
     //         res.status(400).json("Error in select query");
     //     }
-    //     console.log(data)
-        // if(data.length==0 || data.length==null ){
-        // res.json("User Name Not Available")
-        // }else{ 
-        // if(error){
-        //     res.status(400).json("Error in select query");
-        // }
-        //     bcrypt.compare(req.body.Password,data[0].Password).then((response)=>{
-        //         console.log(response)
+    //     else{
+    //         var token="";
+            
+    //         if(data.length >0 ){
 
-        //     if(response==true){
-        //         var token =jwt.sign(data[0],'mykey')
-        //         res.json(token)
-        //     }else{
-        //         res.json(null)
-        //     }
-        //     });
-        // }
-    //  })
+    //             token =jwt.sign(data[0],'mykey');
+    //         }
+
+    //         res.json(token);
+    //     }
+    //      })
+    
+    db.collection("userdata").find({EmailId:req.body.EmailId}).toArray((error,data)=>{
+        if(error){
+            res.status(400).json("Error in select query");
+        }
+        console.log(data)
+        if(data.length==0 || data==null ){
+        res.status(404).json("User Not Availale")
+        }else{ 
+        if(error){
+            res.status(400).json("Error in select query");
+        }
+            bcrypt.compare(req.body.Password,data[0].Password).then((response)=>{
+                console.log(response)
+
+            if(response==true){
+                var token =jwt.sign(data[0],'mykey')
+                res.json(token)
+            }else{
+                res.status(401).json("invalid User")
+            }
+            });
+        }
+     })
    
 });
+app.get("/checkEmail/:email",(req,res)=>{
+    var checkEmail=req.params.email
+    console.log(checkEmail)
+    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{
+            if(error){
+                res.status(400).json("Error in select query");
+            }else{
+                if(data.length!==0 || data==!null){
+            
+                    res.status(400).json("EmailId Already Taken")
+                }
+
+        }
+    })
+})
 var loggedUser;
 
 function verifyToken(req, res, next)

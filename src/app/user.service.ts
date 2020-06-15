@@ -17,7 +17,10 @@ export class UserService {
     return !!localStorage.getItem("token");
   }
 
-
+userEmailCheck(email){
+  
+  return this.http.get("http://localhost:3000/checkEmail/"+email);
+}
   userLogin(loginData){
     console.log(loginData);
     return this.http.post("http://localhost:3000/login",loginData);

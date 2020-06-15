@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.logMessage="Invalid User";
     }
     else { 
-      this.logMessage="Success"
+      //this.logMessage="Success"
       localStorage.setItem("token",data);
     }
    }, (error:any)=>{

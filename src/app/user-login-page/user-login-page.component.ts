@@ -47,7 +47,14 @@ get MobileNoCtrl(){
 get CompanyCtrl(){
   return this.signUpUser.get('Company')
 }
-
+checkemail(Email:string){
+  if(Email.length==0 ||Email==null){
+null
+  }else
+  this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
+    console.log(data)
+  }); 
+}
 
    SignUp(){
      //console.log(this.signUpUser.value)
