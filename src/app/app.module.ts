@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     AppComponent,
     LoginComponent,
     UserLoginPageComponent,
-    NavigationComponent
+    NavigationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -51,6 +51,8 @@
                       </div>
                       <input class="form-control" formControlName="EmailId" (blur)="checkemail(emailCtrl.value)"placeholder="Email" type="email">
                     </div>
+                    <div class="alert alert-danger" *ngIf='!!errorMsg && emailCtrl.dirty'>
+                      {{errorMsg}}</div>
                     <div class="alert alert-danger" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
                               Please Enter Valid Email
                            </div>

@@ -9,6 +9,7 @@ import { UserService } from '../user.service';
 })
 export class UserLoginPageComponent implements OnInit {
   
+  errorMsg:string;
   signUpUser:FormGroup;
 
   constructor(public UserService: UserService) { }
@@ -47,15 +48,20 @@ get MobileNoCtrl(){
 get CompanyCtrl(){
   return this.signUpUser.get('Company')
 }
+
+//Check for Email ID is already taken or not
 checkemail(Email:string){
   if(Email.length==0 ||Email==null){
 null
   }else
   this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
     console.log(data)
+  },(error:any)=>{
+    //console.log(error);
+    this.errorMsg="EmailId is already taken";
   }); 
 }
-
+//Registration
    SignUp(){
      //console.log(this.signUpUser.value)
      delete this.signUpUser.value.ConfirmPassword;
