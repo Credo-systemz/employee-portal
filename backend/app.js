@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 
 const mongodb= require('mongodb').MongoClient;
 
+const bcrypt= require('bcrypt');
+
 const app= express();
 
 app.use(cors());
@@ -28,36 +30,37 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 }
 });
 
-app.post("/register",(req,res)=>{
+app.post("/register",async (req,res)=>{
+  
+    const Salt= await bcrypt.genSalt();
 
-    console.log(req.body);
-
+    const HashPassword= await bcrypt.hash(req.body.Password,Salt);
+       
     req.body._id = new Date().getTime();
 
-    db.collection("userdata").insert(req.body, (error, data)=>{
+    req.body.Password=HashPassword;
 
-        if(error)
-        {
+         db.collection("userdata").insert(req.body, (error, data)=>{
+
+             if(error)
+             {
             res.status(401).json("You have error in insert query");
-        }
-        else {
-            res.json("User Registered Successfully");
-            console.log(data);
-        }
-    })
-
+              }
+             else {
+             res.json("User Registered Successfully");
+             console.log(data);
+             }
+      }); 
+        
 });
 
-app.post("/login",(req,res)=>{
-
-    console.log(req.body);
-
+app.post("/login", (req,res)=>{
+    
      db.collection("userdata").find(req.body,{projection:{_id:1,Userame:1}}).toArray((error,data)=>{
          
         if(error){
             res.status(400).json("Error in select query");
         }
-
         else{
             var token="";
             
@@ -68,10 +71,33 @@ app.post("/login",(req,res)=>{
 
             res.json(token);
         }
-     })
+         })
+    
+    // db.collection("userdata").find(req.body.EmailId).toArray((error,data)=>{
+    //     if(error){
+    //         res.status(400).json("Error in select query");
+    //     }
+    //     console.log(data)
+        // if(data.length==0 || data.length==null ){
+        // res.json("User Name Not Available")
+        // }else{ 
+        // if(error){
+        //     res.status(400).json("Error in select query");
+        // }
+        //     bcrypt.compare(req.body.Password,data[0].Password).then((response)=>{
+        //         console.log(response)
 
+        //     if(response==true){
+        //         var token =jwt.sign(data[0],'mykey')
+        //         res.json(token)
+        //     }else{
+        //         res.json(null)
+        //     }
+        //     });
+        // }
+    //  })
+   
 });
-
 var loggedUser;
 
 function verifyToken(req, res, next)

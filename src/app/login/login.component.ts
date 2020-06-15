@@ -33,16 +33,14 @@ export class LoginComponent implements OnInit {
     }
   doLogin(){
 
-  this.loginUser.userLogin(this.loginForm.value).subscribe((data:string)=>{
+  this.loginUser.userLogin(this.loginForm.value).subscribe((data:any)=>{
 
     console.log(data);
-    // this.msgLog=data;
-    if(data.length==0){
-
+    if(data==null){
       this.logMessage="Invalid User";
     }
-    else {
-
+    else { 
+      this.logMessage="Success"
       localStorage.setItem("token",data);
     }
    }, (error:any)=>{
