@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-
+declare var jQuery: any;   
+declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,6 +33,8 @@ export class LoginComponent implements OnInit {
     get  PasswordCtrl(){
       return this.loginForm.get('Password')
     }
+
+
   doLogin(){
 
   this.loginUser.userLogin(this.loginForm.value).subscribe((data:any)=>{
@@ -41,13 +44,14 @@ export class LoginComponent implements OnInit {
       this.logMessage="Invalid User";
     }
     else { 
-      //this.logMessage="Success"
+      this.logMessage="Success"
       localStorage.setItem("token",data);
+      
     }
    }, (error:any)=>{
-
-     console.log(error);
+     console.log("errorrrrrrrr");
      this.logMessage = "Something went wrong!!";
+  
    })
   
  }
