@@ -9,7 +9,10 @@ import { UserService } from '../user.service';
 })
 export class UserLoginPageComponent implements OnInit {
   
+  submitted=false
+
   signUpUser:FormGroup;
+  hide = true;
 
   constructor(public UserService: UserService) { }
   
@@ -48,14 +51,21 @@ get CompanyCtrl(){
   return this.signUpUser.get('Company')
 }
 checkemail(Email:string){
-  if(Email.length==0 ||Email==null){
+
+  if(Email.length==0){
 null
   }else
-  this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
-    console.log(data)
-  }); 
-}
 
+  this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
+ 
+  },(error:any)=>{
+    if(error.status==401){
+      this.submitted=true;
+      this.submitted=this.signUpUser.get("EmailId").invalid
+    }
+  }
+  ); 
+}
    SignUp(){
      //console.log(this.signUpUser.value)
      delete this.signUpUser.value.ConfirmPassword;
