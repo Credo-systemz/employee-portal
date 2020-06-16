@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-declare var jQuery: any;   
-declare var $: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit {
     get  PasswordCtrl(){
       return this.loginForm.get('Password')
     }
-
+    
 
   doLogin(){
 
@@ -49,9 +48,10 @@ export class LoginComponent implements OnInit {
       
     }
    }, (error:any)=>{
+  
      console.log(error);
      this.logMessage = "Something went wrong!!";
-  
+     
    })
   
  }
