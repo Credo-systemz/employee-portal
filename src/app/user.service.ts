@@ -18,7 +18,6 @@ export class UserService {
   }
 
 userEmailCheck(email){
-  
   return this.http.get("http://localhost:3000/checkEmail/"+email);
 }
   userLogin(loginData){

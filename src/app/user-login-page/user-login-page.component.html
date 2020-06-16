@@ -63,7 +63,7 @@
                     <div class="alert alert-danger regform" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
                               Please Enter Valid Email
                            </div>
-                           <div class="alert alert-danger" *ngIf='submitted'>
+                           <div class="alert alert-danger" *ngIf=submitted>
                             Email Id Already Exist
                          </div>
                   </div>
@@ -125,7 +125,7 @@
                          </div>   			  
                 </div> 
                 <div class="text-center">
-                  <button type="submit" [disabled]="signUpUser.invalid"  class="btn btn-primary my-4">Sign Up</button>
+                  <button type="submit" [disabled]="signUpUser.invalid && submitted"  class="btn btn-primary my-4">Sign Up</button>
                 </div>
               </form>
             </div>       

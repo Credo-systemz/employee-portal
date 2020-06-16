@@ -19,7 +19,7 @@ export class UserLoginPageComponent implements OnInit {
   
   ngOnInit(): void {
     let PasswordPattern='^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$'
-    let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
+    let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,32})$';
     this.signUpUser = new FormGroup({
       'FirstName' : new FormControl(null,Validators.required),
       'LastName': new FormControl(null,Validators.required),
@@ -52,19 +52,13 @@ get CompanyCtrl(){
 }
 checkemail(Email:string){
 
-  if(Email.length==0){
-null
-  }else
-
-  this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
- 
-  },(error:any)=>{
-    if(error.status==401){
-      this.submitted=true;
-      this.submitted=this.signUpUser.get("EmailId").invalid
-    }
-  }
-  ); 
+this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
+ if(data==true){
+   this.submitted=true
+   return this.submitted
+ }
+return this.submitted=false
+})
 }
    SignUp(){
      //console.log(this.signUpUser.value)

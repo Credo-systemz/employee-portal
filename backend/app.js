@@ -30,24 +30,6 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 }
 });
 
-//To check for Email id is Taken or not
-app.get("/checkEmail/:email",(req,res)=>{
-    var checkEmail=req.params.email
-    console.log(checkEmail)
-    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{
-            if(error){
-                res.status(400).json("Error in select query");
-            }else{
-                if(data.length!==0 || data==!null){
-            
-                    res.status(401).json("EmailId Already Taken")
-                }else{
-                    res.json(null);
-                }
-        }
-    })
-})
-
 app.post("/register",async (req,res)=>{
   
     const Salt= await bcrypt.genSalt();
@@ -97,23 +79,19 @@ app.post("/login", (req,res)=>{
      })
    
 });
-// app.get("/checkEmail/:email",(req,res)=>{
-//     var checkEmail=req.params.email
-//     console.log(checkEmail)
-//     db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{
-//             if(error){
-//                 res.status(400).json("Error in select query");
-//             }else{
-//                 if(data.length!==0 || data==!null){
-//                     res.status(401).json("EmailId Already Taken")
-//                 }else
-//                 {
-//                    res.json(null)
-//                 }
-
-//         }
-//     })
-// })
+app.get("/checkEmail/:email",(req,res)=>{
+    var checkEmail=req.params.email
+    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
+      if(data.length!==0 || data==!null)
+       {
+            res.json(true)
+        }
+         else
+         {
+             res.json(false)
+            }          
+    });
+ });
 var loggedUser;
 
 function verifyToken(req, res, next)
