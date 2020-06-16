@@ -364,6 +364,23 @@ nav.navbar.navbar-expand-lg.navbar-dark{
     margin: 0px auto;
     width: 25px;
 }
+
+.pwdhid {
+    background: white;
+    border: none!important;
+    color: black;
+    border-radius: 0;
+    outline: none!important;
+}
+mat-icon.mat-icon.pwdic.material-icons {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    padding-top: 12px;
+    height: 39px;
+    margin: 0px auto;
+    width: 25px;
+}
 mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
     background-repeat: no-repeat;
     display: inline-block;
@@ -372,13 +389,6 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
     height: 39px;
     margin: 0px auto;
     width: 25px;
-}
-.pwdhid {
-    background: white;
-    border: none!important;
-    color: black;
-    border-radius: 0;
-    outline: none!important;
 }
 mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
     padding: 1!important;
