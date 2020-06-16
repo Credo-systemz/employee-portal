@@ -26,6 +26,7 @@
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "angular-font-awesome": "^3.1.2",
     "angular-material": "^1.1.22",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",

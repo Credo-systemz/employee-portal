@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 
 const mongodb= require('mongodb').MongoClient;
 
+const bcrypt= require('bcrypt');
+
 const app= express();
 
 app.use(cors());
@@ -28,50 +30,72 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 }
 });
 
-app.post("/register",(req,res)=>{
+//To check for Email id is Taken or not
+app.get("/checkEmail/:email",(req,res)=>{
+    var checkEmail=req.params.email
+    console.log(checkEmail)
+    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{
+            if(error){
+                res.status(400).json("Error in select query");
+            }else{
+                if(data.length!==0 || data==!null){
+            
+                    res.status(401).json("EmailId Already Taken")
+                }
 
-    console.log(req.body);
-
-    req.body._id = new Date().getTime();
-
-    db.collection("userdata").insert(req.body, (error, data)=>{
-
-        if(error)
-        {
-            res.status(401).json("You have error in insert query");
-        }
-        else {
-            res.json("User Registered Successfully");
-            console.log(data);
         }
     })
+})
 
+app.post("/register",async (req,res)=>{
+  
+    const Salt= await bcrypt.genSalt();
+
+    const HashPassword= await bcrypt.hash(req.body.Password,Salt);
+       
+    req.body._id = new Date().getTime();
+
+    req.body.Password=HashPassword;
+
+         db.collection("userdata").insert(req.body, (error, data)=>{
+
+             if(error)
+             {
+            res.status(401).json("You have error in insert query");
+              }
+             else {
+             res.json("User Registered Successfully");
+             console.log(data);
+             }
+      }); 
+        
 });
 
-app.post("/login",(req,res)=>{
+app.post("/login", (req,res)=>{
 
-    console.log(req.body);
-
-     db.collection("userdata").find(req.body,{projection:{_id:1,Userame:1}}).toArray((error,data)=>{
-         
+    
+    db.collection("userdata").find({EmailId:req.body.EmailId}).toArray((error,data)=>{
         if(error){
             res.status(400).json("Error in select query");
         }
+        console.log(data)
+        if(data.length==0 || data==null ){
+        res.status(404).json("User Not Availale")
+        }else{ 
+            bcrypt.compare(req.body.Password,data[0].Password).then((response)=>{
+                console.log(response)
 
-        else{
-            var token="";
-            
-            if(data.length >0 ){
-
-                token =jwt.sign(data[0],'mykey');
+            if(response==true){
+                var token =jwt.sign(data[0],'mykey')
+                res.json(token)
+            }else{
+                res.status(401).json("invalid User")
             }
-
-            res.json(token);
+            });
         }
      })
-
+   
 });
-
 var loggedUser;
 
 function verifyToken(req, res, next)
