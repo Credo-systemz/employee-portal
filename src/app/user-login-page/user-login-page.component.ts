@@ -55,7 +55,8 @@ checkemail(Email:string){
 this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
  if(data==true){
    this.submitted=true
-   return this.submitted
+  
+   return this.submitted 
  }
 return this.submitted=false
 })
