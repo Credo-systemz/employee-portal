@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-
+declare var jQuery: any;
+   
+declare var $: any;
 
 @Component({
   selector: 'app-user-login-page',
@@ -13,7 +15,9 @@ export class UserLoginPageComponent implements OnInit {
   
   signUpUser:FormGroup;
   
-  constructor(public UserService: UserService) { }
+  constructor(public UserService: UserService) {
+   
+   }
   
   
   ngOnInit(): void {
@@ -31,6 +35,8 @@ export class UserLoginPageComponent implements OnInit {
     
    }
 
+  
+  
 get FnameCtrl(){
   return this.signUpUser.get('FirstName')
 }  

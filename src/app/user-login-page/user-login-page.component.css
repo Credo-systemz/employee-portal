@@ -19,6 +19,18 @@ img.mat-ic {
     border-radius: 5px 0px 0px 5px;
     padding: 5px;
 }
+.alert {
+    position: relative;
+    padding: 0rem 0;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+}
+.alert-danger {
+    color: #f75656;
+    background-color: #ccc;
+    border-color: #ccc;
+}
 /* header css */
 
 .header-fixed {
