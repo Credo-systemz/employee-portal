@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
       return this.loginForm.get('Password')
     }
     
-
   doLogin(){
 
   this.loginUser.userLogin(this.loginForm.value).subscribe((data:any)=>{
