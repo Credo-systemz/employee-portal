@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from  '@angular/material';
-import { Router } from '@angular/router';
-import {FormControl, Validators} from '@angular/forms';
+import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,17 +8,48 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  logMessage:string="";
+
+  loginForm:FormGroup;
+
+  hide = true;
+
+  constructor(public loginUser :UserService) { }
+
+    ngOnInit() {
+      let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
+      this.loginForm=new FormGroup({
+
+        'EmailId':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
+        'Password': new FormControl(null,[Validators.required, Validators.minLength(8)])
+      });  
+  
   }
-    constructor(private  dialog:  MatDialog, private  router:  Router) { }
-    
-  ngOnInit(): void {
-  }
-}
+    get  EmailIdCtrl(){
+      return this.loginForm.get('EmailId')
+    }
+    get  PasswordCtrl(){
+      return this.loginForm.get('Password')
+    }
+  doLogin(){
+
+  this.loginUser.userLogin(this.loginForm.value).subscribe((data:any)=>{
+
+    console.log(data);
+    if(data==null){
+      this.logMessage="Invalid User";
+    }
+    else { 
+      //this.logMessage="Success"
+      localStorage.setItem("token",data);
+    }
+   }, (error:any)=>{
+
+     console.log(error);
+     this.logMessage = "Something went wrong!!";
+   })
+  
+ }
+ };
+ 
