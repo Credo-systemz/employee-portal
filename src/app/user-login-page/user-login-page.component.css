@@ -639,7 +639,7 @@ Modules - reusable parts of our design
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(94, 110, 141, 0.9);
+    background-color: none;
     opacity: 0;
     visibility: hidden;
     -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
@@ -657,7 +657,7 @@ Modules - reusable parts of our design
   .cd-popup-container {
     position: relative;
     width: 90%;
-    max-width: 400px;
+    max-width: 303px;
     margin: 1em auto;
     background: #FFF;
     border-radius: .25em .25em .4em .4em;

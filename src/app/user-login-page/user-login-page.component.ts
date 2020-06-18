@@ -64,7 +64,7 @@ return this.submitted=false
    SignUp(){
      //console.log(this.signUpUser.value)
      delete this.signUpUser.value.ConfirmPassword;
-     console.log(this.signUpUser.value);
+    //  console.log(this.signUpUser.value);
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       jQuery(document).ready(function($){
         //open popup
