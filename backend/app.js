@@ -47,7 +47,7 @@ app.post("/register",async (req,res)=>{
             res.status(401).json("You have error in insert query");
               }
              else {
-             res.json("User Registered Successfully");
+              res.json("User Registered Successfully");
              console.log(data);
              }
       }); 
@@ -80,7 +80,7 @@ app.post("/login", (req,res)=>{
    
 });
 app.get("/checkEmail/:email",(req,res)=>{
-    var checkEmail=req.params.email
+    var checkEmail=req.params.email;
     db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
       if(data.length!==0 || data==!null)
        {
