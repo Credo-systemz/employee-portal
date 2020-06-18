@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-import { invalid } from '@angular/compiler/src/render3/view/util';
 
+declare var jQuery: any;   
+declare var $: any;
 @Component({
   selector: 'app-user-login-page',
   templateUrl: './user-login-page.component.html',
@@ -56,22 +57,47 @@ checkemail(Email:string){
 this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
  if(data==true){
    this.submitted=true
-  this.signUpUser.controls['EmailId'].invalid;
    return this.submitted 
- }console.log(this.signUpUser)
+ }
+ 
 return this.submitted=false
-})
+});
 }
    SignUp(){
      //console.log(this.signUpUser.value)
+
      delete this.signUpUser.value.ConfirmPassword;
+
      console.log(this.signUpUser.value);
+
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
+
+      jQuery(document).ready(function($){
+        //open popup
+        $('.cd-popup-trigger').on('click', function(event){
+          event.preventDefault();
+          $('.cd-popup').addClass('is-visible');
+        });
+        
+        //close popup
+        $('.cd-popup').on('click', function(event){
+          if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+            event.preventDefault();
+            $(this).removeClass('is-visible');
+          }
+        });
+        //close popup when clicking the esc keyboard button
+        $(document).keyup(function(event){
+            if(event.which=='27'){
+              $('.cd-popup').removeClass('is-visible');
+            }
+          });
+      });
       console.log(data);
     },(error:any)=>{
       console.log(error);
     });
- this.signUpUser.reset()
+//  this.signUpUser.reset()
  }
   
    }
