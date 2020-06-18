@@ -30,6 +30,21 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 }
 });
 
+//CHECK FOR EMAIL ID EXIST OR NOT
+app.get("/checkEmail/:email",(req,res)=>{
+    var checkEmail=req.params.email;
+    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
+      if(data.length!==0 || data==!null)
+       {
+            res.json(true)
+        }
+         else
+         {
+             res.json(false)
+            }          
+    });
+ });
+
 app.post("/register",async (req,res)=>{
   
     const Salt= await bcrypt.genSalt();
@@ -79,19 +94,7 @@ app.post("/login", (req,res)=>{
      })
    
 });
-app.get("/checkEmail/:email",(req,res)=>{
-    var checkEmail=req.params.email;
-    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
-      if(data.length!==0 || data==!null)
-       {
-            res.json(true)
-        }
-         else
-         {
-             res.json(false)
-            }          
-    });
- });
+
 var loggedUser;
 
 function verifyToken(req, res, next)

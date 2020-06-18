@@ -53,6 +53,8 @@ get MobileNoCtrl(){
 get CompanyCtrl(){
   return this.signUpUser.get('Company')
 }
+
+//CHECK FOR EMAIL ID EXIST OR NOT
 checkemail(Email:string){
 
 this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
@@ -63,6 +65,7 @@ this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
 return this.submitted=false
 })
 }
+//REGISTRATION
    SignUp(){
      //console.log(this.signUpUser.value)
      delete this.signUpUser.value.ConfirmPassword;
