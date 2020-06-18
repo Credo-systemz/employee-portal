@@ -109,7 +109,7 @@
                     <input class="form-control" formControlName="MobileNo" placeholder="Phone Number *" type="number">
                   </div>
                   <div class="alert alert-danger regform" *ngIf='MobileNoCtrl.invalid && MobileNoCtrl.touched'>
-                            Please Enter Valid Mobile No
+                            Please Enter Valid Mobile Number
                          </div>  			  
                 </div>
                <div class="form-group">
@@ -124,9 +124,10 @@
                             Please Enter Valid Company Name
                          </div>   			  
                 </div> 
-                <div class="text-center" *ngIf=!submitted>
-                  <button type="submit" [disabled]="signUpUser.invalid"  class="btn btn-primary my-4 my-4 cd-popup-trigger">Sign Up</button>
-                </div>
+                <!-- <div class="text-center" *ngIf=!submitted> -->
+                  <button type="submit" [disabled]="signUpUser.invalid || submitted"  class="btn btn-primary my-4 my-4 cd-popup-trigger">Sign Up</button>
+                <!-- </div> -->
+                {{signUpUser.invalid}}{{submitted}}
               </form>
             </div>       
           </div>
