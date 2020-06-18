@@ -21,14 +21,16 @@ export class UserLoginPageComponent implements OnInit {
   ngOnInit(): void {
     let PasswordPattern='^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$'
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,32})$';
+    let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
+
     this.signUpUser = new FormGroup({
       'FirstName' : new FormControl(null,Validators.required),
       'LastName': new FormControl(null,Validators.required),
       'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'ConfirmPassword':new FormControl(null,Validators.required),
       'EmailId': new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
-      'Company': new FormControl(null,[Validators.required,Validators.minLength(5), Validators.maxLength(30)]),
-     'MobileNo' :new FormControl(null,[Validators.required,Validators.minLength(10),Validators.maxLength(11)])
+      'Company': new FormControl(null,[Validators.required,Validators.minLength(4), Validators.maxLength(30)]),
+     'MobileNo' :new FormControl(null,[Validators.required,Validators.pattern(mobNumberPattern)])
     });
     
    }
@@ -51,6 +53,8 @@ get MobileNoCtrl(){
 get CompanyCtrl(){
   return this.signUpUser.get('Company')
 }
+
+//CHECK FOR EMAIL ID EXIST OR NOT
 checkemail(Email:string){
 
 this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
@@ -61,6 +65,7 @@ this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
 return this.submitted=false
 })
 }
+//REGISTRATION
    SignUp(){
 
      delete this.signUpUser.value.ConfirmPassword;
