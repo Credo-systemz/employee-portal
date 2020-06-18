@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-user-login-page',
@@ -55,9 +56,9 @@ checkemail(Email:string){
 this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
  if(data==true){
    this.submitted=true
-  
+  this.signUpUser.controls['EmailId'].invalid;
    return this.submitted 
- }
+ }console.log(this.signUpUser)
 return this.submitted=false
 })
 }
