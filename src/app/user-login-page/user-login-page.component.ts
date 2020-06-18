@@ -62,10 +62,12 @@ return this.submitted=false
 })
 }
    SignUp(){
-     //console.log(this.signUpUser.value)
+
      delete this.signUpUser.value.ConfirmPassword;
      console.log(this.signUpUser.value);
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
+      this.signUpUser.reset()
+
       jQuery(document).ready(function($){
         //open popup
         $('.cd-popup-trigger').on('click', function(event){
@@ -90,7 +92,7 @@ return this.submitted=false
     },(error:any)=>{
       console.log(error);
     });
-//  this.signUpUser.reset()
+  
  }
   
    }
