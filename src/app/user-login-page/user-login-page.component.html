@@ -58,12 +58,12 @@
                         <img src="/assets/images/email.svg" class="mat-ic">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" formControlName="EmailId" (keyup)="checkemail(emailCtrl.value)"placeholder="Email" type="email">
+                      <input class="form-control" formControlName="EmailId" required (keyup)="checkemail(emailCtrl.value)"placeholder="Email" type="email">
                     </div>
                     <div class="alert alert-danger regform" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
                               Please Enter Valid Email
                            </div>
-                           <div class="alert alert-danger" *ngIf=submitted>
+                           <div class="alert alert-danger" *ngIf='submitted'>
                             Email Id Already Exist
                          </div>
                   </div>
@@ -125,7 +125,7 @@
                          </div>   			  
                 </div> 
                 <div class="text-center">
-                  <button type="submit" [disabled]="signUpUser.invalid && submitted"  class="btn btn-primary my-4 my-4 cd-popup-trigger">Sign Up</button>
+                  <button type="submit" [disabled]="signUpUser.invalid && submitted "  class="btn btn-primary my-4 my-4 cd-popup-trigger">Sign Up</button>
                 </div>
               </form>
             </div>       

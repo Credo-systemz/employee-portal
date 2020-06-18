@@ -8,17 +8,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
+import {MatInputModule} from '@angular/material/Input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDialogModule } from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/Form-field';
+import {MatDialogModule } from '@angular/material/Dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule, MatCheckboxModule, MatToolbarModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/Icon';
+import { MatCheckboxModule } from '@angular/material/Checkbox';
+import { MatToolbarModule } from '@angular/material/Toolbar';
+
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-
 
 @NgModule({
   declarations: [
@@ -47,8 +49,12 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     MatToolbarModule,
     MatFormFieldModule
   ],
+
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
+
+
 export class AppModule { }
 
