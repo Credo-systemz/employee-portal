@@ -30,6 +30,21 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 }
 });
 
+//CHECK FOR EMAIL ID EXIST OR NOT
+app.get("/checkEmail/:email",(req,res)=>{
+    var checkEmail=req.params.email;
+    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
+      if(data.length!==0 || data==!null)
+       {
+            res.json(true)
+        }
+         else
+         {
+             res.json(false)
+            }          
+    });
+ });
+
 app.post("/register",async (req,res)=>{
   
     const Salt= await bcrypt.genSalt();
@@ -39,6 +54,7 @@ app.post("/register",async (req,res)=>{
     req.body._id = new Date().getTime();
 
     req.body.Password=HashPassword;
+    req.body.Role="User"
 
          db.collection("userdata").insert(req.body, (error, data)=>{
 
@@ -57,11 +73,11 @@ app.post("/register",async (req,res)=>{
 app.post("/login", (req,res)=>{
 
     
-    db.collection("userdata").find({EmailId:req.body.EmailId}).toArray((error,data)=>{
+    db.collection("userdata").find({EmailId:req.body.EmailId},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
         if(error){
             res.status(400).json("Error in select query");
         }
-        console.log(data)
+        
         if(data.length==0 || data==null ){
         res.status(404).json("User Not Availale")
         }else{ 
@@ -70,6 +86,7 @@ app.post("/login", (req,res)=>{
 
             if(response==true){
                 var token =jwt.sign(data[0],'mykey')
+                delete data[0].Password;
                 res.json(token)
             }else{
                 res.status(401).json("invalid User")
@@ -79,19 +96,7 @@ app.post("/login", (req,res)=>{
      })
    
 });
-app.get("/checkEmail/:email",(req,res)=>{
-    var checkEmail=req.params.email;
-    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
-      if(data.length!==0 || data==!null)
-       {
-            res.json(true)
-        }
-         else
-         {
-             res.json(false)
-            }          
-    });
- });
+
 var loggedUser;
 
 function verifyToken(req, res, next)
