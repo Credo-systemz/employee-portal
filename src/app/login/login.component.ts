@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     else { 
       this.logMessage="Success"
       localStorage.setItem("token",data);
+      this.loginForm.reset()
       
     }
    }, (error:any)=>{

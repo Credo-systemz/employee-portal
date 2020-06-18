@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-
 declare var jQuery: any;   
 declare var $: any;
 @Component({
@@ -56,30 +55,26 @@ checkemail(Email:string){
 
 this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
  if(data==true){
-   this.submitted=true
+  this.signUpUser.controls.EmailId.invalid
+  this.submitted=true
    return this.submitted 
  }
- 
 return this.submitted=false
-});
+})
 }
    SignUp(){
-     //console.log(this.signUpUser.value)
-
      delete this.signUpUser.value.ConfirmPassword;
-
      console.log(this.signUpUser.value);
-
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
-
+    console.log(data);
+    this.signUpUser.reset();
+      this.submitted=false
       jQuery(document).ready(function($){
         //open popup
         $('.cd-popup-trigger').on('click', function(event){
           event.preventDefault();
           $('.cd-popup').addClass('is-visible');
         });
-        
-        //close popup
         $('.cd-popup').on('click', function(event){
           if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
             event.preventDefault();
@@ -93,11 +88,10 @@ return this.submitted=false
             }
           });
       });
-      console.log(data);
     },(error:any)=>{
       console.log(error);
     });
-//  this.signUpUser.reset()
+ 
  }
   
    }

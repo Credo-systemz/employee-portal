@@ -124,8 +124,8 @@
                             Please Enter Valid Company Name
                          </div>   			  
                 </div> 
-                <div class="text-center">
-                  <button type="submit" [disabled]="signUpUser.invalid && submitted "  class="btn btn-primary my-4 my-4 cd-popup-trigger">Sign Up</button>
+                <div class="text-center" *ngIf=!submitted>
+                  <button type="submit" [disabled]="signUpUser.invalid"  class="btn btn-primary my-4 my-4 cd-popup-trigger">Sign Up</button>
                 </div>
               </form>
             </div>       
@@ -139,7 +139,7 @@
       <div class="cd-popup-container">
         <p>Yay! Successfully registered!!</p>
         <ul class="cd-buttons">
-          <li><a routerLink="/home">Click to dashboard</a></li>
+          <li><a routerLink="/login">Click to login</a></li>
           <!-- <li><a href="#0">No</a></li> -->
         </ul>
         <a href="#0" class="cd-popup-close img-replace">Close</a>
