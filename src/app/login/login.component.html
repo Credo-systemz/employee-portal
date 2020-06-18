@@ -26,7 +26,7 @@
         <h1 class="hed-txt"><strong>Log In</strong></h1>
         <div class="card-body px-lg-6 py-lg-5">
           <form (submit)="doLogin()" [formGroup]="loginForm">
-            <h4>{{logMessage}}</h4>
+            <mat-error *ngIf="errorup">{{logMessage}}</mat-error>
             <div class="form-group mb-5">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
