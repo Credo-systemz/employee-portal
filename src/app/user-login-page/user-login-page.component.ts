@@ -10,10 +10,10 @@ declare var $: any;
 })
 export class UserLoginPageComponent implements OnInit {
   
-  submitted=false
-
+  submitted=false;
   signUpUser:FormGroup;
   hide = true;
+  recaptcha:any[];
 
   constructor(public UserService: UserService) { }
   
@@ -30,7 +30,8 @@ export class UserLoginPageComponent implements OnInit {
       'ConfirmPassword':new FormControl(null,Validators.required),
       'EmailId': new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
       'Company': new FormControl(null,[Validators.required,Validators.minLength(4), Validators.maxLength(30)]),
-     'MobileNo' :new FormControl(null,[Validators.required,Validators.pattern(mobNumberPattern)])
+     'MobileNo' :new FormControl(null,[Validators.required,Validators.pattern(mobNumberPattern)]),
+     'recaptchaReactive': new FormControl(null, Validators.required)
     });
     
    }
@@ -53,7 +54,11 @@ get MobileNoCtrl(){
 get CompanyCtrl(){
   return this.signUpUser.get('Company')
 }
-
+// RECAPTCHA 
+resolved(captchaResponse:any[]){
+  this.recaptcha = captchaResponse;
+  console.log(this.recaptcha);
+}
 //CHECK FOR EMAIL ID EXIST OR NOT
 checkemail(Email:string){
 
@@ -67,32 +72,30 @@ return this.submitted=false
 }
 //REGISTRATION
    SignUp(){
-
+    jQuery(document).ready(function($){
+      //open popup
+      $('.cd-popup-trigger').on('click', function(event){
+        event.preventDefault();
+        $('.cd-popup').addClass('is-visible');
+      });      
+      //close popup
+      $('.cd-popup').on('click', function(event){
+        if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+          event.preventDefault();
+          $(this).removeClass('is-visible');
+        }
+      });
+      //close popup when clicking the esc keyboard button
+      $(document).keyup(function(event){
+          if(event.which=='27'){
+            $('.cd-popup').removeClass('is-visible');
+          }
+        });
+    });
      delete this.signUpUser.value.ConfirmPassword;
     //  console.log(this.signUpUser.value);
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       this.signUpUser.reset()
-
-      jQuery(document).ready(function($){
-        //open popup
-        $('.cd-popup-trigger').on('click', function(event){
-          event.preventDefault();
-          $('.cd-popup').addClass('is-visible');
-        });      
-        //close popup
-        $('.cd-popup').on('click', function(event){
-          if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
-            event.preventDefault();
-            $(this).removeClass('is-visible');
-          }
-        });
-        //close popup when clicking the esc keyboard button
-        $(document).keyup(function(event){
-            if(event.which=='27'){
-              $('.cd-popup').removeClass('is-visible');
-            }
-          });
-      });
       console.log(data);
     },(error:any)=>{
       console.log(error);

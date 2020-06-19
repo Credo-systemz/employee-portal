@@ -438,9 +438,10 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
 
 .errorpopup{
 background-color: transparent;
-color:#DC143C;
-margin-left: 50px;
-margin-bottom: -15px;
+color:red;
+position: absolute;
+font-weight: 500;
+padding: 0rem 66px;
 }
 button.btn.btn-primary.my-4 {
     background: #0000CD;
@@ -576,14 +577,23 @@ body.fixed .header-fixed .header-limiter nav {
 	}
 
 }
+.text-muted {
+    color: #0B1B87 !important;
+}
+.custom-control-label span {
+    position: relative;
+    top: 2px;
+    right: 15px;
+}
 .card{
-    background-color: #f8f9fe !important;
+    background-color: #F8FAB0 !important;
 }
 .shadow {
-    box-shadow: none!important;
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
 }
 .hed-txt{
  text-align: center;
+ margin: 10px;
 }
 img.mat-ic {
 	padding: 5px;

@@ -481,15 +481,23 @@ body.fixed .header-fixed .header-limiter nav {
 }
 /* reg form css*/
 .card{
-    background-color: #f8f9fe !important;
+    background-color: #F8FAB0 !important;
 }
 .shadow {
-    box-shadow: none!important;
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
 }
+.recaptcha {
+    margin: 18px;
+}
+.hed-txt{
+    text-align: center;
+    margin: 10px;
+   }
 button.btn.btn-primary.my-4 {
     background: #0000CD;
     color:#fff;
     border: none;
+    margin-left:124px;
 }
 button.btn.btn-primary.my-4.my-4.cd-popup-trigger:hover{
     background-color: white;
@@ -527,17 +535,18 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
 }
 .alert-danger {
     color: red;
-    background-color: #f8f9fe !important;
+    font-weight: 500;
+    background-color: #F8FAB0 !important;
     border-color: none;
 }
-.alert {    position: relative;
+.alert {    position: absolute;
     padding: 0rem 66px;
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: none;
 }
 .form-group {
-    margin-bottom: 1.0rem;
+    margin-bottom: 2.0rem;
 }
 .pl-lg-5, .px-lg-5 {
     padding-left: 2rem !important;

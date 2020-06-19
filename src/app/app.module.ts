@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/Icon';
 import { MatCheckboxModule } from '@angular/material/Checkbox';
 import { MatToolbarModule } from '@angular/material/Toolbar';
+import {RecaptchaModule, RecaptchaFormsModule} from 'ng-recaptcha';
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
 import { LoginComponent } from './login/login.component';
@@ -36,6 +37,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     RouterModule,
     FormsModule,
     NgbModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,

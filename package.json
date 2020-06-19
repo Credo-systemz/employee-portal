@@ -37,6 +37,7 @@
     "jquery": "^3.5.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.8",
+    "ng-recaptcha": "^5.0.0",
     "nodemon": "^2.0.4",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.14.4",
