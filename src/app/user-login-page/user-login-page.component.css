@@ -481,10 +481,10 @@ body.fixed .header-fixed .header-limiter nav {
 }
 /* reg form css*/
 .card{
-    background-color: #F8FAB0 !important;
+    background-color: #F5F5F5 !important;
 }
 .shadow {
-    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 .recaptcha {
     margin: 18px;
@@ -536,7 +536,7 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
 .alert-danger {
     color: red;
     font-weight: 500;
-    background-color: #F8FAB0 !important;
+    background-color: #F5F5F5 !important;
     border-color: none;
 }
 .alert {    position: absolute;
