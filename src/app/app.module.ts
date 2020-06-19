@@ -22,6 +22,7 @@ import {RecaptchaModule, RecaptchaFormsModule} from 'ng-recaptcha';
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatRippleModule,
+    MatToolbarModule,
     MatDialogModule, 
     MatInputModule, 
     MatButtonModule, 

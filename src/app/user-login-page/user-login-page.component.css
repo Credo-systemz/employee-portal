@@ -480,15 +480,46 @@ body.fixed .header-fixed .header-limiter nav {
 
 }
 /* reg form css*/
+.errorpopup-fnm.regform {
+    position: absolute;
+    left: 60px;
+    top: 112px;
+}
+.errorpopup-lnm.regform {
+    position: absolute;
+    top: 112px;
+}
+.errorpopup-emal.regform {
+    position: absolute;
+}
+.errorpopup-pw1.regform {
+    position: absolute;
+    top: 236px;
+}
+.errorpopup-cpw.regform {
+    position: absolute;
+    top: 236px;
+}
+.errorpopup-pn.regform {
+    position: absolute;
+    top: 303px;
+}
+.errorpopup-cm.regform {
+    position: absolute;
+    top: 303px;
+}
+.form-inline.flusr {
+    margin-left: 15px;
+}
 .card{
     background-color: #F5F5F5 !important;
 }
 .shadow {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
-.recaptcha {
+.recaptcha.frbtsb {
     margin: 18px;
-}
+    display: inline-flex;}
 .hed-txt{
     text-align: center;
     margin: 10px;
@@ -533,21 +564,6 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
 mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
     padding: 1!important;
 }
-.alert-danger {
-    color: red;
-    font-weight: 500;
-    background-color: #F5F5F5 !important;
-    border-color: none;
-}
-.alert {    position: absolute;
-    padding: 0rem 66px;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: none;
-}
-.form-group {
-    margin-bottom: 2.0rem;
-}
 .pl-lg-5, .px-lg-5 {
     padding-left: 2rem !important;
 }
@@ -565,6 +581,28 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
 }
 .mt-4, .my-4 {
     margin-top: -0.5rem !important;
+}
+.form-group.flusrg-7 {
+    margin-bottom: 2.0rem;
+    margin: 10px;
+}
+.form-inline.fl-5 {
+    flex-flow: inherit;
+}
+.card.bg-secondary.shadow.border-0 {
+    width: max-content;
+    position: relative;
+    right: 117px;
+}
+.input-group.input-group-alternative {
+    width: 250px;
+}
+.input-group.input-group-alternative.fgew-1 {
+    width: auto;
+}
+.bttn.right {
+    margin-left: 120px;
+    margin-top: 21px;
 }
 
 /* popup css */

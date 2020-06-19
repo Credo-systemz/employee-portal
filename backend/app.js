@@ -63,7 +63,9 @@ app.post("/register",async (req,res)=>{
             res.status(401).json("You have error in insert query");
               }
              else {
+               
               res.json("User Registered Successfully");
+            
              console.log(data);
              }
       }); 

@@ -245,7 +245,7 @@ ul.navbar-nav.mr-auto {
     margin-top: 1px;
 }
 nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav {
-    padding: 18px 32px 26px 18px;
+    padding: 18px 30px 5px 13px;
     background-color: #F5F5F5;
 }
 /* Search box css */
@@ -409,6 +409,51 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
 .text-light small{
 	font-weight: 600!important;
 }
+a.text-light:hover, a.text-light:focus {
+    color: #333!important;
+}
+a.effect-underline:after {
+	content: '';
+  position: absolute;
+  left: 22px;
+  display: inline-block;
+  height: 1em;
+  width: 53%;
+  border-bottom: 1px solid;
+  margin-top: 10px;
+  opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: scale(0,1);
+	transform: scale(0,1);
+}
+
+a.effect-underline:hover:after {
+  opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+a.effect-underlin:after {
+	content: '';
+  position: absolute;
+  left: 80px;
+  display: inline-block;
+  height: 1em;
+  width: 53%;
+  border-bottom: 1px solid;
+  margin-top: 10px;
+  opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: scale(0,1);
+	transform: scale(0,1);
+}
+
+a.effect-underlin:hover:after {
+  opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
 .header {
     position: relative;
     max-width: 98%;
@@ -443,17 +488,140 @@ position: absolute;
 font-weight: 500;
 padding: 0rem 66px;
 }
-button.btn.btn-primary.my-4 {
-    background: #0000CD;
+
+hr.horizontalLine {
+    width: 145px;
+    text-align: center;
+    position: relative;
+    left: 130px;
+    background: black;
 }
-button.btn.btn-primary.github {
-    float: right;
-    margin-right: 74px;
+
+/* Wrapper */
+.icon-button {
+	background-color: white;
+	border-radius: 2.6rem;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1.3rem;
+	height: 2.6rem;
+	line-height: 2.6rem;
+	margin: 0 5px;
+	position: relative;
+	text-align: center;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	width: 2.6rem;
 }
-button.btn.btn-primary.google {
-    float: left;
-    margin-left: 74px;
+
+/* Circle */
+.icon-button span {
+	border-radius: 0;
+	display: block;
+	height: 0;
+	left: 50%;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-webkit-transition: all 0.3s;
+	   -moz-transition: all 0.3s;
+	     -o-transition: all 0.3s;
+	        transition: all 0.3s;
+	width: 0;
 }
+.icon-button:hover span {
+	width: 2.6rem;
+	height: 2.6rem;
+	border-radius: 2.6rem;
+	margin: -1.3rem;
+}
+
+/* Icons */
+.icon-button i {
+	background: none;
+	color: white;
+	height: 2.6rem;
+	left: 0;
+	line-height: 2.6rem;
+	position: absolute;
+	top: 0;
+	-webkit-transition: all 0.3s;
+	   -moz-transition: all 0.3s;
+	     -o-transition: all 0.3s;
+	        transition: all 0.3s;
+	width: 2.6rem;
+	z-index: 10;
+}
+
+
+
+
+
+.twitter span {
+	background-color: #4099ff;
+}
+.facebook span {
+	background-color: #3B5998;
+}
+.youtube span {
+	background-color: #bb0000;
+}
+.pinterest span {
+	background-color: #cb2027;
+}
+
+
+
+.icon-button .fa-twitter {
+	color: #4099ff;
+}
+.icon-button .fa-facebook {
+	color: #3B5998;
+}
+.icon-button .fa-youtube {
+	color: #bb0000;
+}
+.icon-button .fa-pinterest {
+	color: #cb2027;
+}
+
+
+
+
+.icon-button:hover .fa-twitter,
+.icon-button:hover .fa-facebook,
+.icon-button:hover .fa-youtube,
+.icon-button:hover .fa-pinterest {
+	color: white;
+}
+
+@media all and (max-width: 680px) {
+  .icon-button {
+    border-radius: 1.6rem;
+    font-size: 0.8rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    width: 1.6rem;
+  }
+
+  .icon-button:hover span {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 1.6rem;
+    margin: -0.8rem;
+  }
+
+  /* Icons */
+  .icon-button i {
+	  height: 1.6rem;
+	  line-height: 1.6rem;
+	  width: 1.6rem;
+  }
+
+}
+
 .header-fixed {
 	background-color:#292c2f;
 	box-shadow:0 1px 1px #ccc;
@@ -471,16 +639,6 @@ button.btn.btn-primary.google {
 	max-width: 1200px;
 	text-align: center;
 	margin: 0 auto;
-}
-button{
-	background-color: #0000CD;
-	color:white;
-     border: none;
-}
-button:hover{
-	background-color: white;
-	color:#0000CD;
-     border: none;
 }
 
 .header-fixed-placeholder{
@@ -636,8 +794,4 @@ img.mat-ic {
     text-align: center;
     padding-bottom: 15px;
 }
-.ssobtn button{
-    padding:10px;
-    height:40px;
-    text-align: center;
-}
+

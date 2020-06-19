@@ -10,9 +10,9 @@
       <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
           <ul class="navbar-nav">
                 <li class="nav-item  right icon-nav">
-                  <h4>Login</h4>
+                 
                    <a class="nav-link icon-nav-link-pro" routerLink="/">
-                <img src="/assets/images/login.png"></a> 
+                    <h1><strong>Login</strong></h1></a> 
                </li>
           </ul>
       <!-- </div> -->
@@ -29,7 +29,8 @@
                 <h1><strong>Create an account</strong></h1>
               </div>
               <form role="form" (submit)="SignUp()" [formGroup]='signUpUser'>               
-                <div class="form-group">
+               <div class="form-inline flusri-6">
+                <div class="form-group flusrg-7">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/name.svg" class="mat-ic">
@@ -37,11 +38,13 @@
                     </div>
                     <input class="form-control" formControlName="FirstName" placeholder="First Name" type="text">
                   </div>
-                   <div class="alert alert-danger regform" *ngIf='FnameCtrl.invalid && FnameCtrl.touched'>
+                  <div class="row">
+                   <div class="errorpopup-fnm regform" *ngIf='FnameCtrl.invalid && FnameCtrl.touched'>
                            Please Enter Your First Name
-                        </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group flusrg-7">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/name.svg" class="mat-ic">
@@ -49,26 +52,28 @@
                     </div>
                     <input class="form-control" formControlName="LastName" placeholder="Last Name" type="text">
                   </div>
-                   <div class="alert alert-danger regform" *ngIf='LnameCtrl.invalid && LnameCtrl.touched'>
+                   <div class="errorpopup-lnm regform" *ngIf='LnameCtrl.invalid && LnameCtrl.touched'>
                             Please Enter Your Last Name 
                          </div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group input-group-alternative">
+              </div>
+                <div class="form-group flusrg-7">
+                    <div class="input-group input-group-alternative fgew-1">
                       <div class="input-group-prepend">
                         <img src="/assets/images/email.svg" class="mat-ic">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
                       <input class="form-control" formControlName="EmailId" required (keyup)="checkemail(emailCtrl.value)"placeholder="Email" type="email">
                     </div>
-                    <div class="alert alert-danger regform" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
+                    <div class="errorpopup-emal regform" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
                               Please Enter Valid Email
                            </div>
-                           <div class="alert alert-danger" *ngIf='submitted'>
+                           <div class="errorpopup-emal" *ngIf='submitted'>
                             Email Id Already Exist
                          </div>
                   </div>
-                <div class="form-group">
+                  <div class="form-inline flusr-6">
+                <div class="form-group flusrg-7">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/pwd.svg" class="mat-ic">
@@ -79,14 +84,14 @@
                       <mat-icon class="pwdic">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button> 
                   </div>
-                   <div class="alert alert-danger regform" *ngIf='PasswordCtrl.errors?.minlength && PasswordCtrl.touched'>
+                   <div class="errorpopup-pw1 regform" *ngIf='PasswordCtrl.errors?.minlength && PasswordCtrl.touched'>
                             Required atleast 8 Charactors
                          </div>
-                        <div class="alert alert-danger regform" *ngIf='PasswordCtrl.errors?.required && PasswordCtrl.touched'>
+                        <div class="errorpopup-pw1 regform" *ngIf='PasswordCtrl.errors?.required && PasswordCtrl.touched'>
                             Please Enter Password
                          </div> 
                 </div>
-             <div class="form-group">
+                <div class="form-group flusrg-7">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/pwd1.svg" class="mat-ic">
@@ -97,11 +102,14 @@
                       <mat-icon class="pwdic">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button> 
                   </div>
-                   <div class="alert alert-danger regform" *ngIf="signUpUser.get('ConfirmPassword').touched && signUpUser.get('Password').value!==signUpUser.get('ConfirmPassword').value">
+                   <div class="errorpopup-cpw regform" *ngIf="signUpUser.get('ConfirmPassword').touched && signUpUser.get('Password').value!==signUpUser.get('ConfirmPassword').value">
                          Password MisMatch 
                          </div>  			  
                 </div>
-                     <div class="form-group">
+                </div>
+                <div class="form-inline flusr">
+                  <div class="row">
+                 <div class="form-group flusrg-7">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/phone.svg" class="mat-ic">
@@ -109,11 +117,11 @@
                     </div>
                     <input class="form-control" formControlName="MobileNo" placeholder="Phone Number *" type="number">
                   </div>
-                  <div class="alert alert-danger regform" *ngIf='MobileNoCtrl.invalid && MobileNoCtrl.touched'>
+                  <div class="errorpopup-pn regform" *ngIf='MobileNoCtrl.invalid && MobileNoCtrl.touched'>
                             Please Enter Valid Mobile Number
                          </div>  			  
                 </div>
-               <div class="form-group">
+               <div class="form-group flusrg-7">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/company.svg" class="mat-ic">
@@ -121,15 +129,21 @@
                     </div>
                     <input class="form-control"  formControlName="Company" placeholder="Company Name *" type="text">
                   </div>
-                   <div class="alert alert-danger regform" *ngIf='CompanyCtrl.invalid && CompanyCtrl.touched'>
+                   <div class="errorpopup-cm regform" *ngIf='CompanyCtrl.invalid && CompanyCtrl.touched'>
                             Please Enter Valid Company Name
                          </div>   			  
                 </div> 
-                <div class="recaptcha">
+              </div>
+              </div>
+                <div class="recaptcha frbtsb">
+                  <div class="captcha-left">
                   <re-captcha (resolved)='resolved($event)' formControlName="recaptchaReactive" siteKey='6LekZ6YZAAAAAJ3Yk45kRNRlY2eMW_zQNOAdbVbJ'></re-captcha>
                 </div>
+                <div class="bttn right">
+                  <button mat-raised-button color="primary" type="submit" [disabled]="signUpUser.invalid || submitted"  class="btn-sb my-4 my-4 cd-popup-trigger">Sign Up</button>
+                </div>
+                </div>
                 <!-- <div class="text-center" *ngIf=!submitted> -->
-                  <button type="submit" [disabled]="signUpUser.invalid || submitted"  class="btn btn-primary my-4 my-4 cd-popup-trigger">Sign Up</button>
                 <!-- </div> -->
               </form>
             </div>       
