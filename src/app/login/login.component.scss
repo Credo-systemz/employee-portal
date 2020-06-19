@@ -446,6 +446,14 @@ padding: 0rem 66px;
 button.btn.btn-primary.my-4 {
     background: #0000CD;
 }
+button.btn.btn-primary.github {
+    float: right;
+    margin-right: 74px;
+}
+button.btn.btn-primary.google {
+    float: left;
+    margin-left: 74px;
+}
 .header-fixed {
 	background-color:#292c2f;
 	box-shadow:0 1px 1px #ccc;
