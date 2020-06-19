@@ -23,7 +23,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-4 col-md-5">
       <div class="card bg-secondary shadow border-0">
-        <h1 class="hed-txt"><strong>Log In</strong></h1>
+        <h2 class="hed-txt"><strong>Log In</strong></h2>
         <div class="card-body px-lg-6 py-lg-5">
           <form (submit)="doLogin()" [formGroup]="loginForm">
             <mat-error *ngIf="errorup">{{logMessage}}</mat-error>
@@ -79,11 +79,23 @@
             <a routerLink="/register" class="text-light"><small>Create new account</small></a>
           </div>
         </div>
+        <hr class="horizontalLine">
+        <h3 class="hed-txt loginWith"><strong>Login with</strong></h3>
+        <div class="ssobtn">
+          <button class="btn btn-primary">Google</button>
+          <button class="btn btn-primary">Github</button>
+        </div>
+
+  
       </div>
     
+
+
     </div>
   </div>
 </div>
+</div>
+
 
 
 

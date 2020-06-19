@@ -57,7 +57,7 @@ get CompanyCtrl(){
 // RECAPTCHA 
 resolved(captchaResponse:any[]){
   this.recaptcha = captchaResponse;
-  console.log(this.recaptcha);
+ // console.log(this.recaptcha);
 }
 //CHECK FOR EMAIL ID EXIST OR NOT
 checkemail(Email:string){

@@ -39,6 +39,7 @@
     "mongodb": "^3.5.8",
     "ng-recaptcha": "^5.0.0",
     "nodemon": "^2.0.4",
+    "recaptcha": "^1.2.1",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.14.4",
     "tslib": "^1.10.0",
