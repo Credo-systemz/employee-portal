@@ -49,6 +49,10 @@ get LnameCtrl(){
 get PasswordCtrl(){
   return this.signUpUser.get('Password')
 }
+get ConfirmPassCtrl(){
+  return this.signUpUser.get('ConfirmPassword')
+
+}
 get emailCtrl(){
   return this.signUpUser.get('EmailId')
 }

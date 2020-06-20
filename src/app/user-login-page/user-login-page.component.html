@@ -28,15 +28,17 @@
               <div class="text-center text-muted mb-4 hed-txt">
                 <h1><strong>Create an account</strong></h1>
               </div>
-              <form role="form" (submit)="SignUp()" [formGroup]='signUpUser'>               
+              <form role="form" (submit)="SignUp()" [formGroup]='signUpUser' spellcheck="false">               
                <div class="form-inline flusri-6">
-                <div class="form-group flusrg-7">
+                <div class="form-group flusrg-7" [ngClass]="{'has-error':FnameCtrl.errors && (FnameCtrl.dirty || FnameCtrl.touched)}" >
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/name.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" formControlName="FirstName" placeholder="First Name" type="text">
+                    <input class="form-control" formControlName="FirstName" placeholder="First Name" type="text" 
+                    >
+              
                   </div>
                   <div class="row">
                    <div class="errorpopup-fnm regform" *ngIf='FnameCtrl.invalid && FnameCtrl.touched'>
@@ -44,7 +46,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group flusrg-7">
+
+
+                <div class="form-group flusrg-7" [ngClass]="{'has-error':LnameCtrl.errors && (LnameCtrl.touched)}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/name.svg" class="mat-ic">
@@ -57,7 +61,7 @@
                          </div>
                 </div>
               </div>
-                <div class="form-group flusrg-7">
+                <div class="form-group flusrg-7" [ngClass]="{'has-error': (emailCtrl.touched || emailCtrl.dirty) && emailCtrl.errors }">
                     <div class="input-group input-group-alternative fgew-1">
                       <div class="input-group-prepend">
                         <img src="/assets/images/email.svg" class="mat-ic">
@@ -73,7 +77,7 @@
                          </div>
                   </div>
                   <div class="form-inline flusr-6">
-                <div class="form-group flusrg-7">
+                <div class="form-group flusrg-7" [ngClass]="{'has-error':PasswordCtrl.errors && (PasswordCtrl.touched)}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/pwd.svg" class="mat-ic">
@@ -91,7 +95,7 @@
                             Please Enter Password
                          </div> 
                 </div>
-                <div class="form-group flusrg-7">
+                <div class="form-group flusrg-7" [ngClass]="{'has-error': (ConfirmPassCtrl.touched || ConfirmPassCtrl.dirty) && (PasswordCtrl.value!==ConfirmPassCtrl.value)}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/pwd1.svg" class="mat-ic">
@@ -102,14 +106,14 @@
                       <mat-icon class="pwdic">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button> 
                   </div>
-                   <div class="errorpopup-cpw regform" *ngIf="signUpUser.get('ConfirmPassword').touched && signUpUser.get('Password').value!==signUpUser.get('ConfirmPassword').value">
+                   <div class="errorpopup-cpw regform" *ngIf="ConfirmPassCtrl.touched && PasswordCtrl.value!==ConfirmPassCtrl.value">
                          Password MisMatch 
                          </div>  			  
                 </div>
                 </div>
                 <div class="form-inline flusr">
                   <div class="row">
-                 <div class="form-group flusrg-7">
+                 <div class="form-group flusrg-7" [ngClass]="{'has-error':MobileNoCtrl.errors &&(MobileNoCtrl.touched)}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/phone.svg" class="mat-ic">
@@ -121,7 +125,7 @@
                             Please Enter Valid Mobile Number
                          </div>  			  
                 </div>
-               <div class="form-group flusrg-7">
+               <div class="form-group flusrg-7" [ngClass]="{'has-error':CompanyCtrl.errors && (CompanyCtrl.touched)}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <img src="/assets/images/company.svg" class="mat-ic">
