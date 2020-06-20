@@ -482,7 +482,7 @@ body.fixed .header-fixed .header-limiter nav {
 .has-error{
     border:0.1px solid red;
     border-radius:3px;
-    box-shadow: 0px 0px 6px 0.75px rgba(255,0,0,0.5);
+    box-shadow: 0px 0px 3px 0.75px rgba(255,0,0,0.5);
 }
 
 .errorpopup-fnm.regform {
