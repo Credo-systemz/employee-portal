@@ -481,12 +481,17 @@ a.effect-underlin:hover:after {
 	padding-bottom: -20px;
 }
 
+.has-error{
+    border:0.1px solid red;
+    border-radius:3px;
+    box-shadow: 0px 0px 6px 0.75px rgba(255,0,0,0.5);
+}
 .errorpopup{
 background-color: transparent;
 color:red;
 position: absolute;
 font-weight: 500;
-padding: 0rem 66px;
+padding: 7px 66px;
 }
 
 hr.horizontalLine {

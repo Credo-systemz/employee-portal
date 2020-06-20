@@ -257,7 +257,6 @@ nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav{
 .has-search .form-control {
     padding-left: 2.375rem;
     background-color:#F5F5F5;
-    border:none!important;
 
 }
 
@@ -275,7 +274,7 @@ nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav{
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: none;
+    border-color:none;
     outline: 0;
     box-shadow: none;
 }
@@ -480,40 +479,55 @@ body.fixed .header-fixed .header-limiter nav {
 
 }
 /* reg form css*/
+.has-error{
+    border:0.1px solid red;
+    border-radius:3px;
+    box-shadow: 0px 0px 6px 0.75px rgba(255,0,0,0.5);
+}
+
 .errorpopup-fnm.regform {
     position: absolute;
     left: 40px;
     top: 112px;
-    color: #ff0000
+    color: #ff0000;
+
 }
 .errorpopup-lnm.regform {
     position: absolute;
     top: 112px;
     color: #ff0000;
+    
+
 }
 .errorpopup-emal.regform {
     position: absolute;
-    color: #ff0000
+    color: #ff0000;
+    
+
 }
 .errorpopup-pw1.regform {
     position: absolute;
     top: 236px;
-    color: #ff0000
+    color: #ff0000;
+
 }
 .errorpopup-cpw.regform {
     position: absolute;
     top: 236px;
-    color: #ff0000
+    color: #ff0000;
+
 }
 .errorpopup-pn.regform {
     position: absolute;
     top: 303px;
-    color: #ff0000
+    color: #ff0000;
+
 }
 .errorpopup-cm.regform {
     position: absolute;
     top: 303px;
-    color: #ff0000
+    color: #ff0000;
+
 }
 .form-inline.flusr {
     margin-left: 15px;
