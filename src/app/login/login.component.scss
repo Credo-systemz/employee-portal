@@ -565,10 +565,10 @@ hr.horizontalLine {
 .facebook span {
 	background-color: #3B5998;
 }
-.youtube span {
-	background-color: #bb0000;
+.linkedin span {
+	background-color: #0e76a8;
 }
-.pinterest span {
+.google span {
 	background-color: #cb2027;
 }
 
@@ -580,10 +580,10 @@ hr.horizontalLine {
 .icon-button .fa-facebook {
 	color: #3B5998;
 }
-.icon-button .fa-youtube {
-	color: #bb0000;
+.icon-button .fa-linkedin {
+	color:  #4099ff;
 }
-.icon-button .fa-pinterest {
+.icon-button .fa-google {
 	color: #cb2027;
 }
 
@@ -592,8 +592,8 @@ hr.horizontalLine {
 
 .icon-button:hover .fa-twitter,
 .icon-button:hover .fa-facebook,
-.icon-button:hover .fa-youtube,
-.icon-button:hover .fa-pinterest {
+.icon-button:hover .fa-linkedin,
+.icon-button:hover .fa-google {
 	color: white;
 }
 

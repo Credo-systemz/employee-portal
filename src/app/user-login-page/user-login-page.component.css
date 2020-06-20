@@ -482,31 +482,38 @@ body.fixed .header-fixed .header-limiter nav {
 /* reg form css*/
 .errorpopup-fnm.regform {
     position: absolute;
-    left: 60px;
+    left: 40px;
     top: 112px;
+    color: #ff0000
 }
 .errorpopup-lnm.regform {
     position: absolute;
     top: 112px;
+    color: #ff0000;
 }
 .errorpopup-emal.regform {
     position: absolute;
+    color: #ff0000
 }
 .errorpopup-pw1.regform {
     position: absolute;
     top: 236px;
+    color: #ff0000
 }
 .errorpopup-cpw.regform {
     position: absolute;
     top: 236px;
+    color: #ff0000
 }
 .errorpopup-pn.regform {
     position: absolute;
     top: 303px;
+    color: #ff0000
 }
 .errorpopup-cm.regform {
     position: absolute;
     top: 303px;
+    color: #ff0000
 }
 .form-inline.flusr {
     margin-left: 15px;
