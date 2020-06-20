@@ -23,13 +23,15 @@ import { UserLoginPageComponent } from './user-login-page/user-login-page.compon
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MatRippleModule } from '@angular/material/core';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserLoginPageComponent,
     LoginComponent,
-    NavigationComponent
+    NavigationComponent,
+    ResetpasswordComponent
     
   ],
   imports: [

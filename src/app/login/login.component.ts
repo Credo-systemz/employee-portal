@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-
+declare var $;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,20 +12,23 @@ export class LoginComponent implements OnInit {
   errorup=false;
 
   logMessage:string="";
-
   loginForm:FormGroup;
+  forgetForm:FormGroup
 
   hide = true;
 
-  constructor(public loginUser :UserService,public myRoute:Router) { }
+  constructor(public UserSer :UserService,public myRoute:Router) { }
 
     ngOnInit() {
       let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
       this.loginForm=new FormGroup({
-
         'EmailId':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
         'Password': new FormControl(null,[Validators.required, Validators.minLength(8)])
       });  
+      this.forgetForm=new FormGroup({
+        'ForgetEmail':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)])
+      })
+
   
   }
     get  EmailIdCtrl(){
@@ -34,10 +37,13 @@ export class LoginComponent implements OnInit {
     get  PasswordCtrl(){
       return this.loginForm.get('Password')
     }
+    get ForgetEmailCtrl(){
+      return this.forgetForm.get('ForgetEmail')
+    }
     
   doLogin(){
 
-  this.loginUser.userLogin(this.loginForm.value).subscribe((data:any)=>{
+  this.UserSer.userLogin(this.loginForm.value).subscribe((data:any)=>{
     
     if(data==null){
       this.logMessage="Invalid User";
@@ -61,8 +67,23 @@ export class LoginComponent implements OnInit {
       this.loginForm.reset()
     }
      
-   })
-  
+   });
  }
- };
+ forgetpassword(){
+   this.UserSer.forgetpasswords(this.forgetForm.value.ForgetEmail).subscribe((data:any)=>{
+     
+     
+  if(data==true){
+    $("#pwdModal").modal('hide');
+    $("#exampleModal").modal('show');
+    this.forgetForm.reset();
+  }else{
+    this.logMessage="User Not found"
+    this.forgetForm.reset();  
+  }
+   })
+ }
+ close()
+ {this.forgetForm.reset()}
+ }
  

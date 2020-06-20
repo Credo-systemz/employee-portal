@@ -9,6 +9,10 @@ const jwt = require('jsonwebtoken');
 const mongodb= require('mongodb').MongoClient;
 
 const bcrypt= require('bcrypt');
+ 
+const nodemailer = require("nodemailer");
+
+require("dotenv").config();
 
 const app= express();
 
@@ -32,7 +36,8 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 
 //CHECK FOR EMAIL ID EXIST OR NOT
 app.get("/checkEmail/:email",(req,res)=>{
-    var checkEmail=req.params.email;
+    //console.log(req.params)
+    const checkEmail=req.params.email;
     db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
       if(data.length!==0 || data==!null)
        {
@@ -44,7 +49,69 @@ app.get("/checkEmail/:email",(req,res)=>{
             }          
     });
  });
+app.get("/forgetuser/:emailid",(req,res)=>{
+    const forgetemail=req.params.emailid;
+    console.log(forgetemail)
+    db.collection("userdata").find({EmailId:forgetemail}).toArray((error,data)=>{  
+              
+        if(data.length!==0 || data==!null)
+         {
+            const transporter = nodemailer.createTransport({
+                host:"smtp.gmail.com",
+                port:465,
+                auth:{
+                    user:'projectemployeeportal@gmail.com',
+                    pass:'Empportal@5'
+                }
+            })
+            var mailoption={
+                from:process.env.EMAIL,
+                to:req.params.emailid,
+                subject:"Reset Password",
+                text:'Hi'+" "+data[0].FirstName+" "+data[0].LastName+'\n'+
+                'You recently requested to reset you password for your account.'+'\n'+
+                'Click the Link below to reset it.'+'\n\n'+
+                'http://localhost:4200/resetpassword/'+data[0]._id+
+                '\n\n' + 
+                'if you didnot make this request then you can safely ignore this email'+'\n'+
+                'Thanks'+'\n'+
+                'Team'
+             }
+               transporter.sendMail(mailoption,(error,res)=>{
+               if(error)
+               {
+                 console.log(error)
+                }
+                else{
+                    console.log(res)
+            }
+            
+         })
+           res.json(true)
+          }
+           else
+           {
+               res.json(false)
+                             
+           }          
+      });
+});
+app.put("/resetpassword",async (req,res)=>{
 
+    const ReSalt= await bcrypt.genSalt();
+
+    const ReHashPassword= await bcrypt.hash(req.body.Password,ReSalt);
+    
+    req.body.Password=ReHashPassword;
+console.log(req.body)
+
+    db.collection("userdata").updateOne({_id:Number(req.body._id)},{$set:{Password:req.body.Password}},(error,data)=>{
+        if(error){
+            console.log(error)
+        }
+        res.json("updated")
+    });
+})
 app.post("/register",async (req,res)=>{
   
     const Salt= await bcrypt.genSalt();

@@ -16,13 +16,16 @@ export class UserService {
   isLoggedIn(){
     return !!localStorage.getItem("token");
   }
-
 userEmailCheck(email){
   return this.http.get("http://localhost:3000/checkEmail/"+email);
 }
   userLogin(loginData){
-    
     return this.http.post("http://localhost:3000/login",loginData);
-
+  }
+  forgetpasswords(emailid){
+    return this.http.get("http://localhost:3000/forgetuser/"+emailid);
+  }
+  resetpassword(resetdata){
+    return this.http.put("http://localhost:3000/resetpassword",resetdata)
   }
 }

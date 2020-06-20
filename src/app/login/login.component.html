@@ -73,9 +73,14 @@
           </form>
         </div>       
         <div class="row mt-3">
-          <div class="col-6">
+         <!-- <div class="col-6">
             <a routerLink="/" class="text-light effect-underline"><strong>Forgot password?</strong></a>
+          </div>-->
+          <div class="col-6">
+          <div type="button" id="forgetpswd" class="text-light effect-underline" data-toggle="modal" data-target="#pwdModal">
+            <strong>Forgot password ?</strong>
           </div>
+        </div>
           <div class="col-6 text-right">
             <a routerLink="/register" class="text-light effect-underlin"><strong>Create new account</strong></a>
           </div>
@@ -88,13 +93,76 @@
         <a routerLink="" class="icon-button linkedin"><i class="fa fa-linkedin"></i><span></span></a>
         <a routerLink="" class="icon-button google"><i class="fa fa-google"></i><span></span></a>
         </div>
-
       </div>
     </div>
   </div>
 </div>
 </div>
+<!--Forget Password-->
 
+<div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="text-center">What's My Password?</h1>  
+        <button type="button" class="close" (click)="close()" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+          <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                          
+                          <p>If you have forgotten your password you can reset it here.</p>
+                          <mat-error>{{logMessage}}</mat-error>
+                            <div class="panel-body">
+                                <form (submit)="forgetpassword()" [formGroup]="forgetForm">
+                                    <div class="form-group">
+                                        <input class="form-control input-lg" placeholder="E-mail Address" formControlName="ForgetEmail">
+                                    </div>
+                                    <div *ngIf="ForgetEmailCtrl.invalid && ForgetEmailCtrl.touched">
+                                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Please Enter Valid Email</strong>
+                                      </div>
+                                      <!--<mat-error>Please Enter Valid Email</mat-error>-->
+                                    </div>
+                                    <input class="btn btn-lg btn-primary btn-block" [disabled]="ForgetEmailCtrl.invalid" value="Reset My Password" type="submit">
+                                  </form>    
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" (click)="close()" aria-hidden="true">Cancel</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+<!--succes msg forget password start-->
 
-
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">THANK YOU</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Reset Password Link sent to your Register Email Address
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--succes msg forget password start-->
+<!--forget password over-->
