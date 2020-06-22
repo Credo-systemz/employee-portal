@@ -18,7 +18,7 @@ const app= express();
 
 app.use(cors());
 
-app.use(bodyParser.json());
+ app.use(bodyParser.json());
  
 var db;
 
@@ -36,30 +36,36 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 
 //CHECK FOR EMAIL ID EXIST OR NOT
 app.get("/checkEmail/:email",(req,res)=>{
-    //console.log(req.params)
+    
     const checkEmail=req.params.email;
-    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{     
-           
-      if(data.length!==0 || data==!null)
-       {
-            res.json(true)
-        }
-         else
+    
+    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
+    
+        if(data.length!==0 || data==!null)
          {
+             res.json(true)
+         }
+          else
+            {
              res.json(false)
             }          
-    });
+     });
  });
 
 
 //FORGOT PASSWORD RESET
 app.get("/forgetuser/:emailid",(req,res)=>{
+   
     const forgetemail=req.params.emailid;
-    console.log(forgetemail);
+   
     db.collection("userdata").find({EmailId:forgetemail}).toArray((error,data)=>{  
-              
+        
         if(data.length!==0 || data==!null)
          {
+             var myid=data[0]._id
+
+             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :30*60000} );
+                
             const transporter = nodemailer.createTransport({
                 host:"smtp.gmail.com",
                 port:465,
@@ -75,31 +81,32 @@ app.get("/forgetuser/:emailid",(req,res)=>{
                 text:'Hi'+" "+data[0].FirstName+" "+data[0].LastName+'\n'+
                 'You recently requested to reset you password for your account.'+'\n'+
                 'Click the Link below to reset it.'+'\n\n'+
-                'http://localhost:4200/resetpassword/'+data[0]._id+
+                'http://localhost:4200/resetpassword/'+jwttoken+
                 '\n\n' + 
-                'if you have not made this request then you can safely ignore this email'+'\n'+
+                'if you didnot make this request then you can safely ignore this email'+'\n'+
                 'Thanks'+'\n'+
-                'Team Freebees :)'
+                'Team'
              }
                transporter.sendMail(mailoption,(error,res)=>{
                if(error)
                {
-                 console.log(error)
+                 console.log(error);
                 }
                 else{
-                    console.log(res)
+                    console.log(res);
             }
             
-         })
-           res.json(true)
+         });
+          
+            res.json(true);
           }
-           else
+             else
            {
-               res.json(false)
-                             
+             res.status(404).json("EMail ID Not Availale");                
            }          
-      });
+    });
 });
+
 app.put("/resetpassword",async (req,res)=>{
 
     const ReSalt= await bcrypt.genSalt();
@@ -107,16 +114,27 @@ app.put("/resetpassword",async (req,res)=>{
     const ReHashPassword= await bcrypt.hash(req.body.Password,ReSalt);
     
     req.body.Password=ReHashPassword;
-
-    console.log(req.body);
-
-    db.collection("userdata").updateOne({_id:Number(req.body._id)},{$set:{Password:req.body.Password}},(error,data)=>{
+   
+    const myUid=jwt.decode(req.body._id)   
+   
+    console.log(myUid)
+    if(Math.floor(Date.now() / 1000)>myUid.exp){
+       res.json(false)
+    }else
+     {
+     db.collection("userdata").updateOne({_id:myUid.myid},{$set:{Password:req.body.Password}},(error,data)=>{
         if(error){
             console.log(error)
         }
-        res.json("updated")
-    });
-})
+        if(data){
+        res.json(true)
+        }
+    
+      });
+    }
+
+});
+
 app.post("/register",async (req,res)=>{
   
     const Salt= await bcrypt.genSalt();
@@ -147,28 +165,34 @@ app.post("/register",async (req,res)=>{
 
 app.post("/login", (req,res)=>{
 
-    
     db.collection("userdata").find({EmailId:req.body.EmailId},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
         if(error){
             res.status(400).json("Error in select query");
         }
         
         if(data.length==0 || data==null ){
-        res.status(404).json("User Not Availale")
-        }else{ 
-            bcrypt.compare(req.body.Password,data[0].Password).then((response)=>{
-                console.log(response)
-
-            if(response==true){
-                var token =jwt.sign(data[0],'mykey')
-                delete data[0].Password;
-                res.json(token)
-            }else{
-                res.status(401).json("invalid User")
+             res.status(404).json("User Not Availale")
             }
-            });
-        }
-     })
+        else{ 
+
+              bcrypt.compare(req.body.Password,data[0].Password).then((response)=>
+              {
+               
+                 if(response==true){
+
+                 var token =jwt.sign(data[0],'mykey');
+                
+                 delete data[0].Password;
+                
+                 res.json(token);
+                 }
+                 else
+                 {
+                 res.status(401).json("invalid User")
+                 }
+              });
+            }
+     });
    
 });
 

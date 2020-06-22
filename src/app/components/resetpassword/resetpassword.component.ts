@@ -23,7 +23,7 @@ export class ResetpasswordComponent implements OnInit {
   
       'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
   
-      'ConfirmPassword':new FormControl(null)
+      'ConfirmPassword':new FormControl(null,Validators.required)
   
     }); 
 
@@ -43,9 +43,10 @@ export class ResetpasswordComponent implements OnInit {
     delete this.mydata.ConfirmPassword;
     this.ResetPassForm.reset()
     this.UserSer.resetpassword(this.mydata).subscribe((data:any)=>{
-     console.log(data)
+     if(data==false){
+       console.log("failed")
+     }
      $("#exampleModal").modal("show");
-
     })
 
   }
