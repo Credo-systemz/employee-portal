@@ -52,6 +52,8 @@ app.get("/checkEmail/:email",(req,res)=>{
      });
  });
 
+
+//FORGOT PASSWORD RESET
 app.get("/forgetuser/:emailid",(req,res)=>{
    
     const forgetemail=req.params.emailid;
