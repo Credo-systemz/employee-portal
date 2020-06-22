@@ -38,7 +38,8 @@ mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/
 app.get("/checkEmail/:email",(req,res)=>{
     //console.log(req.params)
     const checkEmail=req.params.email;
-    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{        
+    db.collection("userdata").find({EmailId:checkEmail}).toArray((error,data)=>{     
+           
       if(data.length!==0 || data==!null)
        {
             res.json(true)
@@ -49,6 +50,9 @@ app.get("/checkEmail/:email",(req,res)=>{
             }          
     });
  });
+
+
+//FORGOT PASSWORD RESET
 app.get("/forgetuser/:emailid",(req,res)=>{
     const forgetemail=req.params.emailid;
     console.log(forgetemail)
