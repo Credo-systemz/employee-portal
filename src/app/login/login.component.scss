@@ -626,6 +626,63 @@ hr.horizontalLine {
   }
 
 }
+.text-muted {
+    color: #0B1B87 !important;
+}
+.custom-control-label span {
+    position: relative;
+    top: 2px;
+    right: 15px;
+}
+.card{
+    background-color: #F5F5F5 !important;
+}
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+.hed-txt{
+ text-align: center;
+ margin: 10px;
+}
+img.mat-ic {
+	padding: 5px;
+	background-color: white;
+}
+.py-lg-5 {
+    padding-top: 0rem !important;
+}
+.pl-lg-6, .px-lg-6 {
+    padding-left: 1.5rem !important;
+}
+.pr-lg-6, .px-lg-6 {
+    padding-right: 1.5rem !important;
+}
+.pb-lg-5, .py-lg-5 {
+    padding-bottom: 0rem !important;
+}
+.mb-4, .my-4{
+    margin-bottom: 0.5rem !important;
+    margin-top: 11px!important;
+}
+.mb-5, .my-5 {
+    margin-bottom: 2rem !important;
+}
+.mt-4, .my-4 {
+    margin-top: -0.5rem !important;
+}
+.loginWith{
+    margin-top:-15px;
+}
+.ssobtn{
+    text-align: center;
+    padding-bottom: 15px;
+    margin-right: 14px;
+}
+/*forget password btn*/
+// #forgetpswd{
+//     border: none;
+//     background: none;
+// }
 
 .header-fixed {
 	background-color:#292c2f;
@@ -747,60 +804,4 @@ body.fixed .header-fixed .header-limiter nav {
 		display: none;
 	}
 
-}
-.text-muted {
-    color: #0B1B87 !important;
-}
-.custom-control-label span {
-    position: relative;
-    top: 2px;
-    right: 15px;
-}
-.card{
-    background-color: #F5F5F5 !important;
-}
-.shadow {
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
-}
-.hed-txt{
- text-align: center;
- margin: 10px;
-}
-img.mat-ic {
-	padding: 5px;
-	background-color: white;
-}
-.py-lg-5 {
-    padding-top: 0rem !important;
-}
-.pl-lg-6, .px-lg-6 {
-    padding-left: 1.5rem !important;
-}
-.pr-lg-6, .px-lg-6 {
-    padding-right: 1.5rem !important;
-}
-.pb-lg-5, .py-lg-5 {
-    padding-bottom: 0rem !important;
-}
-.mb-4, .my-4{
-    margin-bottom: 0.5rem !important;
-    margin-top: 11px!important;
-}
-.mb-5, .my-5 {
-    margin-bottom: 2rem !important;
-}
-.mt-4, .my-4 {
-    margin-top: -0.5rem !important;
-}
-.loginWith{
-    margin-top:-15px;
-}
-.ssobtn{
-    text-align: center;
-    padding-bottom: 15px;
-}
-/*forget password btn*/
-#forgetpswd{
-    border: none;
-    background: none;
 }

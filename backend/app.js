@@ -18,7 +18,7 @@ const app= express();
 
 app.use(cors());
 
- app.use(bodyParser.json());
+app.use(bodyParser.json());
  
 var db;
 
@@ -55,7 +55,7 @@ app.get("/checkEmail/:email",(req,res)=>{
 //FORGOT PASSWORD RESET
 app.get("/forgetuser/:emailid",(req,res)=>{
     const forgetemail=req.params.emailid;
-    console.log(forgetemail)
+    console.log(forgetemail);
     db.collection("userdata").find({EmailId:forgetemail}).toArray((error,data)=>{  
               
         if(data.length!==0 || data==!null)
@@ -77,9 +77,9 @@ app.get("/forgetuser/:emailid",(req,res)=>{
                 'Click the Link below to reset it.'+'\n\n'+
                 'http://localhost:4200/resetpassword/'+data[0]._id+
                 '\n\n' + 
-                'if you didnot make this request then you can safely ignore this email'+'\n'+
+                'if you have not made this request then you can safely ignore this email'+'\n'+
                 'Thanks'+'\n'+
-                'Team'
+                'Team Freebees :)'
              }
                transporter.sendMail(mailoption,(error,res)=>{
                if(error)
@@ -107,7 +107,8 @@ app.put("/resetpassword",async (req,res)=>{
     const ReHashPassword= await bcrypt.hash(req.body.Password,ReSalt);
     
     req.body.Password=ReHashPassword;
-console.log(req.body)
+
+    console.log(req.body);
 
     db.collection("userdata").updateOne({_id:Number(req.body._id)},{$set:{Password:req.body.Password}},(error,data)=>{
         if(error){
@@ -125,6 +126,7 @@ app.post("/register",async (req,res)=>{
     req.body._id = new Date().getTime();
 
     req.body.Password=HashPassword;
+
     req.body.Role="User"
 
          db.collection("userdata").insert(req.body, (error, data)=>{

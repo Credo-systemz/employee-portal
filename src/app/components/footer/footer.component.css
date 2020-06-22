@@ -1,0 +1,32 @@
+/* footer */
+footer {
+    color: #ccc;
+    background: #F5F5F5;
+    position: fixed;
+    bottom: 0px;
+    padding: 17px 0 18px 0;
+    border-top: 1px solid #F5F5F5;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+  }
+  footer a {
+    color: #333;
+  }
+  footer a:hover {
+    color: #495057;
+  }
+  
+  /* responsive footer fix by Aalaap Ghag 
+  This is where the magic happens */
+  @media (max-width: 767px) {
+  
+    footer  {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  
+  .container {
+    max-width: 940px;
+  }
