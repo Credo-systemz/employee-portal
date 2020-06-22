@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+
 declare var $;
 @Component({
   selector: 'app-login',
@@ -9,13 +10,14 @@ declare var $;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  errorup=false;
 
+  errorup=false;
+  errorup1=false;
+  hide = true;
   logMessage:string="";
+
   loginForm:FormGroup;
   forgetForm:FormGroup
-
-  hide = true;
 
   constructor(public UserSer :UserService,public myRoute:Router) { }
 
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.reset()
       this.myRoute.navigateByUrl("/userprofile")
     }
-   }, (error:any)=>{
+   },(error:any)=>{
      console.log(error);
      if(error.status==404){
       this.errorup=true
@@ -70,20 +72,34 @@ export class LoginComponent implements OnInit {
    });
  }
  forgetpassword(){
-   this.UserSer.forgetpasswords(this.forgetForm.value.ForgetEmail).subscribe((data:any)=>{
+   this.UserSer.forgetpasswords(this.forgetForm.value.ForgetEmail).subscribe((data1:any)=>{
      
+    if(data1==true){
+     $("#pwdModal").modal('hide');
+     $("#exampleModal").modal('show');
+     this.forgetForm.reset();
+     }
+   },
+   (error:any)=>{
+     this.errorup1=true;
+     this.forgetForm.reset();  
      
-  if(data==true){
-    $("#pwdModal").modal('hide');
-    $("#exampleModal").modal('show');
-    this.forgetForm.reset();
-  }else{
-    this.logMessage="User Not found"
-    this.forgetForm.reset();  
-  }
-   })
+   });
+
  }
- close()
- {this.forgetForm.reset()}
- }
+
+ close(){
+   this.forgetForm.reset();
+   $("#pwdModal").modal('hide');
+   this.errorup1=false
+}
+close1(){
+  $("#exampleModal").modal('hide');
+  $("#pwdModal").modal('hide');
+}
+
+  
+ 
+}
+
  
