@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from 'src/app/user.service';
+import { error } from 'protractor';
 declare var $;
 @Component({
   selector: 'app-resetpassword',
@@ -41,13 +42,17 @@ export class ResetpasswordComponent implements OnInit {
     this.mydata=this.ResetPassForm.value;
     this.mydata._id=this._id
     delete this.mydata.ConfirmPassword;
-    this.ResetPassForm.reset()
+    this.ResetPassForm.reset();
+
     this.UserSer.resetpassword(this.mydata).subscribe((data:any)=>{
-     if(data==false){
-       console.log("failed")
+     if(data){
+      $("#exampleModalCenter").modal('show');
      }
-     $("#exampleModal").modal("show");
-    })
+    },(error:any)=>{
+      if(error.status==408){
+      $("#exampleModalCenter1").modal('show');
+      }
+    });
 
   }
 }
