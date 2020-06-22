@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       this.logMessage="Success"
       localStorage.setItem("token",data);
       this.loginForm.reset()
-      this.myRoute.navigateByUrl("/home")
+      this.myRoute.navigateByUrl("/userprofile")
     }
    },(error:any)=>{
      console.log(error);
