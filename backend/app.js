@@ -11,6 +11,7 @@ const mongodb= require('mongodb').MongoClient;
 const bcrypt= require('bcrypt');
  
 const nodemailer = require("nodemailer");
+const { resolveSoa } = require('dns');
 
 require("dotenv").config();
 
@@ -64,7 +65,7 @@ app.get("/forgetuser/:emailid",(req,res)=>{
          {
              var myid=data[0]._id
 
-             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :30*60000} );
+             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'180000'} );
                 
             const transporter = nodemailer.createTransport({
                 host:"smtp.gmail.com",
@@ -106,7 +107,7 @@ app.get("/forgetuser/:emailid",(req,res)=>{
            }          
     });
 });
-
+//Reset Password //
 app.put("/resetpassword",async (req,res)=>{
 
     const ReSalt= await bcrypt.genSalt();
@@ -118,19 +119,23 @@ app.put("/resetpassword",async (req,res)=>{
     const myUid=jwt.decode(req.body._id)   
    
     console.log(myUid)
+    console.log(Math.floor(Date.now() / 1000))
+
     if(Math.floor(Date.now() / 1000)>myUid.exp){
-       res.json(false)
-    }else
-     {
-     db.collection("userdata").updateOne({_id:myUid.myid},{$set:{Password:req.body.Password}},(error,data)=>{
+
+       res.status(408).json("Token Expired")
+    }
+    else
+      {
+        db.collection("userdata").updateOne({_id:myUid.myid},{$set:{Password:req.body.Password}},(error,data)=>{
         if(error){
             console.log(error)
         }
-        if(data){
-        res.json(true)
-        }
     
-      });
+      });   
+    
+      res.json("success")
+
     }
 
 });

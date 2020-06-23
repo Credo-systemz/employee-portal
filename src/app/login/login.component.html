@@ -24,7 +24,7 @@
         <div class="card-body px-lg-6 py-lg-5">
           <form (submit)="doLogin()" [formGroup]="loginForm">
             <mat-error *ngIf="errorup">{{logMessage}}</mat-error>
-            <div class="form-group mb-5" [ngClass]="{'has-error': (EmailIdCtrl.touched || EmailIdCtrl.dirty) && EmailIdCtrl.errors }">
+            <div class="form-group mb-5" [ngClass]="{'has-error': EmailIdCtrl.invalid && EmailIdCtrl.touched }">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <img src="/assets/images/name.svg" class="mat-ic">

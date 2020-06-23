@@ -24,7 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MatRippleModule } from '@angular/material/core';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginComponent,
     NavigationComponent,
     ResetpasswordComponent,
-    FooterComponent
+    UserprofileComponent
     
   ],
   imports: [
