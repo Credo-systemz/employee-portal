@@ -1,125 +1,4 @@
- /* nav css */
-/* sidebar */
-#menu-toggle{
-    color: #333;
-    position: absolute;
-    top: 6px;
-    border-top-left-radius: 100px;
-    left: -3.25px;
-    border-top-right-radius: 100px;
-    border: none;
-    transform: rotate(90deg);
-    background: #ccc;
-    box-shadow: -1px -5px 12px 0px rgba(6, 6, 255, 0.2);
-}
-    #wrapper {
-      padding-left: 250px;
-      -webkit-transition: all 0.5s ease;
-      -moz-transition: all 0.5s ease;
-      -o-transition: all 0.5s ease;
-      transition: all 0.5s ease;
-    } 
-    #wrapper.toggled {
-      padding-left: 0px;
-    }  
-    #sidebar-wrapper {
-                position: fixed;
-      
-                        left: 250px;
-      
-                        width: 250px;
-      
-                        height: 86.5%;
-      
-                        margin-left: -250px;
-      
-                        overflow-y: hidden;
-    
-                         overflow-x: hidden;
-                        background: #DCDCDC;
-      
-                -webkit-transition: all 0.5s ease;
-      -moz-transition: all 0.5s ease;
-      -o-transition: all 0.5s ease;
-      transition: all 0.5s ease;
-            
-    }
-    #wrapper.toggled #sidebar-wrapper {width: 0px;
-    }    
-    #page-content-wrapper {
-      width: auto;
-      position: absolute;
-      padding: 50px;
-    }   
-    #wrapper.toggled #page-content-wrapper {
-      position: absolute;
-      margin-right: -250px;
-      width:100%;
-    }
-    /* Sidebar Styles */    
-    .sidebar-nav {
-      position: absolute;
-      top: 0;
-      width: 250px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }   
-    .sidebar-nav li {
-      text-indent: 20px;
-      line-height: 40px;
-    }
-    .sidebar-nav li a {
-      display: block;
-      text-decoration: none;
-      color: #999999;
-    }
-    
-    
-    .sidebar-nav li a:hover {
-      text-decoration: none;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    
-    .sidebar-nav li a:active, .sidebar-nav li a:focus {
-      text-decoration: none;
-    }
-    
-    
-    .sidebar-nav>.sidebar-brand {
-      height: 65px;
-      font-size: 18px;
-      line-height: 60px;
-    }
-    
-    .sidebar-nav>.sidebar-brand a {
-      color: #999999;
-    }
-    
-    
-    .sidebar-nav>.sidebar-brand a:hover {
-      color: #fff;
-      background: none;
-    }
-    
-    @media(max-width:767px){
-    #sidebar-wrapper {
-        position: absolute;
-        left: 250px;
-        width: 250px;
-        height: 86.5%;
-        margin-left: -250px;
-        overflow-y: hidden;
-        overflow-x: hidden;
-        background: #DCDCDC;
-        transition: all 0.5s ease;
-    }
-}
-/* sidebar */
-
-/* Logo styles */
+ 
 #logo {
     width: 50px;
     height: 50px;
@@ -131,43 +10,13 @@
     flex-direction: column !important;
     width: 240px;
 }
-/* Logo styles */
 
-/* Font icons CSS */
-
-.fa-bell {
-    color: #fff;
-    margin-right: 10px;
-    cursor: pointer
-}
-span.fa.fa-book {
-    color: #008B8B;
-}
-span.fa.fa-group {
-    color: #C71585;
-}
-span.fa.fa-pie-chart {
-    color: #FF4500;
-}
 .fa {
     padding-right: 0px;
     padding-left: 0px;
 }
 li.nav-item.icon-nav {
     padding: 0;
-}
-span.fa.fa-bell {
-    color: #DC143C;
-}
-
-/* Top-right-icon CSS */
-.icon-nav-link-book {
-    background: #AFEEEE;
-    border-radius: 8px 0px;
-}
-.icon-nav-link-chart {
-    background: #FFA07A;
-    border-radius: 8px 0px;
 }
 
 /* Font icons CSS */
@@ -191,29 +40,6 @@ span.fa.fa-bell {
 .nav-link {
     padding: 5px
 }
-
-.navbar-collapse.collapse.in {
-    display: block !important
-}
-
-.right {
-    margin-left: auto
-}
-
-.notification {
-    color: #fff;
-    cursor: pointer
-}
-
-.notify-count {
-    color: #BDBDBD;
-    cursor: pointer
-}
-
-.nav-text {
-    display: none
-}
-
 
 /* Second nav css */
 nav.navbar.navbar-expand-lg.navbar-dark {
@@ -249,46 +75,12 @@ nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav{
     padding: 18px 30px 5px 13px;
     background-color: #F5F5F5;
 }
-/* Search box css */
-
-.form-group.has-search {
-    margin-right: 75px;
-}
-.has-search .form-control {
-    padding-left: 2.375rem;
-    background-color:#F5F5F5;
-
-}
-
-.has-search .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
-}
-.form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color:none;
-    outline: 0;
-    box-shadow: none;
-}
-/* Search box css */
 @media (max-width: 992px) {
     .flex-column {
         flex-direction: column !important;
         width: 270px;
     }
-.form-group.has-search {
-    text-align: center;
-    margin-left: 50px;
-    width: 100%;
-}
+
 ul.navbar-nav.mr-auto {
     padding: 10px;
 }
@@ -313,18 +105,6 @@ nav.navbar.navbar-expand-lg.navbar-dark{
         padding: 5px;
         background-color: #F5F5F5;
     }
-    .icon-nav-link-book {
-        background: #AFEEEE;
-        border-radius: 0px;
-    }
-    .icon-nav-link-chart {
-        background: #FFA07A;
-        border-radius:0px;
-    }
-    .icon-nav-link-pro {
-        background: #FF69B4;
-        border-radius:0px;
-    }
     .nav-link {
         padding: 15px;
     }
@@ -340,145 +120,8 @@ nav.navbar.navbar-expand-lg.navbar-dark{
     .right {
         margin-left: 3px
     }
-
-    .navbar-toggler {
-        margin-left: auto
-    }
-
-    .nav-text {
-        display: inline-block
-    }
+ 
 }
-
-@media screen and (max-width: 620px) {
-.searchBox:hover > .searchInput {
-    width: 150px;
-    padding: 0 6px;
-}
-}
-
-.header-fixed {
-	background-color:#292c2f;
-	box-shadow:0 1px 1px #ccc;
-	padding: 20px 40px;
-	height: 80px;
-	color: #ffffff;
-	box-sizing: border-box;
-	top:-100px;
-
-	-webkit-transition:top 0.3s;
-	transition:top 0.3s;
-}
-
-.header-fixed .header-limiter {
-	max-width: 1200px;
-	text-align: center;
-	margin: 0 auto;
-}
-
-.header-fixed-placeholder{
-	height: 80px;
-	display: none;
-}
-
-/* Logo */
-
-.header-fixed .header-limiter h1 {
-	float: left;
-	font: normal 28px Cookie, Arial, Helvetica, sans-serif;
-	line-height: 40px;
-	margin: 0;
-}
-
-.header-fixed .header-limiter h1 span {
-	color: #5383d3;
-}
-
-/* The navigation links */
-
-.header-fixed .header-limiter a {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-.header-fixed .header-limiter nav {
-	font:16px Arial, Helvetica, sans-serif;
-	line-height: 40px;
-	float: right;
-}
-
-.header-fixed .header-limiter nav a{
-	display: inline-block;
-	padding: 0 5px;
-	text-decoration:none;
-	color: #ffffff;
-	opacity: 0.9;
-}
-
-.header-fixed .header-limiter nav a:hover{
-	opacity: 1;
-}
-
-.header-fixed .header-limiter nav a.selected {
-	color: #608bd2;
-	pointer-events: none;
-	opacity: 1;
-}
-
-body.fixed .header-fixed {
-	padding: 10px 40px;
-	height: 50px;
-	position: fixed;
-	width: 100%;
-	top: 0;
-	left: 0;
-	z-index: 1;
-}
-
-body.fixed .header-fixed-placeholder {
-	display: block;
-}
-
-body.fixed .header-fixed .header-limiter h1 {
-	font-size: 24px;
-	line-height: 30px;
-}
-
-body.fixed .header-fixed .header-limiter nav {
-	line-height: 28px;
-	font-size: 13px;
-}
-
-@media all and (max-width: 600px) {
-
-	.header-fixed {
-		padding: 20px 0;
-		height: 75px;
-	}
-
-	.header-fixed .header-limiter h1 {
-		float: none;
-		margin: -8px 0 10px;
-		text-align: center;
-		font-size: 24px;
-		line-height: 1;
-	}
-
-	.header-fixed .header-limiter nav {
-		line-height: 1;
-		float:none;
-	}
-
-	.header-fixed .header-limiter nav a {
-		font-size: 13px;
-	}
-
-	body.fixed .header-fixed {
-		display: none;
-	}
-
-}
-/* reg form css*/
 .has-error{
     border:0.1px solid red;
     border-radius:3px;
@@ -536,7 +179,7 @@ body.fixed .header-fixed .header-limiter nav {
     background-color: #F5F5F5 !important;
 }
 .shadow {
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    box-shadow: 0 .2rem 1rem rgba(0,0,0,.15)!important;
 }
 .recaptcha.frbtsb {
     margin: 18px;
@@ -558,8 +201,7 @@ button.btn.btn-primary.my-4.my-4.cd-popup-trigger:hover{
 }
 .header {
     position: relative;
-    max-width: 98%;
-	margin-top: 12px;
+    top: 21px;
 	margin-bottom: 50px;
 }
 img.mat-ic {
@@ -626,12 +268,6 @@ mat-icon.mat-icon.mat-icon-no-color.material-icons.notranslate.pwdic {
     margin-top: 21px;
 }
 
-/* popup css */
-/* -------------------------------- 
-
-Modules - reusable parts of our design
-
--------------------------------- */
 .img-replace {
     /* replace text with an image */
     display: inline-block;
@@ -640,67 +276,6 @@ Modules - reusable parts of our design
     color: transparent;
     white-space: nowrap;
   }
-  
-  /* -------------------------------- 
-  
-  xnugget info 
-  
-  -------------------------------- */
-  .cd-nugget-info {
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    bottom: 0;
-    left: 0;
-  }
-  .cd-nugget-info a {
-    position: relative;
-    font-size: 14px;
-    color: #5e6e8d;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    transition: all 0.2s;
-  }
-  .no-touch .cd-nugget-info a:hover {
-    opacity: .8;
-  }
-  .cd-nugget-info span {
-    vertical-align: middle;
-    display: inline-block;
-  }
-  .cd-nugget-info span svg {
-    display: block;
-  }
-  .cd-nugget-info .cd-nugget-info-arrow {
-    fill: #5e6e8d;
-  }
-  
-  /* -------------------------------- 
-  
-  Main components 
-  
-  -------------------------------- */
-  header {
-    height: 200px;
-    line-height: 200px;
-    text-align: center;
-    background-color: #5e6e8d;
-    color: #FFF;
-  }
-  header h1 {
-    font-size: 20px;
-    font-size: 1.25rem;
-  }
-  
-  
-  
-  /* -------------------------------- 
-  
-  xpopup 
-  
-  -------------------------------- */
   .cd-popup {
     position: fixed;
     left: 0;
@@ -768,8 +343,6 @@ Modules - reusable parts of our design
     -moz-transition: background-color 0.2s;
     transition: background-color 0.2s;
   }
- 
- 
   .cd-popup-container .cd-buttons li:last-child a {
     background: white;
     color: black;
@@ -812,3 +385,5 @@ Modules - reusable parts of our design
     -o-transform: translateY(0);
     transform: translateY(0);
   }
+
+ 
