@@ -18,11 +18,15 @@ import { MatIconModule } from '@angular/material/Icon';
 import { MatCheckboxModule } from '@angular/material/Checkbox';
 import { MatToolbarModule } from '@angular/material/Toolbar';
 import {RecaptchaModule, RecaptchaFormsModule} from 'ng-recaptcha';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatRippleModule, MatOptionModule } from '@angular/material/core';
+
+
+
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { MatRippleModule } from '@angular/material/core';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -59,8 +63,10 @@ import { FooterComponent } from './components/footer/footer.component';
     MatIconModule,
     MatCheckboxModule,
     MatToolbarModule,
-    MatFormFieldModule
-  ],
+    MatFormFieldModule,
+    MatExpansionModule,
+    MatOptionModule
+    ],
 
   providers: [],
   bootstrap: [AppComponent],
