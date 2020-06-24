@@ -1,6 +1,6 @@
 <article class="container">
     <h2>USER PROFILE</h2>
-    <form>
+    <form [formGroup]="UserProfile">
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -118,17 +118,13 @@
                         <input matInput>
                     </mat-form-field>
 
-                    <mat-form-field>
-                        <mat-label>Country</mat-label>
+                    <mat-form-field >
                         <input matInput>
-
-                         <!-- <mat-select>
-                            <mat-option>India</mat-option>
-                            <mat-option>Australia</mat-option>  
-                            <mat-option>United Kingdom</mat-option>     
-                            <mat-option>United States of America</mat-option>  
+                        <mat-label>Country</mat-label>
+                    <mat-select [(ngModel)]="country" formControlName="Country"> 
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let country of countries " matNativeControl  [value]="country">{{country}}</mat-option>
                         </mat-select>
-                       -->
                  </mat-form-field>
                 </div>
             </mat-expansion-panel>

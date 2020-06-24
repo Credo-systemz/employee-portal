@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterContentInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -8,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserprofileComponent implements OnInit {
 
-  // countries:string[]=["India","USA","Europe","Singapore"]
+  UserProfile:FormGroup;
+  country;
+   countries=["India","USA","Europe","Singapore"]
   
   constructor() { }
 
   ngOnInit(): void {
-  }
-
+    this.UserProfile= new FormGroup({
+      'Country':new FormControl(null, [Validators.required])
+    });
+    
+  }  
 }
