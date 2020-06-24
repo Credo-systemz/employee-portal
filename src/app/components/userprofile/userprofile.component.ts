@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/user.service';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit,AfterContentInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -9,22 +8,17 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./userprofile.component.css']
 })
 export class UserprofileComponent implements OnInit {
-  userdata:FormGroup
-  // countries:string[]=["India","USA","Europe","Singapore"]
+
+  UserProfile:FormGroup;
+  country;
+   countries=["India","USA","Europe","Singapore"]
   
-  constructor(public UserService: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  saveInfo(){
-    this.UserService.userinfo(this.userdata.value).subscribe((data:any)=>{
-      this.userdata.reset();
-      console.log(data);
-    },
-    (error:any)=>{
-      console.log(error);
-    })
-  }
-
+    this.UserProfile= new FormGroup({
+      'Country':new FormControl(null, [Validators.required])
+    });
+    
+  }  
 }
