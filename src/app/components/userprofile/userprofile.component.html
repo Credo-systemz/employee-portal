@@ -1,3 +1,4 @@
+<app-navigation></app-navigation>
 <article class="container">
     <h2>USER PROFILE</h2>
     <form>
@@ -17,15 +18,20 @@
                 </div>
 
                 <div>
-                    <mat-form-field>
+                    <mat-form-field  appearance="fill">
                         <mat-label>Title</mat-label>
-                            <select matNativeControl required>
-                                <option value=""></option>
+                            <!-- <select matNativeControl required> -->
+                                <mat-select>
+                                <mat-option value="option">Option</mat-option>
+                                <mat-option value="option">Option</mat-option>
+                                <mat-option value="option">Option</mat-option>
+                                <!-- <option value=""></option>
                                 <option value="Web Developer">Web Developer</option>
                                 <option value="Java Developer">Java Developer</option>
                                 <option value="Andriod Developer">Andriod Developer</option>
-                                <option value="DevOps">DevOps</option>
-                              </select>
+                                <option value="DevOps">DevOps</option> -->
+                            </mat-select>
+                              <!-- </select> -->
                     </mat-form-field>
                 </div>
 
@@ -136,8 +142,7 @@
     </form>
 </article>
 
-
-
+<app-footer></app-footer>
 <!-- 
 
 <article class="container">

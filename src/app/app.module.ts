@@ -20,6 +20,9 @@ import { MatToolbarModule } from '@angular/material/Toolbar';
 import {RecaptchaModule, RecaptchaFormsModule} from 'ng-recaptcha';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatRippleModule, MatOptionModule } from '@angular/material/core';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -39,7 +42,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginComponent,
     NavigationComponent,
     ResetpasswordComponent,
-    UserprofileComponent
+    UserprofileComponent,
     
   ],
   imports: [
@@ -65,7 +68,11 @@ import { FooterComponent } from './components/footer/footer.component';
     MatToolbarModule,
     MatFormFieldModule,
     MatExpansionModule,
-    MatOptionModule
+    MatOptionModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatListModule,
+    MatTabsModule
     ],
 
   providers: [],

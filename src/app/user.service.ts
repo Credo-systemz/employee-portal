@@ -28,4 +28,7 @@ userEmailCheck(email){
   resetpassword(resetdata){
     return this.http.put("http://localhost:3000/resetpassword",resetdata)
   }
+  userinfo(userinfo){
+    return this.http.post("http://localhost:3000/userinfo",userinfo);
+  }
 }
