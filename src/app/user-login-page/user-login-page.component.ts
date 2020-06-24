@@ -15,12 +15,9 @@ export class UserLoginPageComponent implements OnInit {
   hide = true;
   recaptcha:any[];
 
-  constructor(public UserService: UserService) { 
-   
+  constructor(public UserService: UserService) {   
 
   }
-  
-  
   ngOnInit(): void {
    
     let PasswordPattern='^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$'
@@ -78,33 +75,31 @@ this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
 return this.submitted=false
 })
 }
-
 //REGISTRATION
    SignUp(){
-    let modal = jQuery(document).ready(function($){
-      //open popup
-      $('.cd-popup-trigger').on('click', function(event){
-        event.preventDefault();
-        $('.cd-popup').addClass('is-visible');
-      });      
-      //close popup
-      $('.cd-popup').on('click', function(event){
-        if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
-          event.preventDefault();
-          $(this).removeClass('is-visible');
-        }
-      });
-      //close popup when clicking the esc keyboard button
-      $(document).keyup(function(event){
-          if(event.which=='27'){
-            $('.cd-popup').removeClass('is-visible');
-          }
-        });
-    });
      delete this.signUpUser.value.ConfirmPassword;
     //  console.log(this.signUpUser.value);
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
-      
+      let modal = jQuery(document).ready(function($){
+        //open popup
+        $('.cd-popup-trigger').on('click', function(event){
+          event.preventDefault();
+          $('.cd-popup').addClass('is-visible');
+        });      
+        //close popup
+        $('.cd-popup').on('click', function(event){
+          if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+            event.preventDefault();
+            $(this).removeClass('is-visible');
+          }
+        });
+        //close popup when clicking the esc keyboard button
+        $(document).keyup(function(event){
+            if(event.which=='27'){
+              $('.cd-popup').removeClass('is-visible');
+            }
+          });
+      });
       this.signUpUser.reset();
       console.log(data);
     },(error:any)=>{

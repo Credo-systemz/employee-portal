@@ -15,7 +15,6 @@
           </ul>
   </nav>
 </div>
-<!-- Page content -->
 <div class="login-page">
   <div class="row justify-content-center">
     <div class="col-lg-4 col-md-5">
@@ -28,7 +27,6 @@
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <img src="/assets/images/name.svg" class="mat-ic">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
                 <input class="form-control" placeholder="Email" type="email" formControlName="EmailId" required="">
               </div>
@@ -42,7 +40,6 @@
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <img src="/assets/images/pwd1.svg" class="mat-ic">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
                 <input class="form-control" placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="Password" required="">
                 <button type="button" class="pwdhid" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -79,7 +76,7 @@
           </div>
         </div>
         <hr class="horizontalLine">
-        <h3 class="hed-txt loginWith"><strong>Or</strong></h3>
+        <h3 class="hed-txt loginWith"><strong> Or</strong></h3>
         <div class="ssobtn">
         <a routerLink="" class="icon-button twitter"><i class="fa fa-twitter"></i><span></span></a>
         <a routerLink="" class="icon-button facebook"><i class="fa fa-facebook"></i><span></span></a>
@@ -89,9 +86,8 @@
       </div>
     </div>
   </div>
-</div>
-<!--Forget Password-->
 
+</div>
 <div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
@@ -136,9 +132,6 @@
   </div>
   </div>
 </div>
-<!--succes msg forget password start-->
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -154,6 +147,4 @@
     </div>
   </div>
 </div>
-<!--succes msg forget password start-->
-<!--forget password over-->
 <app-footer></app-footer>

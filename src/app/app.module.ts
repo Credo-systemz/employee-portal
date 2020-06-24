@@ -25,11 +25,13 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { MatRippleModule } from '@angular/material/core';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserLoginPageComponent,
+    FooterComponent,
     LoginComponent,
     NavigationComponent,
     ResetpasswordComponent,
