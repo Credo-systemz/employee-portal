@@ -1,4 +1,4 @@
-const express = require('express');
+    const express = require('express');
 
 const cors = require('cors');
 
@@ -65,7 +65,7 @@ app.get("/forgetuser/:emailid",(req,res)=>{
          {
              var myid=data[0]._id
 
-             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'180000'} );
+             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'30m'} );
                 
             const transporter = nodemailer.createTransport({
                 host:"smtp.gmail.com",
