@@ -18,7 +18,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark"> 
         <ul class="navbar-nav active mr-auto">         
             <li class="nav-item active"> <a class="nav-link" routerLink="/" data-abc="true">Dashboard <span class="sr-only">(current)</span></a> </li>
-            <li class="nav-item"> <a class="nav-link" routerLink="/port" data-abc="true">Your Port</a> </li>
             <li class="nav-item"> <a class="nav-link" routerLink="/jobs" data-abc="true">Find Jobs</a> </li>
             <li class="nav-item"> <a class="nav-link" routerLink="/companies" data-abc="true">Find Companies</a> </li>
         </ul>
@@ -29,15 +28,12 @@
   </nav> 
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-        <mat-selection-list >
-            <mat-list-option>
-              <p>shoe</p>
-            </mat-list-option>
-        </mat-selection-list >
+            <ul class="side-listu">
+              <li>Overview</li>
+              <li>Logout</li>
+            </ul>
     </mat-drawer>
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-      </button>
+        <img src="/assets/images/toc-.svg " (click)="drawer.toggle()">
   </mat-drawer-container> 
  
   
