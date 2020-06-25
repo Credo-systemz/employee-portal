@@ -6,21 +6,16 @@
           <h6 class="mb-0 notification">Hard Graft</h6> 
           <small class="text-muted notify-count">Work your fingers to Bone <span class="fa fa-check-square-o"></span></small>
       </div> 
-      <!-- <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="/navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> -->
-      <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
           <ul class="navbar-nav">
-                <li class="nav-item  right icon-nav">
-                 
+                <li class="nav-item  right icon-nav">                
                    <a class="nav-link icon-nav-link-pro" routerLink="/">
                     <h1><strong>Login</strong></h1></a> 
                </li>
           </ul>
-      <!-- </div> -->
   </nav>
 </div>
 <!-- Page content -->
 <div class="login-page">
-    <div class="header">
       <div class="row justify-content-center">
         <div class="col-lg-4 col-md-5">
           <div class="card bg-secondary shadow border-0">
@@ -36,8 +31,7 @@
                       <img src="/assets/images/name.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" formControlName="FirstName" placeholder="First Name" type="text" 
-                    >
+                    <input class="form-control" formControlName="FirstName" placeholder="First Name" type="text">
               
                   </div>
                   <div class="row">
@@ -148,14 +142,12 @@
                   <button mat-raised-button color="primary" type="submit" [disabled]="signUpUser.invalid || submitted"  class="btn-sb my-4 my-4 cd-popup-trigger">Sign Up</button>
                 </div>
                 </div>
-                <!-- <div class="text-center" *ngIf=!submitted> -->
-                <!-- </div> -->
               </form>
             </div>       
           </div>
         </div>
             </div>
-    </div>
+    
     </div>
     <!--"signUpUser.invalid"-->
     <div class="cd-popup" role="alert">
@@ -168,4 +160,4 @@
         <a href="#0" class="cd-popup-close img-replace">Close</a>
       </div> <!-- cd-popup-container -->
     </div> <!-- cd-popup -->
-    
+    <app-footer></app-footer>

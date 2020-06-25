@@ -11,6 +11,7 @@ const mongodb= require('mongodb').MongoClient;
 const bcrypt= require('bcrypt');
  
 const nodemailer = require("nodemailer");
+
 const { resolveSoa } = require('dns');
 
 require("dotenv").config();
@@ -200,6 +201,21 @@ app.post("/login", (req,res)=>{
      });
    
 });
+
+app.post('/userinfo', (req,res)=>{
+    db.collection('userinfo').insert(req.body, (error,data)=>{
+        if (error){
+            res.status(400).json("Error in select query");
+        }
+        else{
+               
+                res.json("Information Saved");
+              
+               console.log(data);
+        }
+
+    })
+})
 
 var loggedUser;
 

@@ -1,132 +1,188 @@
 <article class="container">
     <h2>USER PROFILE</h2>
-    <form (submit)="Uprofile()" [formGroup]="UserProfile">
-        <mat-accordion>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Personal data
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
+    <form [formGroup]="UserProfile">
+        <!-- Personal data -->
+        <section>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Personal data
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
 
-                <div>
-                    <mat-form-field>
-                        <mat-label>Candidate ID</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Candidate ID</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                        </div>
 
-                <div>
-                    <mat-form-field>
-                        <mat-label>Title</mat-label>
-                            <select matNativeControl required>
-                                <option value=""></option>
-                                <option value="Web Developer">Web Developer</option>
-                                <option value="Java Developer">Java Developer</option>
-                                <option value="Andriod Developer">Andriod Developer</option>
-                                <option value="DevOps">DevOps</option>
-                              </select>
-                    </mat-form-field>
-                </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                     <mat-label>Title</mat-label>
+                                     <mat-select>
+                                <mat-option value="Web Developer">Web developer</mat-option>
+                                <mat-option value="Web Developer">Web developer</mat-option>
+                                <mat-option value="Web Developer">Web developer</mat-option>
+            
+                                </mat-select>
+                             </mat-form-field>                             
+                        </div>
 
-                <div>
-                    <mat-form-field>
-                        <mat-label>First Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-
-
-                    <mat-form-field>
-                        <mat-label>Middle Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label>Last Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
-
-                <div>
-                    <mat-form-field>
-                        <mat-label>Email ID</mat-label>
-                        <input matInput>
-                    </mat-form-field>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>First Name</mat-label>
+                                <input matInput>
+                            </mat-form-field>
 
 
-                    <mat-form-field>
-                        <mat-label>Password</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
+                            <mat-form-field>
+                                <mat-label>Middle Name</mat-label>
+                                <input matInput>
+                            </mat-form-field>
 
-                <div>
-                    <mat-form-field>
-                        <mat-label>Mobile Number</mat-label>
-                        <input matInput>
-                    </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Last Name</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                        </div>
 
-                    <mat-form-field>
-                        <mat-label>Alternate Contact Number</mat-label>
-                        <input matInput>
-                    </mat-form-field>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Email ID</mat-label>
+                                <input matInput>
+                            </mat-form-field>
 
-                </div>
 
-                <div>
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                        </div>
 
-                    <mat-form-field>
-                        <mat-label>ID Type</mat-label>
-                        <select matNativeControl required>
-                            <option value=""></option>
-                            <option value="Passport">Passport</option>
-                            <option value="Aadhar Card">Aadhar Card</option>
-                            <option value="Driving License">Driving License</option>
-                            <option value="Voter Id">Voter Id</option>
-                            <option value="Pan Card">Pan Card</option>
-                          </select>
-                    </mat-form-field>
+                        <div>
 
-                    <mat-form-field>
-                        <mat-label>ID Number</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
+                            <mat-form-field>
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput>
+                            </mat-form-field>
 
-                <div>
-                    <mat-form-field>
-                        <mat-label>Street Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Street Name Optional</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>City</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
-                
-                    <mat-form-field>
-                        <mat-label>State</mat-label>
-                        <input matInput>
+                            <mat-form-field>
+                                <mat-label>Alternate Contact Number</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div>
+
+                            <mat-form-field>
+                                <mat-label>ID Type</mat-label>
+                                <select matNativeControl required>
+                                    <option value=""></option>
+                                    <option value="Passport">Passport</option>
+                                    <option value="Aadhar Card">Aadhar Card</option>
+                                    <option value="Driving License">Driving License</option>
+                                    <option value="Voter Id">Voter Id</option>
+                                    <option value="Pan Card">Pan Card</option>
+                                </select>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>ID Number</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Street Name</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Street Name Optional</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>City</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>State</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Pincode</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <input matInput>
+                                <mat-label>Country</mat-label>
+                                <mat-select [(ngModel)]="country" formControlName="Country">
+                                    <mat-option>None</mat-option>
+                                    <mat-option *ngFor="let country of countries " matNativeControl [value]="country">
+                                        {{country}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+
+                    </mat-expansion-panel>
+                </mat-accordion>
+        </section>
+
+        <!-- Educational Details-->
+        <section>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Educational Details
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Educational Type</mat-label>
+                            <input matInput>
                         </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Pincode</mat-label>
-                        <input matInput>
-                    </mat-form-field>
+                    </div>
 
-                    <mat-form-field>
-                        <mat-label>Country</mat-label>
-                        <mat-select>
-                            <mat-option >None</mat-option>
-                            <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                
-            </mat-expansion-panel>
-        </mat-accordion>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Completed year</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Percentile/CGP</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Name of the Institution</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </div>
+
+
+
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </section>
+
+
+
+
     </form>
 </article>
 
