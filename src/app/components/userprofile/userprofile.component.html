@@ -1,6 +1,6 @@
 <article class="container">
     <h2>USER PROFILE</h2>
-    <form [formGroup]="UserProfile">
+    <form (submit)="Uprofile()" [formGroup]="UserProfile">
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -61,7 +61,6 @@
                 </div>
 
                 <div>
-
                     <mat-form-field>
                         <mat-label>Mobile Number</mat-label>
                         <input matInput>
@@ -108,26 +107,24 @@
                         <input matInput>
                     </mat-form-field>
                 </div>
-            <div>
+                
                     <mat-form-field>
                         <mat-label>State</mat-label>
                         <input matInput>
-                    </mat-form-field>
+                        </mat-form-field>
                     <mat-form-field>
                         <mat-label>Pincode</mat-label>
                         <input matInput>
                     </mat-form-field>
 
-                    <mat-form-field >
-                        <input matInput>
+                    <mat-form-field>
                         <mat-label>Country</mat-label>
-                    <mat-select [(ngModel)]="country" formControlName="Country"> 
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let country of countries " matNativeControl  [value]="country">{{country}}</mat-option>
+                        <mat-select>
+                            <mat-option >None</mat-option>
+                            <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
                         </mat-select>
-                        
-                 </mat-form-field>
-                </div>
+                    </mat-form-field>
+                
             </mat-expansion-panel>
         </mat-accordion>
     </form>
