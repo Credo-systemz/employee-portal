@@ -1,6 +1,6 @@
 <article class="container">
     <h2>USER PROFILE</h2>
-    <form [formGroup]="UserProfile">
+    <form (submit)="Uprofile()" [formGroup]="UserProfile">
         <!-- Personal data -->
         <section>
                 <mat-accordion>
@@ -17,18 +17,17 @@
                                 <input matInput>
                             </mat-form-field>
                         </div>
-
-                        <div>
-                            <mat-form-field appearance="fill">
-                                     <mat-label>Title</mat-label>
-                                     <mat-select>
-                                <mat-option value="Web Developer">Web developer</mat-option>
-                                <mat-option value="Web Developer">Web developer</mat-option>
-                                <mat-option value="Web Developer">Web developer</mat-option>
-            
-                                </mat-select>
-                             </mat-form-field>                             
-                        </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Job Title</mat-label>
+                            <select matNativeControl required>
+                                <option value=""></option>
+                                <option value="WebDev">Web developer</option>
+                                <option value="SoftwareEngineer">Software Engineer</option>
+                                <option value="SoftwareDev">Software Developer</option>
+                            </select>
+                        </mat-form-field>
+                        </div> 
 
                         <div>
                             <mat-form-field>
@@ -119,18 +118,19 @@
                                 <input matInput>
                             </mat-form-field>
 
-                            <mat-form-field>
-                                <input matInput>
-                                <mat-label>Country</mat-label>
-                                <mat-select [(ngModel)]="country" formControlName="Country">
-                                    <mat-option>None</mat-option>
-                                    <mat-option *ngFor="let country of countries " matNativeControl [value]="country">
-                                        {{country}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-
+                            <mat-form-field class="example-full-width">
+                                <input type="text"                                     
+                                       matInput
+                                       placeholder="Country"
+                                       formControlName="Country"
+                                       [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                    {{option}}
+                                  </mat-option>
+                                </mat-autocomplete>
+                              </mat-form-field>
                         </div>
-
                     </mat-expansion-panel>
                 </mat-accordion>
         </section>
@@ -173,9 +173,6 @@
                         </mat-form-field>
                     </div>
 
-
-
-
                 </mat-expansion-panel>
             </mat-accordion>
         </section>
@@ -188,8 +185,7 @@
 
 
 
-<!-- 
-
+<!--
 <article class="container">
     <h2>USER PROFILE</h2>
     <form>
@@ -273,6 +269,5 @@
             </div>
         </div>
     </form>
-
 </article>
  -->

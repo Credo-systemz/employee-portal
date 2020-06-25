@@ -1,6 +1,7 @@
-import { Component, OnInit,AfterContentInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-userprofile',
@@ -14,6 +15,8 @@ export class UserprofileComponent implements OnInit {
 
    UserProfile:FormGroup;
   
+   filteredOptions: Observable<string[]>;
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -25,8 +28,14 @@ export class UserprofileComponent implements OnInit {
       'Mobile':new FormControl(null,[Validators.required,Validators.pattern('/{0-9}[0-9]/')]),
       'UidType':new FormControl(null, Validators.required),
       'Uid':new FormControl(null, Validators.required),
-    })
-  }
+      'Country':new FormControl(null)
+    });
+        this.filteredOptions = this.UserProfile.get('Country').valueChanges
+      .pipe(
+        startWith(''),
+       map(value => this._filter(value))
+     );
+ }
 get fnamectrl(){
   return this.UserProfile.get('Fname')
 } get Emailctrl(){
@@ -36,8 +45,16 @@ get fnamectrl(){
 }  get Mobilectrl(){
   return this.UserProfile.get('Mobile')
 }
+
+private _filter(value: string): string[] {
+  const filterValue = value.toLowerCase();
+
+  return this.countries.filter(option => option.toLowerCase().includes(filterValue));
+}
 Uprofile(){
   
 }
+
+
 
 }

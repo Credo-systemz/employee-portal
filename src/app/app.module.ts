@@ -4,10 +4,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
+
 import {MatInputModule} from '@angular/material/Input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -23,8 +24,7 @@ import { MatRippleModule, MatOptionModule } from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
-
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
@@ -72,12 +72,12 @@ import { FooterComponent } from './components/footer/footer.component';
     MatSidenavModule,
     MatSelectModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule
     ],
 
   providers: [],
   bootstrap: [AppComponent],
-
 })
 
 
