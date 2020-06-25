@@ -8,7 +8,8 @@ import { HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/Input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -73,7 +74,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MatSelectModule,
     MatListModule,
     MatTabsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     ],
 
   providers: [],

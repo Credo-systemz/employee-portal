@@ -58,7 +58,15 @@
                                 <mat-label>Password</mat-label>
                                 <input matInput>
                             </mat-form-field>
-                        </div>
+
+                            <mat-form-field >
+                                <mat-label>Date Of Birth</mat-label>
+                                <input matInput [matDatepicker]="picker"
+                                placeholder="Date Of Birth">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                      </div>
 
                         <div>
 
