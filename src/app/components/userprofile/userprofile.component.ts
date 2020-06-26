@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -13,18 +14,20 @@ export class UserprofileComponent implements OnInit {
   panelOpenState = false;
   
   selected='yes';
-
-   countries=["India","USA","Europe","Singapore"]
-
+  countries=["India","USA","Europe","Singapore"]
+  stateInfo: any[] = [];
+  countryInfo: any[] = [];
+  cityInfo: any[] = [];
    UserProfile:FormGroup;
   
    filteredOptions: Observable<string[]>;
   
-  constructor() { }
+  constructor(public UserService: UserService) { }
 
   ngOnInit(): void {
+    this.getCountries();
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
-    this.UserProfile=new FormGroup ({
+    this.UserProfile= new FormGroup ({
       'FName':new FormControl(null, Validators.required),
       'Email':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
       'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
@@ -33,11 +36,11 @@ export class UserprofileComponent implements OnInit {
       'Uid':new FormControl(null, Validators.required),
       'Country':new FormControl(null)
     });
-        this.filteredOptions = this.UserProfile.get('Country').valueChanges
-      .pipe(
-        startWith(''),
-       map(value => this._filter(value))
-     );
+    //     this.filteredOptions = this.UserProfile.get('Country').valueChanges
+    //   .pipe(
+    //     startWith(''),
+    //    map(value => this._filter(value))
+    //  );
  }
 get fnamectrl(){
   return this.UserProfile.get('Fname')
@@ -49,15 +52,31 @@ get fnamectrl(){
   return this.UserProfile.get('Mobile')
 }
 
-private _filter(value: string): string[] {
-  const filterValue = value.toLowerCase();
-
-  return this.countries.filter(option => option.toLowerCase().includes(filterValue));
-}
-Uprofile(){
-  
+onChangeCountry(countryValue:any) {
+  this.stateInfo=this.countryInfo[countryValue].States;
+  this.cityInfo=this.stateInfo[0].Cities;
+  console.log(this.cityInfo);
 }
 
-
+onChangeState(stateValue) {
+  this.cityInfo=this.stateInfo[stateValue].Cities;
+  console.log(this.cityInfo);
+}
+getCountries(){
+  this.UserService.allCountries().subscribe((data:any)=>{
+    this.countryInfo=data.Countries;
+  },
+  (error:any)=>{
+    console.log(error);
+  });
+}
+userform(){
+  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    this.UserProfile.reset();
+    console.log(data);
+  },(error:any)=>{
+    console.log(error);
+  });
+}
 
 }
