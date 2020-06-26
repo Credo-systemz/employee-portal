@@ -15,7 +15,7 @@
               <div>
                 <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
-                    <input matInput formControlName="CandidateId">
+                    <input matInput>
                 </mat-form-field>
             </div>
         <div>
@@ -184,17 +184,17 @@
             <div>
                 <mat-form-field >
                     <mat-label>From Date</mat-label>
-                    <input matInput [matDatepicker]="picker"
-                    placeholder="Date Of Birth">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <input matInput [matDatepicker]="Fromdate"
+                    placeholder="From Date">
+                    <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
             
                 <mat-form-field >
                     <mat-label>To Date</mat-label>
-                    <input matInput [matDatepicker]="picker"
-                    placeholder="Date Of Birth">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <input matInput [matDatepicker]="Todate"
+                    placeholder="To Date">
+                    <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
             </div>
