@@ -13,7 +13,8 @@ export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
   
-  selected='yes';
+ 
+  countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
