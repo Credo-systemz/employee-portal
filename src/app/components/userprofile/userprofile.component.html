@@ -202,27 +202,27 @@
             <div>
                 <mat-form-field >
                     <mat-label>From Date</mat-label>
-                    <input matInput [matDatepicker]="picker"
-                    placeholder="Date Of Birth">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="fromdate"
+                    placeholder="From Date">
+                    <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
+                    <mat-datepicker #fromdate></mat-datepicker>
                   </mat-form-field>
             
                 <mat-form-field >
                     <mat-label>To Date</mat-label>
-                    <input matInput [matDatepicker]="picker"
-                    placeholder="Date Of Birth">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input matInput [matDatepicker]="Todate"
+                    placeholder="To Date">
+                    <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
+                    <mat-datepicker #Todate></mat-datepicker>
                   </mat-form-field>
+
             </div>
             <div>
-                <mat-form-field appearance="fill">
+                <mat-form-field class="example-full-width">
                     <mat-label>Designation</mat-label>
-                    <mat-select>
-                      <mat-option value="option">Option</mat-option>
-                    </mat-select>
+                    <input matInput placeholder="Enter Your Designation">
                   </mat-form-field>
+
             </div>
             <div>
                 <mat-form-field>
@@ -236,35 +236,18 @@
             </div>
             <div>
             <section class="example-section">
-                <span class="example-list-section">
-                  <mat-checkbox class="example-margin">                           
-                    Interested for Job oppurtunities
-                   </mat-checkbox>
-                </span>
-                <span class="example-list-section">
-                  <ul>
-                    <li>
-                      <mat-checkbox>
-                          Yes
-                      </mat-checkbox>
-                    </li>
-                    <li>
-                        <mat-checkbox>
-                            No
-                        </mat-checkbox>
-                      </li>
-                  </ul>
-                </span>
+                    <mat-checkbox class="example-margin"> Interested for Job oppurtunities</mat-checkbox>
               </section>
             </div>
-            <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Training</mat-label>
-                    <mat-select>
-                      <mat-option value="option">Required</mat-option>
-                      <mat-option value="option">Not Requires</mat-option>
-                    </mat-select>
+            <div> 
+                <mat-form-field>
+                    <mat-label>Training Required</mat-label>
+                    <select matNativeControl required>
+                      <option value="yes">Yes</option>
+                      <option value="No">No</option>
+                     </select>
                   </mat-form-field>
+                    
             </div>
             </mat-expansion-panel>
           </mat-accordion>
