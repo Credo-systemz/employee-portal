@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/Input';
 import {MatButtonModule} from '@angular/material/button';
@@ -17,7 +18,6 @@ import {MatFormFieldModule} from '@angular/material/Form-field';
 import {MatDialogModule } from '@angular/material/Dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/Icon';
-import { MatCheckboxModule } from '@angular/material/Checkbox';
 import { MatToolbarModule } from '@angular/material/Toolbar';
 import {RecaptchaModule, RecaptchaFormsModule} from 'ng-recaptcha';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -26,6 +26,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
@@ -66,6 +67,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatSelectModule,
     MatIconModule,
     MatCheckboxModule,
+    MatRadioModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatExpansionModule,
@@ -76,10 +78,11 @@ import { FooterComponent } from './components/footer/footer.component';
     MatTabsModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule 
     ],
 
   providers: [],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent],
 })
 

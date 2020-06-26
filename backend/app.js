@@ -1,4 +1,4 @@
-    const express = require('express');
+const express = require('express');
 
 const cors = require('cors');
 
@@ -119,7 +119,7 @@ app.put("/resetpassword",async (req,res)=>{
    
     const myUid=jwt.decode(req.body._id)   
    
-    console.log(myUid)
+   // console.log(myUid)
     console.log(Math.floor(Date.now() / 1000))
 
     if(Math.floor(Date.now() / 1000)>myUid.exp){
@@ -203,7 +203,9 @@ app.post("/login", (req,res)=>{
 });
 
 app.post('/userinfo', (req,res)=>{
+
     db.collection('userinfo').insert(req.body, (error,data)=>{
+        
         if (error){
             res.status(400).json("Error in select query");
         }
