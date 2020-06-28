@@ -11,10 +11,10 @@ import { SearchJobComponent } from './search-job/search-job.component';
 const routes: Routes = [
    {path:'', component: LoginComponent},
    {path:'register', component: UserLoginPageComponent},
-   {path:'register/:Userid',component:UserLoginPageComponent},
-   {path:'resetpassword/:Userid',component:ResetpasswordComponent},
-   {path:'userprofile',component:UserprofileComponent/*canActivate:[AuthGuard]*/},
-   {path:'findjob',component:SearchJobComponent}
+   {path:'register/:Userid', component:UserLoginPageComponent},
+   {path:'resetpassword/:Userid', component:ResetpasswordComponent},
+   {path:'userprofile', component:UserprofileComponent/*canActivate:[AuthGuard]*/},
+   {path:'findjob', component:SearchJobComponent}
 ];
 
 @NgModule({
