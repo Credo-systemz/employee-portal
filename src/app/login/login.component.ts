@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
       
   
   }
+
+    
+  
     get  EmailIdCtrl(){
       return this.loginForm.get('EmailId')
     }
@@ -85,16 +88,16 @@ export class LoginComponent implements OnInit {
      
     if(data1==true){
      $("#pwdModal").modal('hide');
-     $("#exampleModal").modal('show');
+     $("#exampleModal").modal('show');  
      this.forgetForm.reset();
      }
-   },
+       },
    (error:any)=>{
      this.errorup1=true;
      this.forgetForm.reset();  
-     
    });
-
+   $(document.body).removeClass("modal-open");
+   $(".modal-backdrop").remove();
  }
 
  close(){
@@ -124,6 +127,9 @@ checkemail(){
     this.emailCheckForm.reset();   
   });
 
+  $(document.body).removeClass("modal-open");
+  $(".modal-backdrop").remove();
+  
 }
 
 checkMailClose(){
