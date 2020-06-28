@@ -219,6 +219,63 @@ app.post('/userinfo', (req,res)=>{
     })
 })
 
+// Email check
+app.get("/emailCheck/:emailid",(req,res)=>{
+   
+    const emailCheck=req.params.emailid;
+   
+    db.collection("userdata").find({EmailId:emailCheck}).toArray((error,data)=>{  
+        
+        if(data.length!==0 || data==!null)
+        {
+            res.status(404).json("Ready to register");                
+          } 
+          else
+         {
+              var myid=111111111;
+
+             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'30m'} );
+                
+            const transporter = nodemailer.createTransport({
+                host:"smtp.gmail.com",
+                port:465,
+                auth:{
+                    user:'projectemployeeportal@gmail.com',
+                    pass:'Empportal@5'
+                }
+            })
+            var mailoption={
+                from:process.env.EMAIL,
+                to:req.params.emailid,
+                subject:"Email Verification",
+                text:'Hi'+'\n'+
+                'You are recently requested to register for your account.'+'\n'+
+                'Click the Link below to complete registeration.'+'\n\n'+
+                'http://localhost:4200/register/'+jwttoken+
+                '\n\n' + 
+                'if you didnot make this request then you can safely ignore this email'+'\n'+
+                'Thanks'+'\n'+
+                'Team'
+             }
+               transporter.sendMail(mailoption,(error,res)=>{
+               if(error)
+               {
+                 console.log(error);
+                }
+                else{
+                    console.log(res);
+            }
+            
+         });
+          
+            res.json(true);
+         }
+                  
+                    
+    });
+ });
+
+
 var loggedUser;
 
 function verifyToken(req, res, next)

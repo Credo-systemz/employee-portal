@@ -10,6 +10,7 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 const routes: Routes = [
    {path:'', component: LoginComponent},
    {path:'register', component: UserLoginPageComponent},
+   {path:'register/:Userid',component:UserLoginPageComponent},
    {path:'resetpassword/:Userid',component:ResetpasswordComponent},
    {path:'userprofile',component:UserprofileComponent,/*canActivate:[AuthGuard]*/}
 ];

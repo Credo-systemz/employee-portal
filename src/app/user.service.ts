@@ -37,4 +37,9 @@ userEmailCheck(email){
   userinfo(userinfo){
     return this.http.post("http://localhost:3000/userinfo",userinfo);
   }
+
+  emailCheck(emailid){
+    return this.http.get("http://localhost:3000/emailCheck/"+emailid);
+  }
+
 }
