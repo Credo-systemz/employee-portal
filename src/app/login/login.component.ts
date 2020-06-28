@@ -101,6 +101,7 @@ export class LoginComponent implements OnInit {
    this.forgetForm.reset();
    $("#pwdModal").modal('hide');
    this.errorup1=false
+   this.errorup2=false;
 }
 close1(){
   $("#exampleModal").modal('hide');
