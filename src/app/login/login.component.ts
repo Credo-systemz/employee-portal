@@ -13,11 +13,14 @@ export class LoginComponent implements OnInit {
 
   errorup=false;
   errorup1=false;
+  errorup2=false;
   hide = true;
   logMessage:string="";
 
+
   loginForm:FormGroup;
   forgetForm:FormGroup
+  emailCheckForm:FormGroup
 
   constructor(public UserSer :UserService,public myRoute:Router) { }
 
@@ -30,7 +33,10 @@ export class LoginComponent implements OnInit {
       this.forgetForm=new FormGroup({
         'ForgetEmail':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)])
       })
-
+      this.emailCheckForm=new FormGroup({
+        'NewEmail':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)])
+      })
+      
   
   }
     get  EmailIdCtrl(){
@@ -41,6 +47,9 @@ export class LoginComponent implements OnInit {
     }
     get ForgetEmailCtrl(){
       return this.forgetForm.get('ForgetEmail')
+    }
+    get NewEmailCtrl(){
+      return this.emailCheckForm.get('NewEmail')
     }
     
   doLogin(){
@@ -99,6 +108,27 @@ close1(){
 }
 
   
+checkemail(){
+  this.UserSer.emailCheck(this.emailCheckForm.value.NewEmail).subscribe((data1:any)=>{
+    
+   if(data1==true){
+    this.emailCheckForm.reset();  
+    $("#pwdModal1").modal('hide');
+    $("#exampleModal1").modal('show');
+    }
+  },
+  (error:any)=>{
+    $("#pwdModal1").modal('show');
+    this.errorup2=true;
+    this.emailCheckForm.reset();   
+  });
+
+}
+
+checkMailClose(){
+  $("#pwdModal1").modal('hide');
+}
+
  
 }
 
