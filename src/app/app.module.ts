@@ -35,6 +35,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SearchJobComponent } from './search-job/search-job.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FooterComponent } from './components/footer/footer.component';
     NavigationComponent,
     ResetpasswordComponent,
     UserprofileComponent,
+    SearchJobComponent,
     
   ],
   imports: [

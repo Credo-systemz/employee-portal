@@ -1,0 +1,28 @@
+.searchcontainer{
+    width:1000px;
+    height:100px;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 20px;
+    position: relative;
+}
+.myrow{
+    width: 800px;
+    margin-top: 20px;
+}
+#jobtitle{
+    padding: 10px;
+   
+}
+#company{
+    padding: 20px;
+    padding-top: 10px !important;
+
+}
+#location{
+    padding: 10px;
+}
+.myselection{
+    padding: 10px;
+    width: 180px;
+}
