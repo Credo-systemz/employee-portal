@@ -10,11 +10,7 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./userprofile.component.css']
 })
 export class UserprofileComponent implements OnInit {
-
   panelOpenState = false;
-  
- 
-  countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
