@@ -19,7 +19,6 @@ export class UserprofileComponent implements OnInit {
   cityInfo: any[] = [];
   UserProfile:FormGroup;
   myval;
-  
   constructor(public UserService: UserService,public fb:FormBuilder) { }
 
   ngOnInit() {
@@ -34,8 +33,8 @@ export class UserprofileComponent implements OnInit {
       'Email':['',[Validators.required,Validators.pattern(EmailPattern)]],
       'Password':['',[Validators.required,Validators.minLength(8)]],
       'DOB':['',Validators.required],
-      'Mobile':['',[Validators.required,Validators.pattern('/{0-9}[0-9]/')]],
-      'AlternateContact':['',[Validators.required,Validators.pattern('/{0-9}[0-9]/')]],
+      // 'Mobile':['',[Validators.required,Validators.pattern('/{0-9}[0-10]/')]],
+      // 'AlternateContact':['',[Validators.required,Validators.pattern('/{0-9}[0-10]/')]],
       'IdType':['',Validators.required],
       'IdNumber':['',Validators.required],
       'Country':['',Validators.required],
@@ -51,8 +50,6 @@ export class UserprofileComponent implements OnInit {
     });
   
  }
-
-
 //Dynamic form of Education
 
 addEducationFormGroup():FormGroup{
@@ -68,16 +65,12 @@ addEducationFormGroup():FormGroup{
   (<FormArray>this.UserProfile.get("addEduation")).push(this.addEducationFormGroup());
 }
 
-removeEducationButtonClick(formGroupIndex:number){
-  console.log(formGroupIndex);
-  console.log(this.UserProfile.get("Education"));
- const group= (<FormArray> this.UserProfile.get("addEducation"));
- group.removeAt(formGroupIndex);
-
+ removeEducationButtonClick(formGroupIndex:number){
+  const group= this.UserProfile.get('addEduation')['controls'] 
+  group.splice(formGroupIndex,1);
 }
 
 //Dynamic form of Employment
-
 
 addEmploymentFormGroup():FormGroup{
   return this.fb.group({
@@ -96,15 +89,12 @@ addEmploymentButtonClick():void {
  const group= (<FormArray>this.UserProfile.get("addEmployment"));
  group.push(this.addEmploymentFormGroup());
 }
-
 removeEmploymentButtonClick(formGroupIndex:number){
-  // console.log(formGroupIndex);
-  const group= (<FormArray> this.UserProfile.get("addEmployment"));
-  console.log(group);
-  group.removeAt(formGroupIndex);
+    const group= this.UserProfile.get('addEmployment')['controls']
+    group.splice(formGroupIndex,1);
  }
 
-get fnamectrl(){
+  get fnamectrl(){
   return this.UserProfile.get('Fname')
 } get Emailctrl(){
   return this.UserProfile.get('Email')
@@ -120,7 +110,7 @@ get fnamectrl(){
   return this.UserProfile.get('City')
 } get educationGroupLength(){
   return (<FormArray>this.UserProfile.get('addEduation')).length;
-}get employmentGroupLength(){
+} get employmentGroupLength(){
   return (<FormArray>this.UserProfile.get('addEmployment')).length;
 }
 
@@ -128,12 +118,12 @@ onChangeCountry(countryValue:any) {
   this.stateInfo=this.countryInfo[countryValue].States;
   this.cityInfo=this.stateInfo[0].Cities;
  // console.log(this.cityInfo);
-  console.log(countryValue)
+  //console.log(countryValue)
 }
 
  onChangeState(stateValue) {
    this.cityInfo=this.stateInfo[stateValue].Cities;
-  console.log(this.cityInfo);
+ // console.log(this.cityInfo);
  }
 getCountries(){
   this.UserService.allCountries().subscribe((data:any)=>{
@@ -143,15 +133,15 @@ getCountries(){
     console.log(error);
   });
 }
-
-
 userform(){
-  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-    this.UserProfile.reset();
-    console.log(data);
-  },(error:any)=>{
-    console.log(error);
-  });
+console.log(this.UserProfile.value)
+  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    
+  //   this.UserProfile.reset();
+  //   console.log(data);
+  // },(error:any)=>{
+  //   console.log(error);
+  // });
 }
 
 

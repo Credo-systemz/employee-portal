@@ -1,28 +1,74 @@
+.container{
+margin-top: 10%;    
+}
+h1{
+        font-size: 38pt;
+}
+
 .searchcontainer{
-    width:1000px;
-    height:100px;
-    background: white;
-    border: 1px solid gray;
-    border-radius: 20px;
+    width:1100px;
+    height:110px;
+    background:lightgray;
+    border: 1px solid white;
+    border-radius: 80px;
     position: relative;
 }
+.container1{
+    margin-top: 15px;
+    margin-left: 15px;
+    width:1070px;
+    height:80px;
+    background: white;
+    border: none;
+    border-radius: 50px;
+    position: relative;
+
+}
 .myrow{
-    width: 800px;
-    margin-top: 20px;
+    margin-left: 9%;
+    width: 1070px;
+    /* margin-top: 10px; */
+    
 }
 #jobtitle{
     padding: 10px;
-   
+    
 }
 #company{
     padding: 20px;
     padding-top: 10px !important;
+    border: none;
 
 }
 #location{
-    padding: 10px;
+ padding: 10px;
+ border: none;
+    
 }
+
 .myselection{
-    padding: 10px;
-    width: 180px;
+    padding: 15px;
+    padding-top: 20px !important;
+    width: 200px;
+    border: none !important;
 }
+
+#myselection{
+   background-color: lime;
+   width: 199px;
+   height: 80px;
+   border: none;
+   border-radius: 90px;
+}
+.row{
+    width: 1070px;
+  
+}
+#Searchbtn{
+    margin-left: 10%;
+}
+.vl {
+    border-left: 1px solid green;
+    height: 50px;
+    margin-top: 15px;
+  }
