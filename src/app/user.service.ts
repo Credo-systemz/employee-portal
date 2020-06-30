@@ -22,9 +22,9 @@ export class UserService {
   isLoggedIn(){
     return !!localStorage.getItem("token");
   }
-userEmailCheck(email){
+  userEmailCheck(email){
   return this.http.get("http://localhost:3000/checkEmail/"+email);
-}
+  }
   userLogin(loginData){
     return this.http.post("http://localhost:3000/login",loginData);
   }
@@ -37,4 +37,9 @@ userEmailCheck(email){
   userinfo(userinfo){
     return this.http.post("http://localhost:3000/userinfo",userinfo);
   }
+
+  emailCheck(emailid){
+    return this.http.get("http://localhost:3000/emailCheck/"+emailid);
+  }
+
 }

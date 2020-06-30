@@ -8,9 +8,12 @@
       </div> 
           <ul class="navbar-nav">
                 <li class="nav-item  right icon-nav">
-                   <a class="nav-link icon-nav-link-pro" routerLink="/register">
+                   <!-- <a class="nav-link icon-nav-link-pro" routerLink="/register">
                     <h1><strong>Register</strong></h1>
-                </a> 
+                </a>  -->
+                <div type="button" id="forgetpswd" class="text-light effect-underline" data-toggle="modal" data-target="#pwdModal1">
+                  <h1><strong>Register</strong></h1>
+                </div>
                </li>
           </ul>
   </nav>
@@ -67,15 +70,15 @@
         </div>       
         <div class="row mt-3">
           <div class="col-6">
-          <div type="button" id="forgetpswd" class="text-light effect-underline" data-toggle="modal" data-target="#pwdModal">
+          <a class="text-light effect-underlin" data-toggle="modal" data-target="#pwdModal">
             <strong>Forgot password ?</strong>
-          </div>
+          </a>
         </div>
           <div class="col-6 text-right">
-            <a routerLink="/register" class="text-light effect-underlin"><strong>Create new account</strong></a>
+            <a class="text-light effect-underlin" data-toggle="modal" data-target="#pwdModal1"><strong>Create new account</strong></a>
           </div>
         </div>
-        <hr class="horizontalLine">
+        <!-- <hr class="horizontalLine"> -->
         <h3 class="hed-txt loginWith"><strong> Or</strong></h3>
         <div class="ssobtn">
         <a routerLink="" class="icon-button twitter"><i class="fa fa-twitter"></i><span></span></a>
@@ -147,4 +150,67 @@
     </div>
   </div>
 </div>
+
+<!-- Veriy Email address -->
+<div id="pwdModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="text-center">Registeration</h1>  
+        <button type="button" class="close" (click)="close()" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+          <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                          
+                          <p>Please Enter Your Email address here.</p>
+                          <mat-error *ngIf="errorup2">{{'E-mail Address Already Exists'}}</mat-error>
+                            <div class="panel-body">
+                                <form (submit)="checkemail()" [formGroup]="emailCheckForm">
+                                    <div class="form-group">
+                                        <input class="form-control input-lg" placeholder="E-mail Address" formControlName="NewEmail">
+                                    </div>
+                                    <div *ngIf="NewEmailCtrl.invalid && NewEmailCtrl.touched">
+                                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Please Enter Valid Email</strong>
+                                      </div>
+                                      <!--<mat-error>Please Enter Valid Email</mat-error>-->
+                                    </div>
+                                    <input class="btn btn-lg btn-primary btn-block" [disabled]="NewEmailCtrl.invalid" value="Generate Link" type="submit">
+                                  </form>    
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" (click)="close()" aria-hidden="true">Cancel</button>
+            <button *ngIf="errorup2" style="margin-left: 60%;" class="btn btn-success btn-sm" (click)="checkMailClose()">Login</button>
+      </div>	    
+      </div>
+  </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">THANK YOU</h1>
+      </div>
+      <div class="modal-body">
+        Registeration Link sent to your given Email Address
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary " (click)="close1()" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-footer></app-footer>

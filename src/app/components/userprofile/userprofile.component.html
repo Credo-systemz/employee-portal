@@ -3,7 +3,7 @@
     <h2>USER PROFILE</h2>
     <form (submit)="userform()" [formGroup]="UserProfile">
        <mat-accordion>
-            <mat-expansion-panel hideToggle>
+        <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
                     Personal Data
@@ -15,13 +15,13 @@
               <div>
                 <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="CandidateId">
                 </mat-form-field>
             </div>
-        <div>
+            <div>
             <mat-form-field>
                 <mat-label>Job Title</mat-label>
-                <select matNativeControl required>
+                <select matNativeControl required formControlName="JobTitle">
                     <option value=""></option>
                     <option value="WebDev">Web developer</option>
                     <option value="SoftwareEngineer">Software Engineer</option>
@@ -33,37 +33,37 @@
             <div>
                 <mat-form-field>
                     <mat-label>First Name</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="FName">
                 </mat-form-field>
 
 
                 <mat-form-field>
                     <mat-label>Middle Name</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="MName">
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Last Name</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="LName">
                 </mat-form-field>
             </div>
 
             <div>
                 <mat-form-field>
                     <mat-label>Email ID</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="Email">
                 </mat-form-field>
 
 
                 <mat-form-field>
                     <mat-label>Password</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="Password">
                 </mat-form-field>
 
                 <mat-form-field >
                     <mat-label>Date Of Birth</mat-label>
                     <input matInput [matDatepicker]="picker"
-                    placeholder="Date Of Birth">
+                    placeholder="Date Of Birth" formControlName="DOB">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -73,12 +73,12 @@
 
                 <mat-form-field>
                     <mat-label>Mobile Number</mat-label>
-                    <input matInput>
+                    <input matInput >
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Alternate Contact Number</mat-label>
-                    <input matInput>
+                    <input matInput >
                 </mat-form-field>
 
             </div>
@@ -87,7 +87,7 @@
 
                 <mat-form-field>
                     <mat-label>ID Type</mat-label>
-                    <select matNativeControl required>
+                    <select matNativeControl required formControlName="IdType">
                         <option value=""></option>
                         <option value="Passport">Passport</option>
                         <option value="Aadhar Card">Aadhar Card</option>
@@ -99,33 +99,34 @@
 
                 <mat-form-field>
                     <mat-label>ID Number</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="IdNumber">
                 </mat-form-field>
             </div>
             <div>
-                <mat-form-field>
-                <mat-label>Select Country</mat-label>
-                  <select (change)="onChangeCountry($event.target.value)" matNativeControl required>
-                <option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</option>
+                <div style="width: 200px;">
+                 <label>Select Country</label>
+                  <select class="form-control" formControlName="Country"(change)="onChangeCountry($event.target.value)">
+                 <option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</option>
                   </select>  
-                </mat-form-field>   
-
-                <mat-form-field >
-                    <mat-label>Select State</mat-label>
-                    <select (change)="onChangeState($event.target.value)" matNativeControl required>
+                 </div>
+                 <div style="width: 200px;">
+                   <label>Select State</label>
+                    <select class="form-control"formControlName="State" (change)="onChangeState($event.target.value)">
                       <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
                     </select>  
-                </mat-form-field>   
-            
-                <mat-form-field > 
-                    <mat-label>Select City</mat-label>
-                    <select matNativeControl required>
+                 </div>
+                 <div style="width: 200px;">
+                    <label>Select City</label>
+                    <select class="form-control" formControlName="City">
                       <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
                     </select>  
-                </mat-form-field>               
+                </div>
+                
             </div>    
-            </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true"
+        </mat-expansion-panel>
+
+
+             <mat-expansion-panel (opened)="panelOpenState = true"
                                  (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -135,36 +136,66 @@
                   <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
+
+            <div formArrayName="addEduation" 
+            *ngFor="let edu of UserProfile.get('addEduation')['controls'];let i=index;">
+
+            <div [formGroupName]="i">
+
               <div>
-                <mat-form-field>
-                    <mat-label>Educational Type</mat-label>
-                    <input matInput>
+                <mat-form-field
+                 [ngClass]="{'has-error':edu.get('EducationalType').invalid && edu.get('EducationalType').touched}">
+                    <mat-label [attr.for]="'EducationalType'+i">Educational Type</mat-label>
+                    <input [id]="'EducationalType'+i" matInput formControlName="EducationalType">
                 </mat-form-field>
             </div>
 
             <div>
-                <mat-form-field>
-                    <mat-label>Completed year</mat-label>
-                    <input matInput>
+                <mat-form-field
+                [ngClass]="{'has-error':edu.get('CompletedYear').invalid && edu.get('CompletedYear').touched}">
+                    <mat-label [attr.for]="'CompletedYear'+i">Completed year</mat-label>
+                    <input  [id]="'CompletedYear'+i"matInput formControlName="CompletedYear">
                 </mat-form-field>
             </div>
             
             <div>
-                <mat-form-field>
-                    <mat-label>Percentile/CGP</mat-label>
-                    <input matInput>
+                <mat-form-field
+                [ngClass]="{'has-error':edu.get('Percentile').invalid && edu.get('Percentile').touched}">
+                    <mat-label [attr.for]="'Percentile'+i">Percentile/CGP</mat-label>
+                    <input [id]="'Percentile'+i" matInput formControlName="Percentile">
                 </mat-form-field>
             </div>
 
             <div>
-                <mat-form-field>
-                    <mat-label>Name of the Institution</mat-label>
-                    <input matInput>
+                <mat-form-field
+                [ngClass]="{'has-error':edu.get('Institution').invalid && edu.get('Institution').touched}">
+                    <mat-label [attr.for]="'Institution'+i">Name of the Institution</mat-label>
+                    <input [id]="'Institution'+i"matInput formControlName="Institution">
                 </mat-form-field>
             </div>
 
+        </div><!--FormGroup Closing-->
+        <span class="row">
+            <div class="col-4">
+          <button class="addEducationbtn" mat-raised-button  color="primary" (click)="addEducationButtonClick()"
+          [disabled]="UserProfile.get('addEduation').invalid">Add Additional Education Info</button>
+      </div>
+
+          <div class="col-4" *ngIf="educationGroupLength>1">
+              <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick(i)">
+              Remove</button>
+          </div>
+        </span>
+
+
+        </div><!--Array Closing-->
+
+        
             </mat-expansion-panel>
-            <mat-expansion-panel (opened)="panelOpenState = true"
+
+
+
+             <mat-expansion-panel (opened)="panelOpenState = true"
                                  (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -174,80 +205,100 @@
                   <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
+
+
+              <div formArrayName="addEmployment"
+
+               *ngFor="let emp of UserProfile.get('addEmployment')['controls'];let e=index;">
+
+                  <div [formGroupName]="e">
+
               <div>
-                <mat-form-field>
+                <mat-form-field
+                    [ngClass]="{'has-error':emp.get('Organization').invalid && emp.get('Organization').touched}">
                     <mat-label>Name of the organization</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="Organization">
                 </mat-form-field>
             </div>
 
-            <div>
-                <mat-form-field >
+         <div>
+                <mat-form-field>             
                     <mat-label>From Date</mat-label>
-                    <input matInput [matDatepicker]="picker1"
-                    placeholder="Date of Joining">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
+                    <input matInput [matDatepicker]="Fromdate"
+                    placeholder="From Date">
+                    <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
+                    <mat-datepicker #Fromdate></mat-datepicker>
                   </mat-form-field>
             
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>To Date</mat-label>
-                    <input matInput [matDatepicker]="picker2"
-                    placeholder="Date Of Resignation">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
+                    <input matInput [matDatepicker]="Todate"
+                    placeholder="To Date" formControlName="Todate">
+                    <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
+                    <mat-datepicker #Todate></mat-datepicker>
                   </mat-form-field>
             </div>
-            <div>
-                <mat-form-field appearance="fill">
+
+
+    
+             <div>
+                <mat-form-field 
+                [ngClass]="{'has-error':emp.get('Designation').invalid && emp.get('Designation').touched}">
                     <mat-label>Designation</mat-label>
-                    <select>
-                      <option value="option">Option</option>
-                    </select>
-                  </mat-form-field>
+                <input matInput placeholder="Enter Your Designation*" formControlName="Designation"> 
+                </mat-form-field>
             </div>
             <div>
-                <mat-form-field>
+                <mat-form-field
+                [ngClass]="{'has-error':emp.get('CTC').invalid && emp.get('CTC').touched}">
                     <mat-label>Current CTC</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="CTC">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field 
+                [ngClass]="{'has-error':emp.get('Experience').invalid && emp.get('Experience').touched}">
                     <mat-label>Experience</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="Experience">
                 </mat-form-field>
             </div>
-            <div>
-            <section class="example-section">
+             <div>
+            <section class="example-section"
+            [ngClass]="{'has-error':emp.get('InterestedinJobOpp').invalid && emp.get('InterestedinJobOpp').touched}">
                 <span class="example-list-section">
-                    Interested for Job oppurtunities
-                </span>
-                <span class="example-list-section">
-                  <ul>
-                    <li>
-                      <mat-checkbox>
-                          Yes
-                      </mat-checkbox>
-                    </li>
-                    <li>
-                        <mat-checkbox>
-                            No
-                        </mat-checkbox>
-                      </li>
-                  </ul>
+                    <mat-checkbox formControlName="InterestedinJobOpp"> Interested for Job oppurtunities </mat-checkbox>
                 </span>
               </section>
             </div>
             <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Training</mat-label>
-                    <select>
-                      <option value="option">Required</option>
-                      <option value="option">Not Requires</option>
-                    </select>
-                  </mat-form-field>
+                <mat-field 
+                [ngClass]="{'has-error':emp.get('TrainingRequired').invalid && emp.get('TrainingRequired').touched}">
+                    <mat-label class="example-margin">Training Required : </mat-label>&nbsp;
+                    <mat-radio-group formControlName="TrainingRequired"[(ngModel)]="myval" [ngModelOptions]="{standalone: true}">
+                    <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp;&nbsp;&nbsp;
+                    <mat-radio-button value="No">No</mat-radio-button>
+                    </mat-radio-group>
+                </mat-field>
+                    
+            </div>  
+        </div><!--FormGroupClosing-->
+
+        <div>
+            <button type="button" mat-raised-button  color="primary" (click)="addEmploymentButtonClick()"
+            [disabled]="UserProfile.get('addEmployment').invalid">Add Additional Employment Info</button>
+            
+            <div *ngIf="employmentGroupLength>1">
+                <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(i)">
+                Remove</button>
             </div>
+
+          </div>
+
+
+        </div><!--Array Closing-->
             </mat-expansion-panel>
           </mat-accordion>
+
+          <button type="Submit" class="btn btn-primary">Submit</button>
+
     </form>
 </article>
 <app-footer></app-footer>

@@ -13,11 +13,14 @@ export class LoginComponent implements OnInit {
 
   errorup=false;
   errorup1=false;
+  errorup2=false;
   hide = true;
   logMessage:string="";
 
+
   loginForm:FormGroup;
   forgetForm:FormGroup
+  emailCheckForm:FormGroup
 
   constructor(public UserSer :UserService,public myRoute:Router) { }
 
@@ -30,9 +33,15 @@ export class LoginComponent implements OnInit {
       this.forgetForm=new FormGroup({
         'ForgetEmail':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)])
       })
-
+      this.emailCheckForm=new FormGroup({
+        'NewEmail':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)])
+      })
+      
   
   }
+
+    
+  
     get  EmailIdCtrl(){
       return this.loginForm.get('EmailId')
     }
@@ -41,6 +50,9 @@ export class LoginComponent implements OnInit {
     }
     get ForgetEmailCtrl(){
       return this.forgetForm.get('ForgetEmail')
+    }
+    get NewEmailCtrl(){
+      return this.emailCheckForm.get('NewEmail')
     }
     
   doLogin(){
@@ -76,22 +88,23 @@ export class LoginComponent implements OnInit {
      
     if(data1==true){
      $("#pwdModal").modal('hide');
-     $("#exampleModal").modal('show');
+     $("#exampleModal").modal('show');  
      this.forgetForm.reset();
      }
-   },
+       },
    (error:any)=>{
      this.errorup1=true;
      this.forgetForm.reset();  
-     
    });
-
+   $(document.body).removeClass("modal-open");
+   $(".modal-backdrop").remove();
  }
 
  close(){
    this.forgetForm.reset();
    $("#pwdModal").modal('hide');
    this.errorup1=false
+   this.errorup2=false;
 }
 close1(){
   $("#exampleModal").modal('hide');
@@ -99,6 +112,30 @@ close1(){
 }
 
   
+checkemail(){
+  this.UserSer.emailCheck(this.emailCheckForm.value.NewEmail).subscribe((data1:any)=>{
+    
+   if(data1==true){
+    this.emailCheckForm.reset();  
+    $("#pwdModal1").modal('hide');
+    $("#exampleModal1").modal('show');
+    }
+  },
+  (error:any)=>{
+    $("#pwdModal1").modal('show');
+    this.errorup2=true;
+    this.emailCheckForm.reset();   
+  });
+
+  $(document.body).removeClass("modal-open");
+  $(".modal-backdrop").remove();
+  
+}
+
+checkMailClose(){
+  $("#pwdModal1").modal('hide');
+}
+
  
 }
 

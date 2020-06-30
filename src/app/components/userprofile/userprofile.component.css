@@ -7,3 +7,7 @@ mat-form-field + .mat-form-field {
 img.toggle-side {
   cursor: pointer;
 }
+
+span .addEducationbtn{
+  margin-right:25px;
+}
