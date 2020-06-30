@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { UserService } from 'src/app/user.service';
@@ -20,28 +20,90 @@ export class UserprofileComponent implements OnInit {
   UserProfile:FormGroup;
   myval;
   
-  constructor(public UserService: UserService) { }
+  constructor(public UserService: UserService,public fb:FormBuilder) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCountries();
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
-    this.UserProfile= new FormGroup ({
-      'FName':new FormControl(null, Validators.required),
-      'Email':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
-      'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
-      'Mobile':new FormControl(null,[Validators.required,Validators.pattern('/{0-9}[0-9]/')]),
-      'UidType':new FormControl(null, Validators.required),
-      'Uid':new FormControl(null, Validators.required),
-      'Country':new FormControl(null),
-      'State':new FormControl(null),
-      'City':new FormControl(null)
+    this.UserProfile= this.fb.group ({
+      'CandidateId':['',Validators.required],
+      'JobTitle':['',Validators.required],
+      'FName':['',Validators.required],
+      'MName':['',Validators.required],
+      'LName':['',Validators.required],
+      'Email':['',[Validators.required,Validators.pattern(EmailPattern)]],
+      'Password':['',[Validators.required,Validators.minLength(8)]],
+      'DOB':['',Validators.required],
+      'Mobile':['',[Validators.required,Validators.pattern('/{0-9}[0-9]/')]],
+      'AlternateContact':['',[Validators.required,Validators.pattern('/{0-9}[0-9]/')]],
+      'IdType':['',Validators.required],
+      'IdNumber':['',Validators.required],
+      'Country':['',Validators.required],
+      'State':['',Validators.required],
+      'City':['',Validators.required],
+      "addEduation":this.fb.array([
+        this.addEducationFormGroup()
+      ]),
+      "addEmployment":this.fb.array([
+        this.addEmploymentFormGroup()
+      ])
+
     });
-    //     this.filteredOptions = this.UserProfile.get('Country').valueChanges
-    //   .pipe(
-    //     startWith(''),
-    //    map(value => this._filter(value))
-    //  );
+  
  }
+
+
+//Dynamic form of Education
+
+addEducationFormGroup():FormGroup{
+  return this.fb.group({
+    "EducationalType":[null,Validators.required],
+    "CompletedYear":[null,Validators.required],
+    "Percentile":[null,Validators.required],
+    "Institution":[null,Validators.required]
+  })
+}
+
+ addEducationButtonClick():void {
+  (<FormArray>this.UserProfile.get("addEduation")).push(this.addEducationFormGroup());
+}
+
+removeEducationButtonClick(formGroupIndex:number){
+  console.log(formGroupIndex);
+  console.log(this.UserProfile.get("Education"));
+ const group= (<FormArray> this.UserProfile.get("addEducation"));
+ group.removeAt(formGroupIndex);
+
+}
+
+//Dynamic form of Employment
+
+
+addEmploymentFormGroup():FormGroup{
+  return this.fb.group({
+    "Organization":[null,Validators.required],
+    "Fromdata":[null,Validators.required],
+    "Todate":[null,Validators.required],
+    "Designation":[null,Validators.required],
+    "CTC":[null,Validators.required],
+    "Experience":[null,Validators.required],
+    "InterestedinJobOpp":[null,Validators.required],
+    "TrainingRequired":[null,Validators.required]
+  })
+}
+
+addEmploymentButtonClick():void {
+ const group= (<FormArray>this.UserProfile.get("addEmployment"));
+ group.push(this.addEmploymentFormGroup());
+}
+
+removeEmploymentButtonClick(formGroupIndex:number){
+  // console.log(formGroupIndex);
+  const group= (<FormArray> this.UserProfile.get("addEmployment"));
+  console.log(group);
+  group.removeAt(formGroupIndex);
+ }
+
 get fnamectrl(){
   return this.UserProfile.get('Fname')
 } get Emailctrl(){
@@ -56,6 +118,10 @@ get fnamectrl(){
   return this.UserProfile.get('State')
 } get Cityctrl(){
   return this.UserProfile.get('City')
+} get educationGroupLength(){
+  return (<FormArray>this.UserProfile.get('addEduation')).length;
+}get employmentGroupLength(){
+  return (<FormArray>this.UserProfile.get('addEmployment')).length;
 }
 
 onChangeCountry(countryValue:any) {
@@ -77,6 +143,8 @@ getCountries(){
     console.log(error);
   });
 }
+
+
 userform(){
   this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
     this.UserProfile.reset();
