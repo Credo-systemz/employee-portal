@@ -23,24 +23,26 @@ export class UserprofileComponent implements OnInit {
   ngOnInit() {
     this.getCountries();
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
+    let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
+    let voterId = "/^([a-zA-Z]){3}([0-9]){7}?$/g";
+  
     this.UserProfile= this.fb.group ({
       'CandidateId':['',Validators.required],
-      'JobTitle':['',Validators.required],
-      'FName':['',Validators.required],
-      'MName':['',Validators.required],
-      'LName':['',Validators.required],
+      'JobTitle':[''],
+      'FName':['',[Validators.required,Validators.maxLength(15)]],
+      'MName':[''],
+      'LName':['',[Validators.required,Validators.maxLength(15)]],
       'Email':['',[Validators.required,Validators.pattern(EmailPattern)]],
-      'Password':['',[Validators.required,Validators.minLength(8)]],
       'DOB':['',Validators.required],
-      'Mobile':['',Validators.required],
-      'AlternateContact':['',Validators.required],
+      'Mobile':['',[Validators.required,Validators.pattern(mobNumberPattern)]],
+      'WhatsAppCheck':[''],
+      'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
       'IdType':['',Validators.required],
-      'IdNumber':['',Validators.required],
+      'IdNumber':['',[Validators.required,Validators.pattern(voterId)]],
       'Country':['',Validators.required],
       'State':['',Validators.required],
       'City':['',Validators.required],
       'StreetName':['',Validators.required],
-      'WhatsAppCheck':['',Validators.required],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
       ]),
