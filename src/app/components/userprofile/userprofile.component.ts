@@ -72,7 +72,6 @@ addEducationFormGroup():FormGroup{
   const group= this.UserProfile.get('addEduation')['controls'] 
   group.splice(formGroupIndex,1);
 }
-
 //Dynamic form of Employment
 
 addEmploymentFormGroup():FormGroup{
