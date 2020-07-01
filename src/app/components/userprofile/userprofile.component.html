@@ -32,7 +32,7 @@
 
             <div>
                 <mat-form-field>
-                    <mat-label>First Name</mat-label>
+                    <mat-label>First Name*</mat-label>
                     <input matInput formControlName="FName">
                 </mat-form-field>
 
@@ -43,25 +43,21 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>Last Name</mat-label>
+                    <mat-label>Last Name*</mat-label>
                     <input matInput formControlName="LName">
                 </mat-form-field>
             </div>
 
             <div>
                 <mat-form-field>
-                    <mat-label>Email ID</mat-label>
+                    <mat-label>Email ID*</mat-label>
                     <input matInput formControlName="Email">
                 </mat-form-field>
 
 
-                <mat-form-field>
-                    <mat-label>Password</mat-label>
-                    <input matInput formControlName="Password">
-                </mat-form-field>
 
                 <mat-form-field >
-                    <mat-label>Date Of Birth</mat-label>
+                    <mat-label>Date Of Birth*</mat-label>
                     <input matInput [matDatepicker]="picker"
                     placeholder="Date Of Birth" formControlName="DOB">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -70,24 +66,30 @@
           </div>
 
             <div>
-
                 <mat-form-field>
-                    <mat-label>Mobile Number</mat-label>
-                    <input matInput >
-                </mat-form-field>
+                    <mat-label>Mobile Number*</mat-label>
+                    <input matInput formControlName="Mobile">
+                </mat-form-field>                     
 
                 <mat-form-field>
                     <mat-label>Alternate Contact Number</mat-label>
-                    <input matInput >
+                    <input matInput placeholder="Optional"formControlName="AlternateContact">
                 </mat-form-field>
 
             </div>
+            <div>
+            <section class="example-section checkWhatsapp">
+                <mat-checkbox formControlName="WhatsAppCheck"
+                class="example-margin">Check Mobile Number is same as WhatsApp number</mat-checkbox>
+        </section>
+    </div>
+
 
             <div>
 
                 <mat-form-field>
-                    <mat-label>ID Type</mat-label>
-                    <select matNativeControl required formControlName="IdType">
+                    <mat-label>ID Type*</mat-label>
+                    <select matNativeControl formControlName="IdType">
                         <option value=""></option>
                         <option value="Passport">Passport</option>
                         <option value="Aadhar Card">Aadhar Card</option>
@@ -98,7 +100,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>ID Number</mat-label>
+                    <mat-label>ID Number*</mat-label>
                     <input matInput formControlName="IdNumber">
                 </mat-form-field>
             </div>
@@ -121,7 +123,10 @@
                       <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
                     </select>  
                 </div>
-                
+                <mat-form-field>
+                    <mat-label>Street Name*</mat-label>
+                    <input matInput formControlName="StreetName">
+                </mat-form-field>
             </div>    
         </mat-expansion-panel>
 
@@ -286,7 +291,7 @@
             [disabled]="UserProfile.get('addEmployment').invalid">Add Additional Employment Info</button>
             
             <div *ngIf="employmentGroupLength>1">
-                <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(i)">
+                <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(e)">
                 Remove</button>
             </div>
 
