@@ -181,10 +181,10 @@
           [disabled]="UserProfile.get('addEduation').invalid">Add Additional Education Info</button>
       </div>
 
-          <div class="col-4" *ngIf="educationGroupLength>1">
-              <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick(i)">
+          <!-- <div class="col-4" *ngIf="educationGroupLength>1">
+              <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick()">
               Remove</button>
-          </div>
+          </div> -->
         </span>
 
 
@@ -285,10 +285,10 @@
             <button type="button" mat-raised-button  color="primary" (click)="addEmploymentButtonClick()"
             [disabled]="UserProfile.get('addEmployment').invalid">Add Additional Employment Info</button>
             
-            <div *ngIf="employmentGroupLength>1">
+            <!-- <div *ngIf="employmentGroupLength>1">
                 <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(i)">
                 Remove</button>
-            </div>
+            </div> -->
 
           </div>
 
