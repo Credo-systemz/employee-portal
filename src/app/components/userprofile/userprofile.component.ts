@@ -18,6 +18,9 @@ export class UserprofileComponent implements OnInit {
   cityInfo: any[] = [];
   UserProfile:FormGroup;
   myval;
+  CountryValueNull:boolean=true;
+  StateValueNull:boolean=true;
+  CityValueNull:boolean=true;
   constructor(public UserService: UserService,public fb:FormBuilder) { }
 
   ngOnInit() {
@@ -39,9 +42,9 @@ export class UserprofileComponent implements OnInit {
       'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
       'IdType':['',Validators.required],
       'IdNumber':['',[Validators.required,Validators.pattern(voterId)]],
-      'Country':['',Validators.required],
-      'State':['',Validators.required],
-      'City':['',Validators.required],
+      'Country':['default',Validators.required],
+      'State':['default',Validators.required],
+      'City':['default',Validators.required],
       'StreetName':['',Validators.required],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
@@ -117,16 +120,38 @@ removeEmploymentButtonClick(formGroupIndex:number){
 }
 
 onChangeCountry(countryValue:any) {
+  if(countryValue=="default"){
+    this.CountryValueNull=true;
+  }else{
+
+    this.CountryValueNull=false;
   this.stateInfo=this.countryInfo[countryValue].States;
   this.cityInfo=this.stateInfo[0].Cities;
- // console.log(this.cityInfo);
+  // console.log(this.cityInfo);
   //console.log(countryValue)
 }
-
+ 
+}
  onChangeState(stateValue) {
+  if(stateValue=="default"){
+    this.StateValueNull=true;
+
+  }else{
+    this.StateValueNull=false;
    this.cityInfo=this.stateInfo[stateValue].Cities;
  // console.log(this.cityInfo);
  }
+ }
+
+ onChangeCity(cityValue){
+   if(cityValue=="default"){
+     this.CityValueNull=true;
+   }else{
+   this.CityValueNull=false;
+   }
+
+ }
+
 getCountries(){
     this.UserService.allCountries().subscribe((data:any)=>{
     this.countryInfo=data.Countries;
