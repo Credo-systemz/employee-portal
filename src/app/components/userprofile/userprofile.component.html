@@ -32,7 +32,7 @@
 
             <div>
                 <mat-form-field>
-                    <mat-label>First Name</mat-label>
+                    <mat-label>First Name*</mat-label>
                     <input matInput formControlName="FName">
                 </mat-form-field>
 
@@ -43,25 +43,21 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>Last Name</mat-label>
+                    <mat-label>Last Name*</mat-label>
                     <input matInput formControlName="LName">
                 </mat-form-field>
             </div>
 
             <div>
                 <mat-form-field>
-                    <mat-label>Email ID</mat-label>
+                    <mat-label>Email ID*</mat-label>
                     <input matInput formControlName="Email">
                 </mat-form-field>
 
 
-                <mat-form-field>
-                    <mat-label>Password</mat-label>
-                    <input matInput formControlName="Password">
-                </mat-form-field>
 
                 <mat-form-field >
-                    <mat-label>Date Of Birth</mat-label>
+                    <mat-label>Date Of Birth*</mat-label>
                     <input matInput [matDatepicker]="picker"
                     placeholder="Date Of Birth" formControlName="DOB">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -70,24 +66,30 @@
           </div>
 
             <div>
-
                 <mat-form-field>
-                    <mat-label>Mobile Number</mat-label>
-                    <input matInput >
-                </mat-form-field>
+                    <mat-label>Mobile Number*</mat-label>
+                    <input matInput formControlName="Mobile">
+                </mat-form-field>                     
 
                 <mat-form-field>
                     <mat-label>Alternate Contact Number</mat-label>
-                    <input matInput >
+                    <input matInput placeholder="Optional"formControlName="AlternateContact">
                 </mat-form-field>
 
             </div>
+            <div>
+            <section class="example-section checkWhatsapp">
+                <mat-checkbox formControlName="WhatsAppCheck"
+                class="example-margin">Check Mobile Number is same as WhatsApp number</mat-checkbox>
+        </section>
+    </div>
+
 
             <div>
 
                 <mat-form-field>
-                    <mat-label>ID Type</mat-label>
-                    <select matNativeControl required formControlName="IdType">
+                    <mat-label>ID Type*</mat-label>
+                    <select matNativeControl formControlName="IdType">
                         <option value=""></option>
                         <option value="Passport">Passport</option>
                         <option value="Aadhar Card">Aadhar Card</option>
@@ -98,30 +100,43 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>ID Number</mat-label>
+                    <mat-label>ID Number*</mat-label>
                     <input matInput formControlName="IdNumber">
                 </mat-form-field>
             </div>
             <div>
-                <div style="width: 200px;">
+                <div style="width: 200px;" >
                  <label>Select Country</label>
-                  <select class="form-control" formControlName="Country"(change)="onChangeCountry($event.target.value)">
+                  <select class="form-control" formControlName="Country"
+                  (blur)="onChangeCountry($event.target.value);"
+                  (change)="onChangeCountry($event.target.value)" 
+                  [ngClass]="{'has-error':Countryctrl.touched && CountryValueNull}">
+                    <option value="default">Select Country</option>
                  <option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</option>
                   </select>  
                  </div>
                  <div style="width: 200px;">
                    <label>Select State</label>
-                    <select class="form-control"formControlName="State" (change)="onChangeState($event.target.value)">
-                      <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+                    <select class="form-control"formControlName="State" (blur)="onChangeState($event.target.value);"
+                    (change)="onChangeState($event.target.value)"
+                    [ngClass]="{'has-error':Statectrl.touched && StateValueNull}">
+                        <option value="default">Select State</option>
+                        <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
                     </select>  
                  </div>
                  <div style="width: 200px;">
                     <label>Select City</label>
-                    <select class="form-control" formControlName="City">
+                    <select class="form-control" formControlName="City"
+                    (blur)="onChangeCity($event.target.value);"
+                    [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
+                        <option value="default">Select City</option>
                       <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
                     </select>  
                 </div>
-                
+                <mat-form-field>
+                    <mat-label>Street Name*</mat-label>
+                    <input matInput formControlName="StreetName">
+                </mat-form-field>
             </div>    
         </mat-expansion-panel>
 
@@ -181,10 +196,10 @@
           [disabled]="UserProfile.get('addEduation').invalid">Add Additional Education Info</button>
       </div>
 
-          <!-- <div class="col-4" *ngIf="educationGroupLength>1">
-              <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick()">
+          <div class="col-4" *ngIf="educationGroupLength>1">
+              <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick(i)">
               Remove</button>
-          </div> -->
+          </div>
         </span>
 
 
@@ -222,25 +237,22 @@
             </div>
 
          <div>
-                <mat-form-field>             
-                    <mat-label>From Date</mat-label>
-                    <input matInput [matDatepicker]="Fromdate"
-                    placeholder="From Date">
-                    <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
-                    <mat-datepicker #Fromdate></mat-datepicker>
-                  </mat-form-field>
-            
+            <mat-form-field>
+                <mat-label>From Date</mat-label>
+                <input matInput [matDatepicker]="Fromdate"
+                placeholder="From Date" formControlName="Fromdate">
+                <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
+                <mat-datepicker #Fromdate></mat-datepicker>
+              </mat-form-field> 
+       
                 <mat-form-field>
                     <mat-label>To Date</mat-label>
                     <input matInput [matDatepicker]="Todate"
                     placeholder="To Date" formControlName="Todate">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
-                  </mat-form-field>
+                  </mat-form-field> 
             </div>
-
-
-    
              <div>
                 <mat-form-field 
                 [ngClass]="{'has-error':emp.get('Designation').invalid && emp.get('Designation').touched}">
@@ -285,10 +297,10 @@
             <button type="button" mat-raised-button  color="primary" (click)="addEmploymentButtonClick()"
             [disabled]="UserProfile.get('addEmployment').invalid">Add Additional Employment Info</button>
             
-            <!-- <div *ngIf="employmentGroupLength>1">
-                <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(i)">
+            <div *ngIf="employmentGroupLength>1">
+                <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(e)">
                 Remove</button>
-            </div> -->
+            </div>
 
           </div>
 

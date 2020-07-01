@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormGroup,Validators, FormBuilder, FormArray} from '@angular/forms';
 
 import { UserService } from 'src/app/user.service';
 
@@ -19,27 +18,34 @@ export class UserprofileComponent implements OnInit {
   cityInfo: any[] = [];
   UserProfile:FormGroup;
   myval;
+  CountryValueNull:boolean=true;
+  StateValueNull:boolean=true;
+  CityValueNull:boolean=true;
   constructor(public UserService: UserService,public fb:FormBuilder) { }
 
   ngOnInit() {
     this.getCountries();
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
+    let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
+    let voterId = "/^([a-zA-Z]){3}([0-9]){7}?$/g";
+  
     this.UserProfile= this.fb.group ({
       'CandidateId':['',Validators.required],
-      'JobTitle':['',Validators.required],
-      'FName':['',Validators.required],
-      'MName':['',Validators.required],
-      'LName':['',Validators.required],
+      'JobTitle':[''],
+      'FName':['',[Validators.required,Validators.maxLength(15)]],
+      'MName':[''],
+      'LName':['',[Validators.required,Validators.maxLength(15)]],
       'Email':['',[Validators.required,Validators.pattern(EmailPattern)]],
-      'Password':['',[Validators.required,Validators.minLength(8)]],
       'DOB':['',Validators.required],
-      // 'Mobile':['',[Validators.required,Validators.pattern('/{0-9}[0-10]/')]],
-      // 'AlternateContact':['',[Validators.required,Validators.pattern('/{0-9}[0-10]/')]],
+      'Mobile':['',[Validators.required,Validators.pattern(mobNumberPattern)]],
+      'WhatsAppCheck':[''],
+      'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
       'IdType':['',Validators.required],
-      'IdNumber':['',Validators.required],
-      'Country':['',Validators.required],
-      'State':['',Validators.required],
-      'City':['',Validators.required],
+      'IdNumber':['',[Validators.required,Validators.pattern(voterId)]],
+      'Country':['default',Validators.required],
+      'State':['default',Validators.required],
+      'City':['default',Validators.required],
+      'StreetName':['',Validators.required],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
       ]),
@@ -75,7 +81,7 @@ addEducationFormGroup():FormGroup{
 addEmploymentFormGroup():FormGroup{
   return this.fb.group({
     "Organization":[null,Validators.required],
-    "Fromdata":[null,Validators.required],
+    "Fromdate":[null,Validators.required],
     "Todate":[null,Validators.required],
     "Designation":[null,Validators.required],
     "CTC":[null,Validators.required],
@@ -115,18 +121,40 @@ removeEmploymentButtonClick(formGroupIndex:number){
 }
 
 onChangeCountry(countryValue:any) {
+  if(countryValue=="default"){
+    this.CountryValueNull=true;
+  }else{
+
+    this.CountryValueNull=false;
   this.stateInfo=this.countryInfo[countryValue].States;
   this.cityInfo=this.stateInfo[0].Cities;
- // console.log(this.cityInfo);
+  // console.log(this.cityInfo);
   //console.log(countryValue)
 }
-
+ 
+}
  onChangeState(stateValue) {
+  if(stateValue=="default"){
+    this.StateValueNull=true;
+
+  }else{
+    this.StateValueNull=false;
    this.cityInfo=this.stateInfo[stateValue].Cities;
  // console.log(this.cityInfo);
  }
+ }
+
+ onChangeCity(cityValue){
+   if(cityValue=="default"){
+     this.CityValueNull=true;
+   }else{
+   this.CityValueNull=false;
+   }
+
+ }
+
 getCountries(){
-  this.UserService.allCountries().subscribe((data:any)=>{
+    this.UserService.allCountries().subscribe((data:any)=>{
     this.countryInfo=data.Countries;
   },
   (error:any)=>{
@@ -143,6 +171,5 @@ console.log(this.UserProfile.value)
   //   console.log(error);
   // });
 }
-
 
 }

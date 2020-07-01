@@ -11,3 +11,10 @@ img.toggle-side {
 span .addEducationbtn{
   margin-right:25px;
 }
+ .checkWhatsapp{
+  font-size:0.9em !important;
+}
+
+.has-error{
+  border:1px solid red;
+}
