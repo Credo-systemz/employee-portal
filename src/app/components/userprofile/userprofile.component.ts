@@ -11,7 +11,7 @@ import { UserService } from 'src/app/user.service';
 export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
-  
+  imageurl="assets/images/profilePic.png"
   countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
@@ -28,6 +28,9 @@ export class UserprofileComponent implements OnInit {
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
     let voterId = "/^([a-zA-Z]){3}([0-9]){7}?$/g";
+    let ValidYear="^\d{4}$";
+    let numeric = "/^[a-zA-Z0-9]+$/";
+
   
     this.UserProfile= this.fb.group ({
       'CandidateId':['',Validators.required],
@@ -41,11 +44,11 @@ export class UserprofileComponent implements OnInit {
       'WhatsAppCheck':[''],
       'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
       'IdType':['',Validators.required],
-      'IdNumber':['',[Validators.required,Validators.pattern(voterId)]],
+      'IdNumber':['',[Validators.required]],
       'Country':['default',Validators.required],
       'State':['default',Validators.required],
-      'City':['default',Validators.required],
-      'StreetName':['',Validators.required],
+      'City':['default',[Validators.required,Validators.maxLength(15)]],
+      'StreetName':['',[Validators.required,Validators.maxLength(200)]],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
       ]),
@@ -53,7 +56,9 @@ export class UserprofileComponent implements OnInit {
         this.addEmploymentFormGroup()
       ])
 
+
     });
+
   
  }
 //Dynamic form of Education
@@ -61,8 +66,8 @@ export class UserprofileComponent implements OnInit {
 addEducationFormGroup():FormGroup{
   return this.fb.group({
     "EducationalType":[null,Validators.required],
-    "CompletedYear":[null,Validators.required],
-    "Percentile":[null,Validators.required],
+    "CompletedYear":[null,[Validators.required,Validators.pattern("^[1-9]\d{3,}$")]],
+    "Percentile":[null,[Validators.required,Validators.pattern("/^[a-zA-Z0-9]+$/")]],
     "Institution":[null,Validators.required]
   })
 }
@@ -80,7 +85,7 @@ addEducationFormGroup():FormGroup{
 
 addEmploymentFormGroup():FormGroup{
   return this.fb.group({
-    "Organization":[null,Validators.required],
+    "Organization":[null,[Validators.required,Validators.maxLength(100)]],
     "Fromdate":[null,Validators.required],
     "Todate":[null,Validators.required],
     "Designation":[null,Validators.required],
@@ -99,26 +104,49 @@ removeEmploymentButtonClick(formGroupIndex:number){
     const group= this.UserProfile.get('addEmployment')['controls']
     group.splice(formGroupIndex,1);
  }
+  get Candidatectrl(){
+    return this.UserProfile.get("CadidateId")
+  }
+  get Fnamectrl(){
+  return this.UserProfile.get('FName')
 
-  get fnamectrl(){
-  return this.UserProfile.get('Fname')
+} get Lnamectrl(){
+  return this.UserProfile.get('LName')
+
 } get Emailctrl(){
   return this.UserProfile.get('Email')
-}  get Passwordctrl(){
-  return this.UserProfile.get('Password')
-}  get Mobilectrl(){
+}   get Mobilectrl(){
   return this.UserProfile.get('Mobile')
-} get Countryctrl(){
+  
+}
+get DOBctrl(){
+  return this.UserProfile.get('DOB');
+  
+} get IDctrl(){
+  return this.UserProfile.get("IdType")
+}
+get IdNumberctrl(){
+  return this.UserProfile.get("IdNumber")
+}
+get Countryctrl(){
   return this.UserProfile.get('Country')
 } get Statectrl(){
   return this.UserProfile.get('State')
 } get Cityctrl(){
   return this.UserProfile.get('City')
-} get educationGroupLength(){
+} get Streetctrl(){
+  return this.UserProfile.get('StreetName')
+}
+ get educationGroupLength(){
   return (<FormArray>this.UserProfile.get('addEduation')).length;
 } get employmentGroupLength(){
   return (<FormArray>this.UserProfile.get('addEmployment')).length;
 }
+
+getErrorMessage(){
+  return "You must enter a Valid Value";
+}
+
 
 onChangeCountry(countryValue:any) {
   if(countryValue=="default"){
@@ -161,6 +189,17 @@ getCountries(){
     console.log(error);
   });
 }
+
+imgSelection(event){
+  if(event.target.files){
+    let reader=new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload=(event:any)=>{
+      this.imageurl=event.target.result;
+    }
+  }
+}
+
 userform(){
 console.log(this.UserProfile.value)
   // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{

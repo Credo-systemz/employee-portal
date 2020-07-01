@@ -13,20 +13,27 @@
              </mat-panel-description>
               </mat-expansion-panel-header>
               <div>
+
+                <div class="profilePic">
+                    <img [src]="imageurl" alt="ProfilePic" height="150px" width="150px"><br>
+                    <input type="file" (change)="imgSelection($event)">
+                </div>
                 <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
                     <input matInput formControlName="CandidateId">
+
                 </mat-form-field>
             </div>
             <div>
             <mat-form-field>
                 <mat-label>Job Title</mat-label>
-                <select matNativeControl required formControlName="JobTitle">
+                <select matNativeControl formControlName="JobTitle">
                     <option value=""></option>
                     <option value="WebDev">Web developer</option>
                     <option value="SoftwareEngineer">Software Engineer</option>
                     <option value="SoftwareDev">Software Developer</option>
                 </select>
+                
             </mat-form-field>
             </div> 
 
@@ -34,17 +41,21 @@
                 <mat-form-field>
                     <mat-label>First Name*</mat-label>
                     <input matInput formControlName="FName">
+                    <mat-error *ngIf="Fnamectrl.invalid && Fnamectrl.touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
 
 
                 <mat-form-field>
                     <mat-label>Middle Name</mat-label>
                     <input matInput formControlName="MName">
-                </mat-form-field>
+                    </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Last Name*</mat-label>
                     <input matInput formControlName="LName">
+                    <mat-error *ngIf="Lnamectrl.invalid && Lnamectrl.touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
 
@@ -52,6 +63,9 @@
                 <mat-form-field>
                     <mat-label>Email ID*</mat-label>
                     <input matInput formControlName="Email">
+                    <mat-error *ngIf="Emailctrl.invalid && Emailctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
+
                 </mat-form-field>
 
 
@@ -62,6 +76,9 @@
                     placeholder="Date Of Birth" formControlName="DOB">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="DOBctrl.invalid && DOBctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
+
                   </mat-form-field>
           </div>
 
@@ -69,6 +86,9 @@
                 <mat-form-field>
                     <mat-label>Mobile Number*</mat-label>
                     <input matInput formControlName="Mobile">
+                    <mat-error *ngIf="Mobilectrl.invalid && Mobilectrl.touched">
+                        {{getErrorMessage()}}</mat-error>
+
                 </mat-form-field>                     
 
                 <mat-form-field>
@@ -97,15 +117,21 @@
                         <option value="Voter Id">Voter Id</option>
                         <option value="Pan Card">Pan Card</option>
                     </select>
+                    <mat-error *ngIf="IDctrl.invalid && IDctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
+
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>ID Number*</mat-label>
                     <input matInput formControlName="IdNumber">
+                    <mat-error *ngIf="IdNumberctrl.invalid && IdNumberctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <div style="width: 200px;" >
+                    
                  <label>Select Country</label>
                   <select class="form-control" formControlName="Country"
                   (blur)="onChangeCountry($event.target.value);"
@@ -113,8 +139,15 @@
                   [ngClass]="{'has-error':Countryctrl.touched && CountryValueNull}">
                     <option value="default">Select Country</option>
                  <option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</option>
+    
                   </select>  
+                  <div class="errortext" *ngIf="CountryValueNull && Countryctrl.touched">
+                    {{getErrorMessage()}}</div>
+                
                  </div>
+
+
+
                  <div style="width: 200px;">
                    <label>Select State</label>
                     <select class="form-control"formControlName="State" (blur)="onChangeState($event.target.value);"
@@ -123,6 +156,9 @@
                         <option value="default">Select State</option>
                         <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
                     </select>  
+                    <div class="errortext" *ngIf="StateValueNull && Statectrl.touched">
+                        {{getErrorMessage()}}</div>
+                    
                  </div>
                  <div style="width: 200px;">
                     <label>Select City</label>
@@ -132,10 +168,15 @@
                         <option value="default">Select City</option>
                       <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
                     </select>  
+                    <div class="errortext" *ngIf="CityValueNull && Cityctrl.touched">
+                        {{getErrorMessage()}}</div>
+                    
                 </div>
                 <mat-form-field>
                     <mat-label>Street Name*</mat-label>
                     <input matInput formControlName="StreetName">
+                    <mat-error *ngIf="Streetctrl.invalid && Streetctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>    
         </mat-expansion-panel>
@@ -158,34 +199,39 @@
             <div [formGroupName]="i">
 
               <div>
-                <mat-form-field
-                 [ngClass]="{'has-error':edu.get('EducationalType').invalid && edu.get('EducationalType').touched}">
+                <mat-form-field>
                     <mat-label [attr.for]="'EducationalType'+i">Educational Type</mat-label>
                     <input [id]="'EducationalType'+i" matInput formControlName="EducationalType">
+                    <mat-error *ngIf="edu.get('EducationalType').invalid && edu.get('EducationalType').touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
 
             <div>
-                <mat-form-field
-                [ngClass]="{'has-error':edu.get('CompletedYear').invalid && edu.get('CompletedYear').touched}">
+                <mat-form-field>
                     <mat-label [attr.for]="'CompletedYear'+i">Completed year</mat-label>
                     <input  [id]="'CompletedYear'+i"matInput formControlName="CompletedYear">
+                    <mat-error *ngIf="edu.get('CompletedYear').invalid && edu.get('CompletedYear').touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
             
             <div>
-                <mat-form-field
-                [ngClass]="{'has-error':edu.get('Percentile').invalid && edu.get('Percentile').touched}">
-                    <mat-label [attr.for]="'Percentile'+i">Percentile/CGP</mat-label>
+                <mat-form-field>
+                   <mat-label [attr.for]="'Percentile'+i">Percentile/CGP</mat-label>
                     <input [id]="'Percentile'+i" matInput formControlName="Percentile">
+                    <mat-error *ngIf="edu.get('Percentile').invalid && edu.get('Percentile').touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
 
             <div>
-                <mat-form-field
-                [ngClass]="{'has-error':edu.get('Institution').invalid && edu.get('Institution').touched}">
+                <mat-form-field>
                     <mat-label [attr.for]="'Institution'+i">Name of the Institution</mat-label>
                     <input [id]="'Institution'+i"matInput formControlName="Institution">
+                    <mat-error *ngIf="edu.get('Institution').invalid && edu.get('Institution').touched">
+                        {{getErrorMessage()}}</mat-error>
+
                 </mat-form-field>
             </div>
 
@@ -201,11 +247,7 @@
               Remove</button>
           </div>
         </span>
-
-
         </div><!--Array Closing-->
-
-        
             </mat-expansion-panel>
 
 
@@ -229,10 +271,11 @@
                   <div [formGroupName]="e">
 
               <div>
-                <mat-form-field
-                    [ngClass]="{'has-error':emp.get('Organization').invalid && emp.get('Organization').touched}">
+                <mat-form-field>
                     <mat-label>Name of the organization</mat-label>
                     <input matInput formControlName="Organization">
+                    <mat-error *ngIf="emp.get('Organization').invalid && emp.get('Organization').touched">
+                        {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
 
@@ -243,6 +286,9 @@
                 placeholder="From Date" formControlName="Fromdate">
                 <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
                 <mat-datepicker #Fromdate></mat-datepicker>
+                <mat-error *ngIf="emp.get('Fromdate').invalid && emp.get('Fromdate').touched">
+                    {{getErrorMessage()}}</mat-error>
+           
               </mat-form-field> 
        
                 <mat-form-field>
@@ -251,42 +297,55 @@
                     placeholder="To Date" formControlName="Todate">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
+                    <mat-error *ngIf="emp.get('Todate').invalid && emp.get('Todate').touched">
+                        {{getErrorMessage()}}</mat-error>
+               
                   </mat-form-field> 
             </div>
              <div>
-                <mat-form-field 
-                [ngClass]="{'has-error':emp.get('Designation').invalid && emp.get('Designation').touched}">
+                <mat-form-field>
                     <mat-label>Designation</mat-label>
                 <input matInput placeholder="Enter Your Designation*" formControlName="Designation"> 
+                <mat-error *ngIf="emp.get('Designation').invalid && emp.get('Designation').touched">
+                    {{getErrorMessage()}}</mat-error>
+           
                 </mat-form-field>
             </div>
             <div>
-                <mat-form-field
-                [ngClass]="{'has-error':emp.get('CTC').invalid && emp.get('CTC').touched}">
+                <mat-form-field>
                     <mat-label>Current CTC</mat-label>
                     <input matInput formControlName="CTC">
+                    <mat-error *ngIf="emp.get('CTC').invalid && emp.get('CTC').touched">
+                        {{getErrorMessage()}}</mat-error>
+               
                 </mat-form-field>
-                <mat-form-field 
-                [ngClass]="{'has-error':emp.get('Experience').invalid && emp.get('Experience').touched}">
+                <mat-form-field>
                     <mat-label>Experience</mat-label>
                     <input matInput formControlName="Experience">
+                    <mat-error *ngIf="emp.get('Experience').invalid && emp.get('Experience').touched">
+                        {{getErrorMessage()}}</mat-error>
+               
                 </mat-form-field>
             </div>
              <div>
-            <section class="example-section"
-            [ngClass]="{'has-error':emp.get('InterestedinJobOpp').invalid && emp.get('InterestedinJobOpp').touched}">
+            <section class="example-section">
                 <span class="example-list-section">
                     <mat-checkbox formControlName="InterestedinJobOpp"> Interested for Job oppurtunities </mat-checkbox>
+                    <mat-error *ngIf="emp.get('InterestedinJobOpp').invalid && emp.get('InterestedinJobOpp').touched">
+                        {{getErrorMessage()}}</mat-error>
+               
                 </span>
               </section>
             </div>
             <div>
-                <mat-field 
-                [ngClass]="{'has-error':emp.get('TrainingRequired').invalid && emp.get('TrainingRequired').touched}">
+                <mat-field>
                     <mat-label class="example-margin">Training Required : </mat-label>&nbsp;
                     <mat-radio-group formControlName="TrainingRequired"[(ngModel)]="myval" [ngModelOptions]="{standalone: true}">
                     <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp;&nbsp;&nbsp;
                     <mat-radio-button value="No">No</mat-radio-button>
+                    <mat-error *ngIf="emp.get('TrainingRequired').invalid && emp.get('TrainingRequired').touched">
+                        {{getErrorMessage()}}</mat-error>
+               
                     </mat-radio-group>
                 </mat-field>
                     
@@ -309,7 +368,7 @@
             </mat-expansion-panel>
           </mat-accordion>
 
-          <button type="Submit" class="btn btn-primary">Submit</button>
+          <button type="Submit" class="btn btn-primary" [disabled]="UserProfile.invalid">Submit</button>
 
     </form>
 </article>

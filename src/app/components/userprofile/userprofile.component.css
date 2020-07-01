@@ -18,3 +18,10 @@ span .addEducationbtn{
 .has-error{
   border:1px solid red;
 }
+.profilePic{
+  margin:0;
+  float:right;
+
+}.errortext{
+  color:red;
+}
