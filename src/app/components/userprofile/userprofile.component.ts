@@ -76,7 +76,7 @@ addEducationFormGroup():FormGroup{
 addEmploymentFormGroup():FormGroup{
   return this.fb.group({
     "Organization":[null,Validators.required],
-    "Fromdata":[null,Validators.required],
+    "Fromdate":[null,Validators.required],
     "Todate":[null,Validators.required],
     "Designation":[null,Validators.required],
     "CTC":[null,Validators.required],

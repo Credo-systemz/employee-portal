@@ -228,34 +228,21 @@
 
          <div>
             <mat-form-field>
-                <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input [rangePicker]="myrange">
-                  <input matInput matStartDate placeholder="Start date">
-                  <input  matInput matEndDate placeholder="End date">
-                </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="myrange"></mat-datepicker-toggle>
-                <mat-date-range-picker #myrange></mat-date-range-picker>
-              </mat-form-field>
-
-            <!-- <mat-form-field>             
-                    <mat-label>From Date</mat-label>
-                    <input matInput [matDatepicker]="Fromdate"
-                    placeholder="From Date">
-                    <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
-                    <mat-datepicker #Fromdate></mat-datepicker>
-                  </mat-form-field>
-            
+                <mat-label>From Date</mat-label>
+                <input matInput [matDatepicker]="Fromdate"
+                placeholder="From Date" formControlName="Fromdate">
+                <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
+                <mat-datepicker #Fromdate></mat-datepicker>
+              </mat-form-field> 
+       
                 <mat-form-field>
                     <mat-label>To Date</mat-label>
                     <input matInput [matDatepicker]="Todate"
                     placeholder="To Date" formControlName="Todate">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
-                  </mat-form-field> -->
+                  </mat-form-field> 
             </div>
-
-
-    
              <div>
                 <mat-form-field 
                 [ngClass]="{'has-error':emp.get('Designation').invalid && emp.get('Designation').touched}">
