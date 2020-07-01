@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormGroup,Validators, FormBuilder, FormArray} from '@angular/forms';
 
 import { UserService } from 'src/app/user.service';
 
@@ -33,13 +32,15 @@ export class UserprofileComponent implements OnInit {
       'Email':['',[Validators.required,Validators.pattern(EmailPattern)]],
       'Password':['',[Validators.required,Validators.minLength(8)]],
       'DOB':['',Validators.required],
-      // 'Mobile':['',[Validators.required,Validators.pattern('/{0-9}[0-10]/')]],
-      // 'AlternateContact':['',[Validators.required,Validators.pattern('/{0-9}[0-10]/')]],
+      'Mobile':['',Validators.required],
+      'AlternateContact':['',Validators.required],
       'IdType':['',Validators.required],
       'IdNumber':['',Validators.required],
       'Country':['',Validators.required],
       'State':['',Validators.required],
       'City':['',Validators.required],
+      'StreetName':['',Validators.required],
+      'WhatsAppCheck':['',Validators.required],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
       ]),
@@ -126,7 +127,7 @@ onChangeCountry(countryValue:any) {
  // console.log(this.cityInfo);
  }
 getCountries(){
-  this.UserService.allCountries().subscribe((data:any)=>{
+    this.UserService.allCountries().subscribe((data:any)=>{
     this.countryInfo=data.Countries;
   },
   (error:any)=>{
@@ -143,6 +144,5 @@ console.log(this.UserProfile.value)
   //   console.log(error);
   // });
 }
-
 
 }
