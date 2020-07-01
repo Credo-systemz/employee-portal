@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup,Validators, FormBuilder, FormArray} from '@angular/forms';
+import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
 
 import { UserService } from 'src/app/user.service';
 
@@ -27,8 +27,11 @@ export class UserprofileComponent implements OnInit {
     this.getCountries();
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
-    let voterId = "/^([a-zA-Z]){3}([0-9]){7}?$/g";
-  
+    let VoterId = "^([a-zA-Z]){3}([0-9]){7}?$";
+    let PanCard ="^[A-Z]{5}[0-9]{4}[A-Z]{1}$";
+    let AdhaarCard ='^\d{4}\s\d{4}\s\d{4}$';
+    let Passport ='^[A-Z]{1}-[0-9]{7}$';
+    let DrivingLicense='^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
     this.UserProfile= this.fb.group ({
       'CandidateId':['',Validators.required],
       'JobTitle':[''],
@@ -41,7 +44,7 @@ export class UserprofileComponent implements OnInit {
       'WhatsAppCheck':[''],
       'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
       'IdType':['',Validators.required],
-      'IdNumber':['',[Validators.required,Validators.pattern(voterId)]],
+      'IdNumber':['',Validators.required],
       'Country':['default',Validators.required],
       'State':['default',Validators.required],
       'City':['default',Validators.required],
@@ -52,11 +55,30 @@ export class UserprofileComponent implements OnInit {
       "addEmployment":this.fb.array([
         this.addEmploymentFormGroup()
       ])
-
+      
     });
-  
- }
-//Dynamic form of Education
+    this.UserProfile.get('IdType').valueChanges.subscribe(val=>{
+      if(val==='1'){
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(Passport)])
+         } 
+      else if(val==='2'){
+      this.UserProfile.get('IdNumber').setValidators([Validators.pattern(AdhaarCard)])
+       }
+       else if(val=='3')
+       {
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(DrivingLicense)])
+       }
+       else if(val=='4')
+       {
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(VoterId)])
+       }
+       else if(val=='5')
+       {
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(PanCard)])
+       }
+    })
+  }
+// //Dynamic form of Education  
 
 addEducationFormGroup():FormGroup{
   return this.fb.group({
@@ -114,7 +136,10 @@ removeEmploymentButtonClick(formGroupIndex:number){
   return this.UserProfile.get('State')
 } get Cityctrl(){
   return this.UserProfile.get('City')
-} get educationGroupLength(){
+} get Idnumberctrl(){
+  return this.UserProfile.get('IdNumber')
+}
+ get educationGroupLength(){
   return (<FormArray>this.UserProfile.get('addEduation')).length;
 } get employmentGroupLength(){
   return (<FormArray>this.UserProfile.get('addEmployment')).length;
