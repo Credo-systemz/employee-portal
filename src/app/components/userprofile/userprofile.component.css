@@ -18,3 +18,35 @@ span .addEducationbtn{
 .has-error{
   border:1px solid red;
 }
+.usr-btn {
+  width: 100%;
+}
+mat-expansion-panel.mat-expansion-panel {
+  margin: 15px;
+}
+select.cascade.form-control{
+    border: none;
+    border-bottom: 1px solid #999;
+    border-radius: 0;
+    outline: none;
+    width: 180px;
+    margin: 2px;
+    padding: 2px 0px 0px 0px;
+    text-align: left;
+    box-shadow: none;
+}
+select.cascade.form-group:active,select.cascade.form-group:focus,select.cascade.form-group:visited,select.cascade.form-group:focus-within{
+  border: none;
+  border-bottom: 1px solid #999;
+  border-radius: 0;
+  outline: none;
+  width: 180px;
+  margin: 2px;
+  padding: 2px 0px 0px 0px;
+  text-align: left;
+  box-shadow: none;
+}
+.form-in{
+  display: inline-flex;
+  width: 100%;
+}

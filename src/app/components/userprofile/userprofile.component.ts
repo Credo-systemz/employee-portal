@@ -12,10 +12,10 @@ export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
   
-  countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
+
   UserProfile:FormGroup;
   myval;
   CountryValueNull:boolean=true;
@@ -163,13 +163,12 @@ getCountries(){
 }
 userform(){
 console.log(this.UserProfile.value)
-  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-    
-  //   this.UserProfile.reset();
-  //   console.log(data);
-  // },(error:any)=>{
-  //   console.log(error);
-  // });
+  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    this.UserProfile.reset();
+    console.log(data);
+  },(error:any)=>{
+    console.log(error);
+  });
 }
 
 }

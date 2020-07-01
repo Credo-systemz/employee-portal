@@ -249,13 +249,13 @@ app.get("/emailCheck/:emailid",(req,res)=>{
                 to:req.params.emailid,
                 subject:"Email Verification",
                 text:'Hi'+'\n'+
-                'You are recently requested to register for your account.'+'\n'+
-                'Click the Link below to complete registeration.'+'\n\n'+
+                'You have recently requested to register for your account.'+'\n'+
+                'Click the Link below to complete registration.'+'\n\n'+
                 'http://localhost:4200/register/'+jwttoken+
                 '\n\n' + 
-                'if you didnot make this request then you can safely ignore this email'+'\n'+
+                'if you have not made this request kindly ignore this email'+'\n'+
                 'Thanks'+'\n'+
-                'Team'
+                'Team Credo'
              }
                transporter.sendMail(mailoption,(error,res)=>{
                if(error)
