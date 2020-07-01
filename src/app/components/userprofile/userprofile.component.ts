@@ -55,11 +55,8 @@ export class UserprofileComponent implements OnInit {
       "addEmployment":this.fb.array([
         this.addEmploymentFormGroup()
       ])
-
-
     });
 
-  
  }
 //Dynamic form of Education
 
