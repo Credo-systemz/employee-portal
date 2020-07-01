@@ -237,25 +237,22 @@
             </div>
 
          <div>
-                <mat-form-field>             
-                    <mat-label>From Date</mat-label>
-                    <input matInput [matDatepicker]="Fromdate"
-                    placeholder="From Date">
-                    <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
-                    <mat-datepicker #Fromdate></mat-datepicker>
-                  </mat-form-field>
-            
+            <mat-form-field>
+                <mat-label>From Date</mat-label>
+                <input matInput [matDatepicker]="Fromdate"
+                placeholder="From Date" formControlName="Fromdate">
+                <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
+                <mat-datepicker #Fromdate></mat-datepicker>
+              </mat-form-field> 
+       
                 <mat-form-field>
                     <mat-label>To Date</mat-label>
                     <input matInput [matDatepicker]="Todate"
                     placeholder="To Date" formControlName="Todate">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
-                  </mat-form-field>
+                  </mat-form-field> 
             </div>
-
-
-    
              <div>
                 <mat-form-field 
                 [ngClass]="{'has-error':emp.get('Designation').invalid && emp.get('Designation').touched}">

@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormGroup,Validators, FormBuilder, FormArray} from '@angular/forms';
 
 import { UserService } from 'src/app/user.service';
 
@@ -82,7 +81,7 @@ addEducationFormGroup():FormGroup{
 addEmploymentFormGroup():FormGroup{
   return this.fb.group({
     "Organization":[null,Validators.required],
-    "Fromdata":[null,Validators.required],
+    "Fromdate":[null,Validators.required],
     "Todate":[null,Validators.required],
     "Designation":[null,Validators.required],
     "CTC":[null,Validators.required],
@@ -155,7 +154,7 @@ onChangeCountry(countryValue:any) {
  }
 
 getCountries(){
-  this.UserService.allCountries().subscribe((data:any)=>{
+    this.UserService.allCountries().subscribe((data:any)=>{
     this.countryInfo=data.Countries;
   },
   (error:any)=>{
@@ -172,6 +171,5 @@ console.log(this.UserProfile.value)
   //   console.log(error);
   // });
 }
-
 
 }
