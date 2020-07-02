@@ -24,7 +24,6 @@ app.use(cors());
  
 var db;
 
-
 mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/EmployeePortal?retryWrites=true&w=majority",(error,database)=>{
    if(error){
        console.log("Database access denied");
@@ -210,10 +209,10 @@ app.post('/userinfo', (req,res)=>{
             res.status(400).json("Error in select query");
         }
         else{
-               
-                res.json("Information Saved");
               
+            res.json("Information Saved");
                console.log(data);
+               
         }
 
     })

@@ -41,13 +41,10 @@
                     <mat-error *ngIf="Fnamectrl.invalid && Fnamectrl.touched">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
-
-
                 <mat-form-field>
                     <mat-label>Middle Name</mat-label>
                     <input matInput formControlName="MName">
                     </mat-form-field>
-
                 <mat-form-field>
                     <mat-label>Last Name*</mat-label>
                     <input matInput formControlName="LName">
@@ -64,9 +61,6 @@
                         {{getErrorMessage()}}</mat-error>
 
                 </mat-form-field>
-
-
-
                 <mat-form-field >
                     <mat-label>Date Of Birth*</mat-label>
                     <input matInput [matDatepicker]="picker"
@@ -124,7 +118,6 @@
             </div>
             <div>
                 <div class="addressBlock" style="width: 200px;" >
-                    
                  <label>Select Country</label>
                   <select class="form-control" formControlName="Country"
                   (blur)="onChangeCountry($event.target.value);"
@@ -135,10 +128,8 @@
     
                   </select>  
                   <div class="errortext" *ngIf="CountryValueNull && Countryctrl.touched">
-                    {{getErrorMessage()}}</div>
-                
+                    {{getErrorMessage()}}</div>               
                  </div>
-
                  <div class="addressBlock"style="width: 200px;">
                    <label>Select State</label>
                     <select class="form-control"formControlName="State" (blur)="onChangeState($event.target.value);"
@@ -148,8 +139,7 @@
                         <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
                     </select>  
                     <div class="errortext" *ngIf="StateValueNull && Statectrl.touched">
-                        {{getErrorMessage()}}</div>
-                    
+                        {{getErrorMessage()}}</div>                    
                  </div>
                  <div class="addressBlock"style="width: 200px;">
                     <label>Select City</label>

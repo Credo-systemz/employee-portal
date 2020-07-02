@@ -12,7 +12,6 @@ export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
   imageurl="assets/images/profilePic.png"
-  countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
@@ -127,27 +126,20 @@ removeEmploymentButtonClick(formGroupIndex:number){
     const group= this.UserProfile.get('addEmployment')['controls']
     group.splice(formGroupIndex,1);
  }
-
- 
-
   get Candidatectrl(){
     return this.UserProfile.get("CadidateId")
-  }
+}
   get Fnamectrl(){
   return this.UserProfile.get('FName')
-
 } get Lnamectrl(){
   return this.UserProfile.get('LName')
-
 } get Emailctrl(){
   return this.UserProfile.get('Email')
 }   get Mobilectrl(){
-  return this.UserProfile.get('Mobile')
-  
+  return this.UserProfile.get('Mobile')  
 }
 get DOBctrl(){
-  return this.UserProfile.get('DOB');
-  
+  return this.UserProfile.get('DOB');    
 } 
 get IdNumberctrl(){
   return this.UserProfile.get("IdNumber")
@@ -178,8 +170,7 @@ onChangeCountry(countryValue:any) {
   if(countryValue=="default"){
     this.CountryValueNull=true;
   }else{
-
-    this.CountryValueNull=false;
+  this.CountryValueNull=false;
   this.stateInfo=this.countryInfo[countryValue].States;
   this.cityInfo=this.stateInfo[0].Cities;
   // console.log(this.cityInfo);
@@ -224,24 +215,14 @@ imgSelection(event){
     }
   }
 }
-
-
-
-
-
 userform(){
-console.log(this.UserProfile.value)
-console.log(this.UserProfile.status);
-
-  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-    
-  //   this.UserProfile.reset();
-  //   console.log(data);
-  // },(error:any)=>{
-  //   console.log(error);
-  // });
+  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    console.log(this.UserProfile.value)
+    console.log(this.UserProfile.status);
+    this.UserProfile.reset();
+    console.log(data);
+  },(error:any)=>{
+    console.log(error);
+  });
 }
-
-
-
 }
