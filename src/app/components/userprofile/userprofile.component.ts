@@ -11,11 +11,11 @@ import { UserService } from 'src/app/user.service';
 export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
-  
+  imageurl="assets/images/profilePic.png"
+  countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
-
   UserProfile:FormGroup;
   myval;
   CountryValueNull:boolean=true;
@@ -24,39 +24,16 @@ export class UserprofileComponent implements OnInit {
   constructor(public UserService: UserService,public fb:FormBuilder) { }
 
   ngOnInit() {
-    this.getCountries();
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
+    let ValidYear="^\d{4}$";
+    let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
     let VoterId = "^([a-zA-Z]){3}([0-9]){7}?$";
     let PanCard ="^[A-Z]{5}[0-9]{4}[A-Z]{1}$";
     let AdhaarCard ='^\d{4}\s\d{4}\s\d{4}$';
     let Passport ='^[A-Z]{1}-[0-9]{7}$';
     let DrivingLicense='^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
-    this.UserProfile= this.fb.group ({
-      'CandidateId':['',Validators.required],
-      'JobTitle':[''],
-      'FName':['',[Validators.required,Validators.maxLength(15)]],
-      'MName':[''],
-      'LName':['',[Validators.required,Validators.maxLength(15)]],
-      'Email':['',[Validators.required,Validators.pattern(EmailPattern)]],
-      'DOB':['',Validators.required],
-      'Mobile':['',[Validators.required,Validators.pattern(mobNumberPattern)]],
-      'WhatsAppCheck':[''],
-      'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
-      'IdType':['',Validators.required],
-      'IdNumber':['',Validators.required],
-      'Country':['default',Validators.required],
-      'State':['default',Validators.required],
-      'City':['default',Validators.required],
-      'StreetName':['',Validators.required],
-      "addEduation":this.fb.array([
-        this.addEducationFormGroup()
-      ]),
-      "addEmployment":this.fb.array([
-        this.addEmploymentFormGroup()
-      ])
-      
-    });
+
     this.UserProfile.get('IdType').valueChanges.subscribe(val=>{
       if(val==='1'){
         this.UserProfile.get('IdNumber').setValidators([Validators.pattern(Passport)])
@@ -76,15 +53,43 @@ export class UserprofileComponent implements OnInit {
        {
         this.UserProfile.get('IdNumber').setValidators([Validators.pattern(PanCard)])
        }
+      
     })
-  }
-// //Dynamic form of Education  
+    
+    this.UserProfile= this.fb.group ({
+      'profilePic':[''],
+      'CandidateId':['',Validators.required],
+      'JobTitle':[''],
+      'FName':['',[Validators.required,Validators.maxLength(15)]],
+      'MName':[''],
+      'LName':['',[Validators.required,Validators.maxLength(15)]],
+      'Email':['',[Validators.required,Validators.pattern(EmailPattern)]],
+      'DOB':['',Validators.required],
+      'Mobile':['',[Validators.required,Validators.pattern(mobNumberPattern)]],
+      'WhatsAppCheck':[''],
+      'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
+      'IdType':['',Validators.required],
+      'IdNumber':['',Validators.required],
+      'Country':['default',Validators.required],
+      'State':['default',Validators.required],
+      'City':['default',[Validators.required,Validators.maxLength(15)]],
+      'StreetName':['',[Validators.required,Validators.maxLength(200)]],
+      "addEduation":this.fb.array([
+        this.addEducationFormGroup()
+      ]),
+      "addEmployment":this.fb.array([
+        this.addEmploymentFormGroup()
+      ])
+    });
 
+  }
+//Dynamic form of Education
+    
 addEducationFormGroup():FormGroup{
   return this.fb.group({
     "EducationalType":[null,Validators.required],
-    "CompletedYear":[null,Validators.required],
-    "Percentile":[null,Validators.required],
+    "CompletedYear":[null,[Validators.required,Validators.maxLength(4)]],
+    "Percentile":[null,[Validators.required]],
     "Institution":[null,Validators.required]
   })
 }
@@ -102,10 +107,11 @@ addEducationFormGroup():FormGroup{
 
 addEmploymentFormGroup():FormGroup{
   return this.fb.group({
-    "Organization":[null,Validators.required],
+    "Organization":[null,[Validators.required,Validators.maxLength(100)]],
     "Fromdate":[null,Validators.required],
-    "Todate":[null,Validators.required],
+    "Todate":[null,Validators.required,],
     "Designation":[null,Validators.required],
+    "Skills":[null,Validators.required],
     "CTC":[null,Validators.required],
     "Experience":[null,Validators.required],
     "InterestedinJobOpp":[null,Validators.required],
@@ -122,20 +128,38 @@ removeEmploymentButtonClick(formGroupIndex:number){
     group.splice(formGroupIndex,1);
  }
 
-  get fnamectrl(){
-  return this.UserProfile.get('Fname')
+ 
+
+  get Candidatectrl(){
+    return this.UserProfile.get("CadidateId")
+  }
+  get Fnamectrl(){
+  return this.UserProfile.get('FName')
+
+} get Lnamectrl(){
+  return this.UserProfile.get('LName')
+
 } get Emailctrl(){
   return this.UserProfile.get('Email')
-}  get Passwordctrl(){
-  return this.UserProfile.get('Password')
-}  get Mobilectrl(){
+}   get Mobilectrl(){
   return this.UserProfile.get('Mobile')
-} get Countryctrl(){
+  
+}
+get DOBctrl(){
+  return this.UserProfile.get('DOB');
+  
+} 
+get IdNumberctrl(){
+  return this.UserProfile.get("IdNumber")
+}
+get Countryctrl(){
   return this.UserProfile.get('Country')
 } get Statectrl(){
   return this.UserProfile.get('State')
 } get Cityctrl(){
   return this.UserProfile.get('City')
+} get Streetctrl(){
+  return this.UserProfile.get('StreetName')
 } get Idnumberctrl(){
   return this.UserProfile.get('IdNumber')
 }
@@ -144,6 +168,11 @@ removeEmploymentButtonClick(formGroupIndex:number){
 } get employmentGroupLength(){
   return (<FormArray>this.UserProfile.get('addEmployment')).length;
 }
+
+getErrorMessage(){
+  return "You must enter a Valid Value";
+}
+
 
 onChangeCountry(countryValue:any) {
   if(countryValue=="default"){
@@ -156,8 +185,8 @@ onChangeCountry(countryValue:any) {
   // console.log(this.cityInfo);
   //console.log(countryValue)
 }
- 
 }
+
  onChangeState(stateValue) {
   if(stateValue=="default"){
     this.StateValueNull=true;
@@ -175,7 +204,6 @@ onChangeCountry(countryValue:any) {
    }else{
    this.CityValueNull=false;
    }
-
  }
 
 getCountries(){
@@ -186,14 +214,34 @@ getCountries(){
     console.log(error);
   });
 }
+
+imgSelection(event){
+  if(event.target.files){
+    let reader=new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload=(event:any)=>{
+      this.imageurl=event.target.result;
+    }
+  }
+}
+
+
+
+
+
 userform(){
 console.log(this.UserProfile.value)
-  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-    this.UserProfile.reset();
-    console.log(data);
-  },(error:any)=>{
-    console.log(error);
-  });
+console.log(this.UserProfile.status);
+
+  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    
+  //   this.UserProfile.reset();
+  //   console.log(data);
+  // },(error:any)=>{
+  //   console.log(error);
+  // });
 }
+
+
 
 }

@@ -1,5 +1,26 @@
+.userProfileTitle{
+  margin-top:2em;
+  text-align:center;
+}
+mat-expansion-panel{
+  border:1px solid rgb(112,112,112);
+  box-shadow: 0px 0px 5px 4px rgb(128,128,128.0.75);
+  margin-bottom:0.7em;
+}
+mat-panel-title{
+  font-weight: 500;
+}
+mat-form-field{
+  line-height:1.8;
+}
+
 mat-form-field + .mat-form-field {
     margin-left: 8px;
+}
+
+div select{
+  line-height:1.8 !important;
+  margin-top:10px !important;
 }
  div .form-group{
     width:700px;
@@ -18,35 +39,32 @@ span .addEducationbtn{
 .has-error{
   border:1px solid red;
 }
-.usr-btn {
-  width: 100%;
+.profilePic{
+  margin:0;
+  float:right;
+  margin-right:10px;
+
+}.errortext{
+  color:red;
+  margin-top:10px;
 }
-mat-expansion-panel.mat-expansion-panel {
-  margin: 15px;
+button.submit{
+justify-content: center !important;
+margin-top:1.5em;
 }
-select.cascade.form-control{
-    border: none;
-    border-bottom: 1px solid #999;
-    border-radius: 0;
-    outline: none;
-    width: 180px;
-    margin: 2px;
-    padding: 2px 0px 0px 0px;
-    text-align: left;
-    box-shadow: none;
+div.addressBlock{
+  margin-top:12px !important;
 }
-select.cascade.form-group:active,select.cascade.form-group:focus,select.cascade.form-group:visited,select.cascade.form-group:focus-within{
-  border: none;
-  border-bottom: 1px solid #999;
-  border-radius: 0;
-  outline: none;
-  width: 180px;
-  margin: 2px;
-  padding: 2px 0px 0px 0px;
-  text-align: left;
-  box-shadow: none;
+.Streetname{
+  margin-bottom:15px;
+  margin-top: 15px;
 }
-.form-in{
-  display: inline-flex;
-  width: 100%;
+mat-error{
+  font-size: 1.2em;
+}.groupClickButton{
+  margin-top:15px;
+  margin-bottom:15px;
+}label .mat-checkbox-layout, mat-field .example-section .training{
+  margin-top:20px !important;
+  padding-top:20px !important;
 }
