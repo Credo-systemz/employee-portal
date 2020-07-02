@@ -26,7 +26,6 @@ export class UserprofileComponent implements OnInit {
   ngOnInit() {
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
-    let ValidYear="^\d{4}$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
     let VoterId = "^([a-zA-Z]){3}([0-9]){7}?$";
     let PanCard ="^[A-Z]{5}[0-9]{4}[A-Z]{1}$";
@@ -34,30 +33,8 @@ export class UserprofileComponent implements OnInit {
     let Passport ='^[A-Z]{1}-[0-9]{7}$';
     let DrivingLicense='^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
 
-    this.UserProfile.get('IdType').valueChanges.subscribe(val=>{
-      if(val==='1'){
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(Passport)])
-         } 
-      else if(val==='2'){
-      this.UserProfile.get('IdNumber').setValidators([Validators.pattern(AdhaarCard)])
-       }
-       else if(val=='3')
-       {
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(DrivingLicense)])
-       }
-       else if(val=='4')
-       {
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(VoterId)])
-       }
-       else if(val=='5')
-       {
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(PanCard)])
-       }
-      
-    })
     
     this.UserProfile= this.fb.group ({
-      'profilePic':[''],
       'CandidateId':['',Validators.required],
       'JobTitle':[''],
       'FName':['',[Validators.required,Validators.maxLength(15)]],
@@ -81,16 +58,41 @@ export class UserprofileComponent implements OnInit {
         this.addEmploymentFormGroup()
       ])
     });
+    this.UserProfile.get('IdType').valueChanges.subscribe(val=>{
+      if(val==='1'){
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(Passport)])
+         } 
+      else if(val==='2'){
+      this.UserProfile.get('IdNumber').setValidators([Validators.pattern(AdhaarCard)])
+       }
+       else if(val=='3')
+       {
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(DrivingLicense)])
+       }
+       else if(val=='4')
+       {
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(VoterId)])
+       }
+       else if(val=='5')
+       {
+        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(PanCard)])
+       }
+    
+    })
+    
 
   }
 //Dynamic form of Education
     
 addEducationFormGroup():FormGroup{
+  
+  let ValidYear='^19([7-9][0-9])|20([0-2][0-9])$';
   return this.fb.group({
     "EducationalType":[null,Validators.required],
-    "CompletedYear":[null,[Validators.required,Validators.maxLength(4)]],
+    "CompletedYear":[null,[Validators.required,Validators.pattern(ValidYear)]],
     "Percentile":[null,[Validators.required]],
     "Institution":[null,Validators.required]
+    
   })
 }
 
@@ -119,17 +121,6 @@ addEmploymentFormGroup():FormGroup{
   })
 }
 
-addEmploymentButtonClick():void {
- const group= (<FormArray>this.UserProfile.get("addEmployment"));
- group.push(this.addEmploymentFormGroup());
-}
-removeEmploymentButtonClick(formGroupIndex:number){
-    const group= this.UserProfile.get('addEmployment')['controls']
-    group.splice(formGroupIndex,1);
- }
-
- 
-
   get Candidatectrl(){
     return this.UserProfile.get("CadidateId")
   }
@@ -143,13 +134,11 @@ removeEmploymentButtonClick(formGroupIndex:number){
   return this.UserProfile.get('Email')
 }   get Mobilectrl(){
   return this.UserProfile.get('Mobile')
-  
 }
 get DOBctrl(){
-  return this.UserProfile.get('DOB');
-  
+  return this.UserProfile.get('DOB'); 
 } 
-get IdNumberctrl(){
+get Idnumberctrl(){
   return this.UserProfile.get("IdNumber")
 }
 get Countryctrl(){
@@ -160,14 +149,20 @@ get Countryctrl(){
   return this.UserProfile.get('City')
 } get Streetctrl(){
   return this.UserProfile.get('StreetName')
-} get Idnumberctrl(){
-  return this.UserProfile.get('IdNumber')
 }
  get educationGroupLength(){
   return (<FormArray>this.UserProfile.get('addEduation')).length;
 } get employmentGroupLength(){
   return (<FormArray>this.UserProfile.get('addEmployment')).length;
 }
+addEmploymentButtonClick():void {
+  const group= (<FormArray>this.UserProfile.get("addEmployment"));
+  group.push(this.addEmploymentFormGroup());
+ }
+ removeEmploymentButtonClick(formGroupIndex:number){
+     const group= this.UserProfile.get('addEmployment')['controls']
+     group.splice(formGroupIndex,1);
+  }
 
 getErrorMessage(){
   return "You must enter a Valid Value";
@@ -225,10 +220,6 @@ imgSelection(event){
   }
 }
 
-
-
-
-
 userform(){
 console.log(this.UserProfile.value)
 console.log(this.UserProfile.status);
@@ -241,7 +232,5 @@ console.log(this.UserProfile.status);
   //   console.log(error);
   // });
 }
-
-
 
 }
