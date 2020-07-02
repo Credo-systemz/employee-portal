@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
       this.emailCheckForm=new FormGroup({
         'NewEmail':new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)])
       })
-      
+      $(document.body).removeClass("modal-open");
+      $(".modal-backdrop").remove();    
   
   }
 
