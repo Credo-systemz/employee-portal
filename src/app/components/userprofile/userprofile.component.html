@@ -13,7 +13,7 @@
 
                 <div class="profilePic">
                     <img [src]="imageurl"  alt="ProfilePic" height="150px" width="150px"><br>
-                    <input type="file" formControlName="profilePic" (change)="imgSelection($event)" style="width:150px;">
+                    <input type="file" title="" (change)="imgSelection($event)" style="width:150px;">
                 </div>
                 <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
@@ -111,7 +111,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>ID Number*</mat-label>
+                    <mat-label>ID Number</mat-label>
                     <input required matInput formControlName="IdNumber">
                     <mat-error *ngIf="Idnumberctrl.invalid && Idnumberctrl.dirty">Enter Valid Id</mat-error>
                 </mat-form-field>
@@ -189,7 +189,7 @@
                 <mat-form-field>
                     <mat-label [attr.for]="'CompletedYear'+i">Completed year</mat-label>
                     <input  [id]="'CompletedYear'+i"matInput formControlName="CompletedYear">
-                    <mat-error *ngIf="edu.get('CompletedYear').invalid && edu.get('CompletedYear').touched">
+                    <mat-error *ngIf="edu.get('CompletedYear').invalid && edu.get('CompletedYear').dirty">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
