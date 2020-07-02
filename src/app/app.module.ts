@@ -27,7 +27,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {DatePipe} from '@angular/common'
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
 import { LoginComponent } from './login/login.component';
@@ -47,7 +47,7 @@ import { SearchJobComponent } from './search-job/search-job.component';
     ResetpasswordComponent,
     UserprofileComponent,
     SearchJobComponent,
-    
+  
   ],
   imports: [
     BrowserModule,
@@ -80,10 +80,10 @@ import { SearchJobComponent } from './search-job/search-job.component';
     MatTabsModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule 
-    ],
+    MatNativeDateModule,
+   ],
 
-  providers: [],
+  providers: [DatePipe],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent],
 })

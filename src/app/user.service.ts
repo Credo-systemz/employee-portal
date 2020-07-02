@@ -14,6 +14,7 @@ export class UserService {
   allCountries(): Observable<any>{
     return this.http.get(this.url);
   }
+  
   UserRegistraion(UserData){
     
     return this.http.post("http://localhost:3000/register",UserData);
