@@ -1,5 +1,26 @@
+.userProfileTitle{
+  margin-top:2em;
+  text-align:center;
+}
+mat-expansion-panel{
+  border:1px solid rgb(112,112,112);
+  box-shadow: 0px 0px 5px 4px rgb(128,128,128.0.75);
+  margin-bottom:0.7em;
+}
+mat-panel-title{
+  font-weight: 500;
+}
+mat-form-field{
+  line-height:1.8;
+}
+
 mat-form-field + .mat-form-field {
     margin-left: 8px;
+}
+
+div select{
+  line-height:1.8 !important;
+  margin-top:10px !important;
 }
  div .form-group{
     width:700px;
@@ -21,7 +42,29 @@ span .addEducationbtn{
 .profilePic{
   margin:0;
   float:right;
+  margin-right:10px;
 
 }.errortext{
   color:red;
+  margin-top:10px;
+}
+button.submit{
+justify-content: center !important;
+margin-top:1.5em;
+}
+div.addressBlock{
+  margin-top:12px !important;
+}
+.Streetname{
+  margin-bottom:15px;
+  margin-top: 15px;
+}
+mat-error{
+  font-size: 1.2em;
+}.groupClickButton{
+  margin-top:15px;
+  margin-bottom:15px;
+}label .mat-checkbox-layout, mat-field .example-section .training{
+  margin-top:20px !important;
+  padding-top:20px !important;
 }

@@ -27,12 +27,12 @@ export class UserprofileComponent implements OnInit {
     this.getCountries();
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
-    let voterId = "/^([a-zA-Z]){3}([0-9]){7}?$/g";
     let ValidYear="^\d{4}$";
-    let numeric = "/^[a-zA-Z0-9]+$/";
+    let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
 
   
     this.UserProfile= this.fb.group ({
+      'profilePic':[''],
       'CandidateId':['',Validators.required],
       'JobTitle':[''],
       'FName':['',[Validators.required,Validators.maxLength(15)]],
@@ -63,8 +63,8 @@ export class UserprofileComponent implements OnInit {
 addEducationFormGroup():FormGroup{
   return this.fb.group({
     "EducationalType":[null,Validators.required],
-    "CompletedYear":[null,[Validators.required,Validators.pattern("^[1-9]\d{3,}$")]],
-    "Percentile":[null,[Validators.required,Validators.pattern("/^[a-zA-Z0-9]+$/")]],
+    "CompletedYear":[null,[Validators.required,Validators.maxLength(4)]],
+    "Percentile":[null,[Validators.required]],
     "Institution":[null,Validators.required]
   })
 }
@@ -84,8 +84,9 @@ addEmploymentFormGroup():FormGroup{
   return this.fb.group({
     "Organization":[null,[Validators.required,Validators.maxLength(100)]],
     "Fromdate":[null,Validators.required],
-    "Todate":[null,Validators.required],
+    "Todate":[null,Validators.required,],
     "Designation":[null,Validators.required],
+    "Skills":[null,Validators.required],
     "CTC":[null,Validators.required],
     "Experience":[null,Validators.required],
     "InterestedinJobOpp":[null,Validators.required],
@@ -199,6 +200,8 @@ imgSelection(event){
 
 userform(){
 console.log(this.UserProfile.value)
+console.log(this.UserProfile.status);
+
   // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
     
   //   this.UserProfile.reset();
