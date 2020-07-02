@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+
 declare var jQuery: any;   
 declare var $: any;
 @Component({
@@ -14,28 +16,37 @@ export class UserLoginPageComponent implements OnInit {
   signUpUser:FormGroup;
   hide = true;
   recaptcha:any[];
-
-  constructor(public UserService: UserService) {   
+mail:string;
+  constructor(public UserService: UserService, private router:Router) {   
 
   }
   ngOnInit(): void {
    
+   
     let PasswordPattern='^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$'
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,32})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
+
+    var str=this.router.url;
+    var si=str.indexOf('email');
+    var ei=str.indexOf('end');
+    this.mail=str.slice(si+6, ei);
 
     this.signUpUser = new FormGroup({
       'FirstName' : new FormControl(null,Validators.required),
       'LastName': new FormControl(null,Validators.required),
       'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'ConfirmPassword':new FormControl(null,Validators.required),
-      'EmailId': new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
+      'EmailId': new FormControl(this.mail,[Validators.required,Validators.pattern(EmailPattern)]),
       'Company': new FormControl(null,[Validators.required,Validators.minLength(4), Validators.maxLength(30)]),
      'MobileNo' :new FormControl(null,[Validators.required,Validators.pattern(mobNumberPattern)]),
      'recaptchaReactive': new FormControl(null, Validators.required)
     });
     
-   }
+
+    
+  
+  }
   
 get FnameCtrl(){
   return this.signUpUser.get('FirstName')
