@@ -68,7 +68,7 @@
                 <mat-form-field >
                     <mat-label>Date Of Birth*</mat-label>
                     <input matInput [matDatepicker]="picker"
-                    placeholder="Date Of Birth" formControlName="DOB">
+                    placeholder="Date Of Birth" formControlName="DOB" [max]="Todaydate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="DOBctrl.invalid && DOBctrl.touched">
@@ -124,12 +124,13 @@
                     <mat-error *ngIf="Streetctrl.invalid && Streetctrl.touched">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
+<!-- 
                 <mat-form-field class="Streetname">
                     <mat-label>Address*</mat-label>
                     <input matInput formControlName="Address">
-                    <mat-error *ngIf="Addressctrl.invalid && Addressctrl.touched">
+                     <mat-error *ngIf="Addressctrl.invalid && Addressctrl.touched">
                         {{getErrorMessage()}}</mat-error>
-                </mat-form-field>
+                </mat-form-field> -->
                 
 
                 <div class="addressBlock" style="width: 200px;" >
@@ -272,9 +273,10 @@
             <mat-form-field>
                 <mat-label>From Date</mat-label>
                 <input matInput [matDatepicker]="Fromdate"
-                placeholder="From Date" formControlName="Fromdate">
+                placeholder="From Date" formControlName="Fromdate" [max]="Todaydate">
 
-                <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
+        
+<mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
                 <mat-datepicker #Fromdate></mat-datepicker>
                 <mat-error *ngIf="emp.get('Fromdate').invalid && emp.get('Fromdate').touched">
                     {{getErrorMessage()}}</mat-error>
@@ -284,13 +286,12 @@
                 <mat-form-field>
                     <mat-label>To Date</mat-label>
                     <input matInput [matDatepicker]="Todate"
-                    placeholder="To Date" formControlName="Todate" [min]="emp.get('Fromdate').value" [max]="MaxDate">
+                    placeholder="To Date" formControlName="Todate" [min]="emp.get('Fromdate').value" [max]="Todaydate">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
                     <mat-error *ngIf="emp.get('Todate').invalid && emp.get('Todate').touched">
                         {{getErrorMessage()}}</mat-error>
-               
-                  </mat-form-field> 
+                                 </mat-form-field> 
             </div>
              <div>
                 <mat-form-field>

@@ -19,11 +19,13 @@ export class UserprofileComponent implements OnInit {
   cityInfo: any[] = [];
   UserProfile:FormGroup;
   myval;
+
   CountryValueNull:boolean=true;
   StateValueNull:boolean=true;
   CityValueNull:boolean=true;
   DateofBirth: string;
-    MaxDate=new Date()
+  Todaydate = new Date();
+
 
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { }
 
@@ -35,9 +37,11 @@ export class UserprofileComponent implements OnInit {
     let VoterId = "^([a-zA-Z]){3}([0-9]){7}?$";
     let PanCard ="^[A-Z]{5}[0-9]{4}[A-Z]{1}$";
     let AdhaarCard ='^[0-9]{12}$';
-    let Passport ='^[A-Z]{1}-[0-9]{7}$';
+    let Passport="^(?!^0+$)[a-zA-Z0-9]{3,20}$";
     let DrivingLicense='^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
-    this.UserProfile= this.fb.group 
+    
+    
+     this.UserProfile= this.fb.group 
    ({
      // 'CandidateId':['',Validators.required],
       'JobTitle':[''],
