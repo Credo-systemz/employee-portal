@@ -284,7 +284,7 @@
                 <mat-form-field>
                     <mat-label>To Date</mat-label>
                     <input matInput [matDatepicker]="Todate"
-                    placeholder="To Date" formControlName="Todate" [min]="emp.get('Fromdate').value">
+                    placeholder="To Date" formControlName="Todate" [min]="emp.get('Fromdate').value" [max]="MaxDate">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
                     <mat-error *ngIf="emp.get('Todate').invalid && emp.get('Todate').touched">

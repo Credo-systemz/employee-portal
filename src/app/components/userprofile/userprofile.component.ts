@@ -23,6 +23,7 @@ export class UserprofileComponent implements OnInit {
   StateValueNull:boolean=true;
   CityValueNull:boolean=true;
   DateofBirth: string;
+    MaxDate=new Date()
 
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { }
 
@@ -36,9 +37,7 @@ export class UserprofileComponent implements OnInit {
     let AdhaarCard ='^[0-9]{12}$';
     let Passport ='^[A-Z]{1}-[0-9]{7}$';
     let DrivingLicense='^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
-
-    
-     this.UserProfile= this.fb.group 
+    this.UserProfile= this.fb.group 
    ({
      // 'CandidateId':['',Validators.required],
       'JobTitle':[''],
@@ -85,8 +84,7 @@ export class UserprofileComponent implements OnInit {
          }
         
         })
-
-        
+              
   }
 //Dynamic form of Education
     
@@ -117,7 +115,7 @@ addEmploymentFormGroup():FormGroup{
   return this.fb.group({
     "Organization":[null,[Validators.required,Validators.maxLength(100)]],
     "Fromdate":[null,Validators.required],
-    "Todate":[null,Validators.required,],
+    "Todate":[null,Validators.required],
     "Designation":[null,Validators.required],
     "Skills":[null,Validators.required],
     "CTC":[null,Validators.required],
