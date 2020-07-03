@@ -13,7 +13,7 @@
 
                 <div class="profilePic">
                     <img [src]="imageurl"  alt="ProfilePic" height="150px" width="150px"><br>
-                    <input type="file" title="" (change)="imgSelection($event)" style="width:150px;">
+                    <input type="file" title="" value="choose" (change)="imgSelection($event)" style="width:150px;">
                 </div>
                 <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
@@ -118,9 +118,7 @@
             </div>
             <div>
                 <div class="addressBlock" style="width: 200px;" >
-                 <label>Select Country</label>
                   <select class="form-control" formControlName="Country"
-                  (blur)="onChangeCountry($event.target.value);"
                   (change)="onChangeCountry($event.target.value)" 
                   [ngClass]="{'has-error':Countryctrl.touched && CountryValueNull}">
                     <option value="default">Select Country</option>
@@ -131,8 +129,7 @@
                     {{getErrorMessage()}}</div>               
                  </div>
                  <div class="addressBlock"style="width: 200px;">
-                   <label>Select State</label>
-                    <select class="form-control"formControlName="State" (blur)="onChangeState($event.target.value);"
+                    <select class="form-control"formControlName="State"
                     (change)="onChangeState($event.target.value)"
                     [ngClass]="{'has-error':Statectrl.touched && StateValueNull}">
                         <option value="default">Select State</option>
@@ -142,9 +139,7 @@
                         {{getErrorMessage()}}</div>                    
                  </div>
                  <div class="addressBlock"style="width: 200px;">
-                    <label>Select City</label>
                     <select class="form-control" formControlName="City"
-                    (blur)="onChangeCity($event.target.value);"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
                         <option value="default">Select City</option>
                       <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
@@ -270,7 +265,7 @@
                 <mat-form-field>
                     <mat-label>To Date</mat-label>
                     <input matInput [matDatepicker]="Todate"
-                    placeholder="To Date" formControlName="Todate">
+                    placeholder="To Date" formControlName="Todate" [max]="maxToDate">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
                     <mat-error *ngIf="emp.get('Todate').invalid && emp.get('Todate').touched">

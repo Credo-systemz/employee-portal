@@ -86,7 +86,7 @@ nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav{
 }
 /* reg form css*/
 .has-error{
-    border:0.1px solid red;
+    border:0.0px solid red;
     border-radius:3px;
     box-shadow: 0px 0px 3px 0.75px rgba(255,0,0,0.5);
 }
@@ -113,13 +113,13 @@ nav.navbar.navbar-expand-md.navbar-dark.px-0.justify-content-start.head-nav{
 }
 .errorpopup-pw1.regform {
     position: absolute;
-    top: 236px;
+    top: 238px;
     color: #ff0000;
 
 }
 .errorpopup-cpw.regform {
     position: absolute;
-    top: 236px;
+    top: 238px;
     color: #ff0000;
 
 }

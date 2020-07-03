@@ -21,9 +21,11 @@ export class UserprofileComponent implements OnInit {
   CountryValueNull:boolean=true;
   StateValueNull:boolean=true;
   CityValueNull:boolean=true;
+  maxToDate = new Date().setDate(2);
   constructor(public UserService: UserService,public fb:FormBuilder) { }
 
   ngOnInit() {
+ 
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
@@ -33,7 +35,12 @@ export class UserprofileComponent implements OnInit {
     let Passport ='^[A-Z]{1}-[0-9]{7}$';
     let DrivingLicense='^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
 
-    
+    this.UserService.allCountries().subscribe((data:any)=>{
+      this.countryInfo=data.Countries;
+    },
+    (error:any)=>{
+      console.log(error);
+    });
     this.UserProfile= this.fb.group ({
       'CandidateId':['',Validators.required],
       'JobTitle':[''],
@@ -80,7 +87,9 @@ export class UserprofileComponent implements OnInit {
     
     })
     
-
+    
+    
+  
   }
 //Dynamic form of Education
     
@@ -169,16 +178,17 @@ getErrorMessage(){
 }
 
 
-onChangeCountry(countryValue:any) {
-  if(countryValue=="default"){
+onChangeCountry(CountryName:any) {
+  var target = event.target || event.srcElement;  
+  if(CountryName=="default"){
     this.CountryValueNull=true;
   }else{
 
     this.CountryValueNull=false;
-  this.stateInfo=this.countryInfo[countryValue].States;
+  this.stateInfo=this.countryInfo[CountryName].States;
   this.cityInfo=this.stateInfo[0].Cities;
   // console.log(this.cityInfo);
-  //console.log(countryValue)
+  console.log(CountryName.label);
 }
 }
 
@@ -201,15 +211,6 @@ onChangeCountry(countryValue:any) {
    }
  }
 
-getCountries(){
-    this.UserService.allCountries().subscribe((data:any)=>{
-    this.countryInfo=data.Countries;
-  },
-  (error:any)=>{
-    console.log(error);
-  });
-}
-
 imgSelection(event){
   if(event.target.files){
     let reader=new FileReader();
@@ -221,16 +222,14 @@ imgSelection(event){
 }
 
 userform(){
-console.log(this.UserProfile.value)
-console.log(this.UserProfile.status);
-
-  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-    
-  //   this.UserProfile.reset();
-  //   console.log(data);
-  // },(error:any)=>{
-  //   console.log(error);
-  // });
+    this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    console.log(this.UserProfile.value)
+    console.log(this.UserProfile.status);
+    this.UserProfile.reset();
+    console.log(data);
+  },(error:any)=>{
+    console.log(error);
+  });
 }
 
 }

@@ -148,7 +148,7 @@ a.effect-underline:hover:after {
 a.effect-underlin:after {
 	content: '';
   position: absolute;
-  left: 17px;
+  left: 80px;
   display: inline-block;
   height: 1em;
   width: 53%;
@@ -159,21 +159,6 @@ a.effect-underlin:after {
 	transition: opacity 0.35s, transform 0.35s;
 	-webkit-transform: scale(0,1);
 	transform: scale(0,1);
-}
-a.effect-effect-underline:after{
-    content: '';
-    position: absolute;
-    left: 20px;
-    display: inline-block;
-    height: 1em;
-    width: 53%;
-    border-bottom: 1px solid;
-    margin-top: 10px;
-    opacity: 0;
-      -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-      transition: opacity 0.35s, transform 0.35s;
-      -webkit-transform: scale(0,1);
-      transform: scale(0,1);
 }
 
 a.effect-underlin:hover:after {
@@ -209,7 +194,7 @@ a.effect-underlin:hover:after {
 }
 
 .has-error{
-    border:0.1px solid red;
+    border:0.0px solid red;
     border-radius:3px;
     box-shadow: 0px 0px 3px 0.75px rgba(255,0,0,0.5);
 }
