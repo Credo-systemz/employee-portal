@@ -13,7 +13,7 @@
 
                 <div class="profilePic">
                     <img [src]="imageurl"  alt="ProfilePic" height="150px" width="150px"><br>
-                    <input type="file" title="" (change)="imgSelection($event)" style="width:150px;">
+                    <input type="file" title="" class="img-file" (change)="imgSelection($event)">
                 </div>
                 <!-- <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
@@ -129,7 +129,7 @@
                   <select class="form-control cascade" formControlName="Country" (change)="onChangeCountry($event.target.value)" 
                   [ngClass]="{'has-error':Countryctrl.touched && CountryValueNull}">
                     <option value="default">Select Country*</option>
-                 <option *ngFor="let country of countryInfo">{{country.CountryName}}</option>
+                 <option *ngFor="let country of countryInfo; let i as index {{i}}" >{{country.CountryName}}</option>
     
                   </select>  
                   <div class="errortext" *ngIf="CountryValueNull && Countryctrl.touched">
@@ -141,7 +141,7 @@
                     <select class="form-control cascade"formControlName="State" (change)="onChangeState($event.target.value)"
                     [ngClass]="{'has-error':Statectrl.touched && StateValueNull}">
                         <option value="default">Select State*</option>
-                        <option *ngFor="let state of stateInfo">{{state.StateName}}</option>
+                        <option *ngFor="let state of stateInfo; let j as index {{j}}">{{state.StateName}}</option>
                     </select>  
                     <div class="errortext" *ngIf="StateValueNull && Statectrl.touched">
                         {{getErrorMessage()}}</div>
@@ -151,7 +151,7 @@
                     <select class="form-control cascade" formControlName="City"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
                         <option value="default">Select City*</option>
-                      <option *ngFor="let city of cityInfo">{{city}}</option>
+                      <option *ngFor="let city of cityInfo; let k as index {{k}}">{{city}}</option>
                     </select>  
                     <div class="errortext" *ngIf="CityValueNull && Cityctrl.touched">
                         {{getErrorMessage()}}</div>               

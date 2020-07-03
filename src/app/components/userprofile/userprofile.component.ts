@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
-import {DatePipe} from '@angular/common'
+import {DatePipe} from '@angular/common';
 
 import { UserService } from 'src/app/user.service';
 
