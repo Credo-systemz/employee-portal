@@ -2,8 +2,9 @@
   margin-top:2em;
   text-align:center;
 }
+
 mat-expansion-panel{
-  border:1px solid rgb(112,112,112);
+  border:1px solid #7c7c7c;
   box-shadow: 0px 0px 5px 4px rgb(128,128,128.0.75);
   margin-bottom:0.7em;
 }
@@ -22,42 +23,65 @@ font-size: 11pt;
 font-weight: thin;
 color: #7c7c7c;
 }
-div select{
-  line-height:1.8 !important;
-  margin-top:10px !important;
+.addressBlock {
+  display: inline-block;
+  margin: 5px 23px 3px -9px;
 }
- div .form-group{
+select.cascade.form-control {
+  border: none;
+  width: 180px;
+  cursor: pointer;
+  border-radius: 2px;
+  border-bottom: 1px solid #999;
+}
+select.cascade.form-control:active, select.cascade.form-control:hover{
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width: 180px;
+  cursor: pointer;
+  border-radius: 2px;
+  border-bottom: 1px solid #999;
+}
+.img-file {
+  width: 88px;
+  margin: 1px 31px;
+  cursor: pointer;
+  color: white;
+}
+div .form-group{
     width:700px;
 }
 img.toggle-side {
   cursor: pointer;
 }
-
 span .addEducationbtn{
   margin-right:25px;
 }
- .checkWhatsapp{
+.checkWhatsapp{
   font-size:0.9em !important;
 }
 
 .has-error{
   border:1px solid red;
 }
+
 .profilePic{
   margin:0;
   float:right;
   margin-right:10px;
 
-}.errortext{
-  color:red;
-  margin-top:10px;
 }
+.errortext{
+  position: absolute;
+  color: red;
+  margin: -1px;
+  font-size: 12px;
+}
+
 button.submit{
 justify-content: center !important;
 margin-top:1.5em;
-}
-div.addressBlock{
-  margin-top:12px !important;
 }
 .Streetname{
   margin-bottom:15px;
@@ -65,10 +89,12 @@ div.addressBlock{
 }
 mat-error{
   font-size: 1.2em;
-}.groupClickButton{
+}
+.groupClickButton{
   margin-top:15px;
   margin-bottom:15px;
-}label .mat-checkbox-layout, mat-field .example-section .training{
+}
+label .mat-checkbox-layout, mat-field .example-section .training{
   margin-top:20px !important;
   padding-top:20px !important;
 }

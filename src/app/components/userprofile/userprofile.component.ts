@@ -24,10 +24,20 @@ export class UserprofileComponent implements OnInit {
   CityValueNull:boolean=true;
   DateofBirth: string;
 
-  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { }
+  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
+  
+  }
 
   ngOnInit() 
   {
+    this.UserService.allCountries().subscribe((data:any)=>{
+      this.countryInfo=data.Countries;
+      console.log(data)
+    },
+    (error:any)=>{
+      console.log(error);
+    });
+
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
@@ -55,7 +65,7 @@ export class UserprofileComponent implements OnInit {
       'Address':['',Validators.required],
       'Country':['default',Validators.required],
       'State':['default',Validators.required],
-      'City':['default',[Validators.required,Validators.maxLength(15)]],
+      'City':['default',[Validators.required]],
       'StreetName':['',[Validators.required,Validators.maxLength(200)]],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
@@ -176,15 +186,7 @@ addEmploymentButtonClick():void {
 getErrorMessage(){
   return "You must enter a Valid Value";
 }
-getCountries(){
-  this.UserService.allCountries().subscribe((data:any)=>{
-  this.countryInfo=data.Countries;
-  console.log(data)
-},
-(error:any)=>{
-  console.log(error);
-});
-}
+
 onChangeCountry(countryValue:any) {
   if(countryValue=="default"){
     this.CountryValueNull=true;
@@ -193,6 +195,7 @@ onChangeCountry(countryValue:any) {
     this.CountryValueNull=false;
     this.stateInfo=this.countryInfo[countryValue].States;
     this.cityInfo=this.stateInfo[0].Cities;
+    console.log(event.target);
 }
 }
  onChangeState(stateValue) {
@@ -231,14 +234,12 @@ this.UserProfile.value.addEmployment[0].Fromdate=this.datepipe.transform(this.Us
 this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Todate'],'dd/MM/yyyy')
 console.log(this.UserProfile.value)
 console.log(this.UserProfile.status);
-
-  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-
-  //   this.UserProfile.reset();
-  //   console.log(data);
-  // },(error:any)=>{
-  //   console.log(error);
-  // });
+ this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    this.UserProfile.reset();
+      console.log(data);
+  },(error:any)=>{
+    console.log(error);
+  });
 }
 
 }
