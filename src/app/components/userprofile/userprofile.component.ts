@@ -13,7 +13,6 @@ export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
   imageurl="assets/images/profilePic.png"
-  countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
