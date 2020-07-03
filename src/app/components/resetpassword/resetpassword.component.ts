@@ -53,6 +53,7 @@ export class ResetpasswordComponent implements OnInit {
       $("#exampleModalCenter1").modal('show');
       }
     });
-
+    $(document.body).removeClass("modal-open");
+    $(".modal-backdrop").remove();
   }
 }
