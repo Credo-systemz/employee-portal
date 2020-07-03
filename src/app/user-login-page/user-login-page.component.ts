@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 declare var jQuery: any;   
 declare var $: any;
 @Component({
@@ -15,7 +16,7 @@ export class UserLoginPageComponent implements OnInit {
   hide = true;
   recaptcha:any[];
 
-  constructor(public UserService: UserService) {   
+  constructor(public UserService: UserService,public myRouter:Router) {   
 
   }
   ngOnInit(): void {
@@ -100,6 +101,8 @@ return this.submitted=false
             }
           });
       });
+      this.myRouter.navigateByUrl("/");
+
       this.signUpUser.reset();
       console.log(data);
     },(error:any)=>{

@@ -13,8 +13,8 @@ const routes: Routes = [
    {path:'register', component: UserLoginPageComponent},
    {path:'register/:Userid', component:UserLoginPageComponent},
    {path:'resetpassword/:Userid', component:ResetpasswordComponent},
-   {path:'userprofile', component:UserprofileComponent/*canActivate:[AuthGuard]*/},
-   {path:'findjob', component:SearchJobComponent}
+   {path:'userprofile', component:UserprofileComponent,canActivate:[AuthGuard]},
+   {path:'findjob', component:SearchJobComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

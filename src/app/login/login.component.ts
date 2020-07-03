@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
       this.myRoute.navigateByUrl("/userprofile")
     }
    },(error:any)=>{
-     console.log(error);
+     //console.log(error);
      if(error.status==404){
       this.errorup=true
       this.logMessage="User Name Not Found"
