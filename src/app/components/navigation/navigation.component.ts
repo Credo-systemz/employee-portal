@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var jQuery: any;
+import { Router } from '@angular/router';
    
 declare var $: any;
 @Component({
@@ -9,9 +9,15 @@ declare var $: any;
 })
 export class NavigationComponent implements OnInit {
   showFiller = false;
-  constructor() { }
+  constructor(public myRouter:Router) { }
 
   ngOnInit(): void {
    
+  }
+
+  logout(){
+    this.myRouter.navigateByUrl("/");
+    
+
   }
 }

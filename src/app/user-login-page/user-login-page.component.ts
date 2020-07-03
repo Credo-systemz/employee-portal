@@ -16,7 +16,7 @@ export class UserLoginPageComponent implements OnInit {
   signUpUser:FormGroup;
   hide = true;
   recaptcha:any[];
-mail:string;
+  mail:string;
   constructor(public UserService: UserService, private router:Router) {   
 
   }
@@ -42,10 +42,7 @@ mail:string;
      'MobileNo' :new FormControl(null,[Validators.required,Validators.pattern(mobNumberPattern)]),
      'recaptchaReactive': new FormControl(null, Validators.required)
     });
-    
-
-    
-  
+      
   }
   
 get FnameCtrl(){
@@ -59,7 +56,6 @@ get PasswordCtrl(){
 }
 get ConfirmPassCtrl(){
   return this.signUpUser.get('ConfirmPassword')
-
 }
 get emailCtrl(){
   return this.signUpUser.get('EmailId')
@@ -111,6 +107,7 @@ return this.submitted=false
             }
           });
       });
+      this.router.navigateByUrl("/");
       this.signUpUser.reset();
       console.log(data);
     },(error:any)=>{
@@ -119,5 +116,5 @@ return this.submitted=false
   
  }
   
-   }
+}
   
