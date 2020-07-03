@@ -14,15 +14,14 @@ export class UserService {
   allCountries(): Observable<any>{
     return this.http.get(this.url);
   }
-  getMyToken(){
-    return localStorage.getItem('token');
-  }
-  isLoggedIn(){
-    return !!localStorage.getItem("token");
-  }
+  
   UserRegistraion(UserData){
     
     return this.http.post("http://localhost:3000/register",UserData);
+  }
+
+  isLoggedIn(){
+    return !!localStorage.getItem("token");
   }
   userEmailCheck(email){
   return this.http.get("http://localhost:3000/checkEmail/"+email);

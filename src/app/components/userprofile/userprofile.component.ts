@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
+import {DatePipe} from '@angular/common'
 
 import { UserService } from 'src/app/user.service';
 
@@ -21,28 +22,25 @@ export class UserprofileComponent implements OnInit {
   CountryValueNull:boolean=true;
   StateValueNull:boolean=true;
   CityValueNull:boolean=true;
-  maxToDate = new Date().setDate(2);
-  constructor(public UserService: UserService,public fb:FormBuilder) { }
+  DateofBirth: string;
 
-  ngOnInit() {
- 
+  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { }
+
+  ngOnInit() 
+  {
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
     let VoterId = "^([a-zA-Z]){3}([0-9]){7}?$";
     let PanCard ="^[A-Z]{5}[0-9]{4}[A-Z]{1}$";
-    let AdhaarCard ='^\d{4}\s\d{4}\s\d{4}$';
+    let AdhaarCard ='^[0-9]{12}$';
     let Passport ='^[A-Z]{1}-[0-9]{7}$';
     let DrivingLicense='^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$';
 
-    this.UserService.allCountries().subscribe((data:any)=>{
-      this.countryInfo=data.Countries;
-    },
-    (error:any)=>{
-      console.log(error);
-    });
-    this.UserProfile= this.fb.group ({
-      'CandidateId':['',Validators.required],
+    
+     this.UserProfile= this.fb.group 
+   ({
+     // 'CandidateId':['',Validators.required],
       'JobTitle':[''],
       'FName':['',[Validators.required,Validators.maxLength(15)]],
       'MName':[''],
@@ -53,43 +51,42 @@ export class UserprofileComponent implements OnInit {
       'WhatsAppCheck':[''],
       'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
       'IdType':['',Validators.required],
-      'IdNumber':['',Validators.required],
+      'IdNumber':[''],
+      'Address':['',Validators.required],
       'Country':['default',Validators.required],
       'State':['default',Validators.required],
       'City':['default',[Validators.required,Validators.maxLength(15)]],
       'StreetName':['',[Validators.required,Validators.maxLength(200)]],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
-      ]),
+         ]),
       "addEmployment":this.fb.array([
         this.addEmploymentFormGroup()
-      ])
+         ])
     });
-    this.UserProfile.get('IdType').valueChanges.subscribe(val=>{
-      if(val==='1'){
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(Passport)])
+        this.UserProfile.get('IdType').valueChanges.subscribe(val=>{
+         if(val==='1'){
+         this.UserProfile.get('IdNumber').setValidators([Validators.required,Validators.pattern(Passport)])
          } 
-      else if(val==='2'){
-      this.UserProfile.get('IdNumber').setValidators([Validators.pattern(AdhaarCard)])
-       }
-       else if(val=='3')
-       {
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(DrivingLicense)])
-       }
-       else if(val=='4')
-       {
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(VoterId)])
-       }
-       else if(val=='5')
-       {
-        this.UserProfile.get('IdNumber').setValidators([Validators.pattern(PanCard)])
-       }
-    
-    })
-    
-    
-    
-  
+         else if(val==='2'){
+         this.UserProfile.get('IdNumber').setValidators([Validators.required,Validators.pattern(AdhaarCard)])
+         }
+         else if(val=='3')
+         {
+         this.UserProfile.get('IdNumber').setValidators([Validators.required,Validators.pattern(DrivingLicense)])
+         }
+         else if(val=='4')
+         {
+         this.UserProfile.get('IdNumber').setValidators([Validators.required,Validators.pattern(VoterId)])
+         }
+         else if(val=='5')
+         {
+         this.UserProfile.get('IdNumber').setValidators([Validators.required,Validators.pattern(PanCard)])
+         }
+        
+        })
+
+        
   }
 //Dynamic form of Education
     
@@ -127,15 +124,15 @@ addEmploymentFormGroup():FormGroup{
     "Experience":[null,Validators.required],
     "InterestedinJobOpp":[null,Validators.required],
     "TrainingRequired":[null,Validators.required]
+    
   })
 }
 
-  get Candidatectrl(){
-    return this.UserProfile.get("CadidateId")
-  }
-  get Fnamectrl(){
+get Candidatectrl(){
+  return this.UserProfile.get("CadidateId")
+}
+ get Fnamectrl(){
   return this.UserProfile.get('FName')
-
 } get Lnamectrl(){
   return this.UserProfile.get('LName')
 
@@ -149,6 +146,9 @@ get DOBctrl(){
 } 
 get Idnumberctrl(){
   return this.UserProfile.get("IdNumber")
+}
+get Addressctrl(){
+  return this.UserProfile.get("Address")
 }
 get Countryctrl(){
   return this.UserProfile.get('Country')
@@ -176,22 +176,25 @@ addEmploymentButtonClick():void {
 getErrorMessage(){
   return "You must enter a Valid Value";
 }
-
-
-onChangeCountry(CountryName:any) {
-  var target = event.target || event.srcElement;  
-  if(CountryName=="default"){
+getCountries(){
+  this.UserService.allCountries().subscribe((data:any)=>{
+  this.countryInfo=data.Countries;
+  console.log(data)
+},
+(error:any)=>{
+  console.log(error);
+});
+}
+onChangeCountry(countryValue:any) {
+  if(countryValue=="default"){
     this.CountryValueNull=true;
   }else{
 
     this.CountryValueNull=false;
-  this.stateInfo=this.countryInfo[CountryName].States;
-  this.cityInfo=this.stateInfo[0].Cities;
-  // console.log(this.cityInfo);
-  console.log(CountryName.label);
+    this.stateInfo=this.countryInfo[countryValue].States;
+    this.cityInfo=this.stateInfo[0].Cities;
 }
 }
-
  onChangeState(stateValue) {
   if(stateValue=="default"){
     this.StateValueNull=true;
@@ -199,7 +202,6 @@ onChangeCountry(CountryName:any) {
   }else{
     this.StateValueNull=false;
    this.cityInfo=this.stateInfo[stateValue].Cities;
- // console.log(this.cityInfo);
  }
  }
 
@@ -210,6 +212,8 @@ onChangeCountry(CountryName:any) {
    this.CityValueNull=false;
    }
  }
+
+
 
 imgSelection(event){
   if(event.target.files){
@@ -222,14 +226,19 @@ imgSelection(event){
 }
 
 userform(){
-    this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-    console.log(this.UserProfile.value)
-    console.log(this.UserProfile.status);
-    this.UserProfile.reset();
-    console.log(data);
-  },(error:any)=>{
-    console.log(error);
-  });
+this.UserProfile.value.DOB=this.datepipe.transform(this.DOBctrl.value,'dd/MM/yyyy')
+this.UserProfile.value.addEmployment[0].Fromdate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Fromdate'],'dd/MM/yyyy')
+this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Todate'],'dd/MM/yyyy')
+console.log(this.UserProfile.value)
+console.log(this.UserProfile.status);
+
+  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+
+  //   this.UserProfile.reset();
+  //   console.log(data);
+  // },(error:any)=>{
+  //   console.log(error);
+  // });
 }
 
 }

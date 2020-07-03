@@ -24,6 +24,7 @@ app.use(cors());
  
 var db;
 
+
 mongodb.connect("mongodb+srv://EmployeePortal:Emp123@cluster0-kyu6f.mongodb.net/EmployeePortal?retryWrites=true&w=majority",(error,database)=>{
    if(error){
        console.log("Database access denied");
@@ -209,10 +210,10 @@ app.post('/userinfo', (req,res)=>{
             res.status(400).json("Error in select query");
         }
         else{
-              
-            res.json("Information Saved");
-               console.log(data);
                
+                res.json("Information Saved");
+              
+               console.log(data);
         }
 
     })
@@ -248,13 +249,13 @@ app.get("/emailCheck/:emailid",(req,res)=>{
                 to:req.params.emailid,
                 subject:"Email Verification",
                 text:'Hi'+'\n'+
-                'You have recently requested to register for your account.'+'\n'+
-                'Click the Link below to complete registration.'+'\n\n'+
-                'http://localhost:4200/register/'+jwttoken+
+                'You are recently requested to register for your account.'+'\n'+
+                'Click the Link below to complete registeration.'+'\n\n'+
+                'http://localhost:4200/register/'+'email:'+req.params.emailid+'end'+jwttoken+
                 '\n\n' + 
-                'if you have not made this request kindly ignore this email'+'\n'+
+                'if you didnot make this request then you can safely ignore this email'+'\n'+
                 'Thanks'+'\n'+
-                'Team Credo'
+                'Team'
              }
                transporter.sendMail(mailoption,(error,res)=>{
                if(error)

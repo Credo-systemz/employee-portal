@@ -13,19 +13,17 @@
 
                 <div class="profilePic">
                     <img [src]="imageurl"  alt="ProfilePic" height="150px" width="150px"><br>
-                    <input type="file" title="" value="choose" (change)="imgSelection($event)" style="width:150px;">
+                    <input type="file" title="" (change)="imgSelection($event)" style="width:150px;">
                 </div>
-                <mat-form-field>
+                <!-- <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
                     <input matInput formControlName="CandidateId">
-
-                </mat-form-field>
+                </mat-form-field> -->
             </div>
             <div>
             <mat-form-field>
                 <mat-label>Job Title</mat-label>
                 <select matNativeControl formControlName="JobTitle">
-                    <option value=""></option>
                     <option value="WebDev">Web developer</option>
                     <option value="SoftwareEngineer">Software Engineer</option>
                     <option value="SoftwareDev">Software Developer</option>
@@ -41,10 +39,13 @@
                     <mat-error *ngIf="Fnamectrl.invalid && Fnamectrl.touched">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
+
+
                 <mat-form-field>
                     <mat-label>Middle Name</mat-label>
                     <input matInput formControlName="MName">
                     </mat-form-field>
+
                 <mat-form-field>
                     <mat-label>Last Name*</mat-label>
                     <input matInput formControlName="LName">
@@ -61,6 +62,9 @@
                         {{getErrorMessage()}}</mat-error>
 
                 </mat-form-field>
+
+
+
                 <mat-form-field >
                     <mat-label>Date Of Birth*</mat-label>
                     <input matInput [matDatepicker]="picker"
@@ -87,17 +91,14 @@
                     <input matInput placeholder="Optional"formControlName="AlternateContact">
                 </mat-form-field>
 
-            </div>
+            </div><br>
             <div>
             <section class="example-section checkWhatsapp">
                 <mat-checkbox formControlName="WhatsAppCheck"
                 class="example-margin">Check Mobile Number is same as WhatsApp number</mat-checkbox>
         </section>
-    </div>
-
-
+    </div><br>
             <div>
-
                 <mat-form-field>
                     <mat-label>ID Type*</mat-label>
                      <select matNativeControl formControlName="IdType">
@@ -113,12 +114,29 @@
                 <mat-form-field>
                     <mat-label>ID Number</mat-label>
                     <input required matInput formControlName="IdNumber">
-                    <mat-error *ngIf="Idnumberctrl.invalid && Idnumberctrl.dirty">Enter Valid Id</mat-error>
+                    <mat-error *ngIf="Idnumberctrl.invalid && Idnumberctrl.touched">Enter Valid Id </mat-error>
                 </mat-form-field>
             </div>
             <div>
+                <mat-form-field class="Streetname">
+                    <mat-label>Street Name*</mat-label>
+                    <input matInput formControlName="StreetName">
+                    <mat-error *ngIf="Streetctrl.invalid && Streetctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="Streetname">
+                    <mat-label>Address*</mat-label>
+                    <input matInput formControlName="Address">
+                    <mat-error *ngIf="Addressctrl.invalid && Addressctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                
+
                 <div class="addressBlock" style="width: 200px;" >
+                    
+                 <label>Select Country</label>
                   <select class="form-control" formControlName="Country"
+                  (blur)="onChangeCountry($event.target.value);"
                   (change)="onChangeCountry($event.target.value)" 
                   [ngClass]="{'has-error':Countryctrl.touched && CountryValueNull}">
                     <option value="default">Select Country</option>
@@ -126,20 +144,26 @@
     
                   </select>  
                   <div class="errortext" *ngIf="CountryValueNull && Countryctrl.touched">
-                    {{getErrorMessage()}}</div>               
+                    {{getErrorMessage()}}</div>
+                
                  </div>
+                
                  <div class="addressBlock"style="width: 200px;">
-                    <select class="form-control"formControlName="State"
+                   <label>Select State</label>
+                    <select class="form-control"formControlName="State" (blur)="onChangeState($event.target.value);"
                     (change)="onChangeState($event.target.value)"
                     [ngClass]="{'has-error':Statectrl.touched && StateValueNull}">
                         <option value="default">Select State</option>
                         <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
                     </select>  
                     <div class="errortext" *ngIf="StateValueNull && Statectrl.touched">
-                        {{getErrorMessage()}}</div>                    
+                        {{getErrorMessage()}}</div>
+                    
                  </div>
                  <div class="addressBlock"style="width: 200px;">
+                    <label>Select City</label>
                     <select class="form-control" formControlName="City"
+                    (blur)="onChangeCity($event.target.value);"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
                         <option value="default">Select City</option>
                       <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
@@ -148,12 +172,7 @@
                         {{getErrorMessage()}}</div>
                     
                 </div>
-                <mat-form-field class="Streetname">
-                    <mat-label>Street Name*</mat-label>
-                    <input matInput formControlName="StreetName">
-                    <mat-error *ngIf="Streetctrl.invalid && Streetctrl.touched">
-                        {{getErrorMessage()}}</mat-error>
-                </mat-form-field>
+                
             </div>    
         </mat-expansion-panel>
 
@@ -265,7 +284,7 @@
                 <mat-form-field>
                     <mat-label>To Date</mat-label>
                     <input matInput [matDatepicker]="Todate"
-                    placeholder="To Date" formControlName="Todate" [max]="maxToDate">
+                    placeholder="To Date" formControlName="Todate" [min]="emp.get('Fromdate').value">
                     <mat-datepicker-toggle matSuffix [for]="Todate"></mat-datepicker-toggle>
                     <mat-datepicker #Todate></mat-datepicker>
                     <mat-error *ngIf="emp.get('Todate').invalid && emp.get('Todate').touched">
@@ -341,11 +360,11 @@
         </span>
 
 
-        </div><!--Array Closing-->
+        </div><!--Array   Closing-->
             </mat-expansion-panel>
           </mat-accordion>
           <div class="text-center">
-          <button type="Submit" class="btn btn-primary submit" [disabled]="UserProfile.invalid">Submit</button>
+          <button type="Submit" class="btn btn-primary submit" [disabled]="UserProfile.invalid" >Submit</button>
           </div>
     </form>
 </article>
