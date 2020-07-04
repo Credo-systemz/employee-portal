@@ -9,17 +9,23 @@
                     Personal Data
                 </mat-panel-title>
                 </mat-expansion-panel-header>
-              <div>
+            <div class="profilePic">
 
-                <div class="profilePic">
-                    <img [src]="imageurl"  alt="ProfilePic" height="150px" width="150px"><br>
-                    <input type="file" title="" (change)="imgSelection($event)" style="width:150px;">
-                </div>
+<label class="hoverable" for="fileInput">
+    <img [src]="url ? url : '/assets/images/profilePic.png'"> 
+    <div class="hover-text">Choose file</div>
+    <div class="background"></div>
+  </label>
+  <br/>
+  <input id="fileInput" type='file' (change)="onSelectFile($event)">
+  <!-- <button *ngIf="url" (click)="delete()" >delete</button> -->
+</div>
+
+
                 <!-- <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
                     <input matInput formControlName="CandidateId">
                 </mat-form-field> -->
-            </div>
             <div>
             <mat-form-field>
                 <mat-label>Job Title</mat-label>
@@ -201,12 +207,23 @@
                     <mat-error *ngIf="edu.get('EducationalType').invalid && edu.get('EducationalType').touched">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
+
                 <mat-form-field>
                     <mat-label [attr.for]="'CompletedYear'+i">Completed year</mat-label>
-                    <input  [id]="'CompletedYear'+i"matInput formControlName="CompletedYear">
+                    <input  [id]="'CompletedYear'+i"matInput formControlName="CompletedYear" >
                     <mat-error *ngIf="edu.get('CompletedYear').invalid && edu.get('CompletedYear').dirty">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>PassOut</mat-label>
+                     <select matNativeControl>
+                        <option value=""></option>
+                         <option *ngFor="let year of completedYear; let c = index" value="{{c}}">
+                             {{year}}</option>
+                    </select> 
+                </mat-form-field>
+
             </div>
             
             <div>
@@ -226,20 +243,17 @@
             </div>
 
         </div><!--FormGroup Closing-->
-        <span class="row groupClickButton">
-           
-          <div class="col-2" *ngIf="educationGroupLength>1">
+          <div *ngIf="educationGroupLength>1">
               <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick(i)">
               Remove</button>
           </div>
-
-          <div class="col-2" >
+    </div><!--Array Closing-->
+        <div class="addEduationBtn">
             <button class="addEducationbtn" mat-raised-button  color="primary" (click)="addEducationButtonClick()"
             [disabled]="UserProfile.get('addEduation').invalid">Add Additional Education Info</button>
         </div>
+
         
-        </span>
-        </div><!--Array Closing-->
             </mat-expansion-panel>
 
              <mat-expansion-panel (opened)="panelOpenState = true"

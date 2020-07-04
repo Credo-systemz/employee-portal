@@ -12,13 +12,17 @@ import { UserService } from 'src/app/user.service';
 export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
-  imageurl="assets/images/profilePic.png"
-  countries=["India","USA","Europe","Singapore"]
+/*   imageurl="assets/images/profilePic.png"
+ */  
+countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
+  completedYear:number[]=[];
   UserProfile:FormGroup;
-  myval;
+  myval;url;
+
+
 
   CountryValueNull:boolean=true;
   StateValueNull:boolean=true;
@@ -31,6 +35,15 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit() 
   {
+
+/*     let currentYear,minYear,maxYear;
+     currentYear=new Date().getFullYear();
+    minYear=currentYear-50;maxYear=currentYear+50;
+    for(var i=minYear;i<=maxYear;i++){
+      this.completedYear.push(i);
+    }
+ */  
+
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
@@ -99,7 +112,7 @@ addEducationFormGroup():FormGroup{
   return this.fb.group({
     "EducationalType":[null,Validators.required],
     "CompletedYear":[null,[Validators.required,Validators.pattern(ValidYear)]],
-    "Percentile":[null,[Validators.required]],
+    "Percentile":[null,[Validators.required,Validators.pattern("^0*(?:[1-9][0-9]?|100)$")]],
     "Institution":[null,Validators.required]
     
   })
@@ -179,6 +192,10 @@ addEmploymentButtonClick():void {
 getErrorMessage(){
   return "Please enter a Valid value";
 }
+
+    
+    
+
 getCountries(){
   this.UserService.allCountries().subscribe((data:any)=>{
   this.countryInfo=data.Countries;
@@ -217,16 +234,24 @@ onChangeCountry(countryValue:any) {
  }
 
 
+ onSelectFile(event) {
+  if (event.target.files && event.target.files[0]) {
+    var reader = new FileReader();
 
-imgSelection(event){
-  if(event.target.files){
-    let reader=new FileReader();
     reader.readAsDataURL(event.target.files[0]);
-    reader.onload=(event:any)=>{
-      this.imageurl=event.target.result;
+
+    reader.onload = (event) => { 
+      this.url = event.target.result;
     }
   }
 }
+/*  delete(){
+  this.url = null;
+}
+ */
+
+
+
 
 userform(){
 this.UserProfile.value.DOB=this.datepipe.transform(this.DOBctrl.value,'dd/MM/yyyy')

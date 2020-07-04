@@ -33,8 +33,9 @@ img.toggle-side {
   cursor: pointer;
 }
 
-span .addEducationbtn{
-  margin-right:25px;
+ button .addEducationbtn{
+   position: relative;
+   left:300px;
 }
  .checkWhatsapp{
   font-size:0.9em !important;
@@ -65,10 +66,59 @@ div.addressBlock{
 }
 mat-error{
   font-size: 1.2em;
-}.groupClickButton{
-  margin-top:15px;
-  margin-bottom:15px;
-}label .mat-checkbox-layout, mat-field .example-section .training{
-  margin-top:20px !important;
-  padding-top:20px !important;
+}
+
+/* profile Img Alignment */
+
+.profilePic{
+  float:right;
+  margin-right:50px;
+
+}
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 7px;
+}
+.hoverable{
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 150px;
+  width: 150px;
+  border-radius: 7px;
+
+  box-shadow: 0px 0px 5px 4px rgb(128,128,128.0.75);
+  border: 1px solid gray;
+}
+.hoverable .hover-text{
+  position: absolute;
+  display: none;
+  top: 50%;
+  left:  50%;
+  transform: translate(-50%,-50%);   
+  z-index: 2;
+}
+.hoverable .background{
+  position: absolute;
+  display: none;
+  top: 0;
+  left:  0;
+  bottom: 0;
+  right: 0;
+  background-color:rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 7px;
+
+}
+.hoverable:hover .hover-text{
+  display: block;
+}
+.hoverable:hover .background{
+  display: block;
+}
+
+#fileInput{
+    display:none;
 }
