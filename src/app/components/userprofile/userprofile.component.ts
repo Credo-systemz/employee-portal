@@ -12,16 +12,12 @@ import { UserService } from 'src/app/user.service';
 export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
-  imageurl="assets/images/profilePic.png"
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
   completedYear:number[]=[];
   UserProfile:FormGroup;
   myval;url;
-
-
-
   CountryValueNull:boolean=true;
   StateValueNull:boolean=true;
   CityValueNull:boolean=true;
@@ -30,19 +26,10 @@ export class UserprofileComponent implements OnInit {
 
 
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
-  
   }
 
   ngOnInit() 
-  {
-
-/*     let currentYear,minYear,maxYear;
-     currentYear=new Date().getFullYear();
-    minYear=currentYear-50;maxYear=currentYear+50;
-    for(var i=minYear;i<=maxYear;i++){
-      this.completedYear.push(i);
-    }
- */  
+  { 
     this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
       console.log(data)
@@ -198,9 +185,6 @@ addEmploymentButtonClick():void {
 getErrorMessage(){
   return "Please enter a Valid value";
 }
-
-    
-    
 
 getCountries(){
   this.UserService.allCountries().subscribe((data:any)=>{
