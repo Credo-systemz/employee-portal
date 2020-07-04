@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
-import {DatePipe} from '@angular/common'
+import {DatePipe} from '@angular/common';
 
 import { UserService } from 'src/app/user.service';
 
@@ -12,9 +12,7 @@ import { UserService } from 'src/app/user.service';
 export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
-/*   imageurl="assets/images/profilePic.png"
- */  
-countries=["India","USA","Europe","Singapore"]
+  imageurl="assets/images/profilePic.png"
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
@@ -31,7 +29,9 @@ countries=["India","USA","Europe","Singapore"]
   Todaydate = new Date();
 
 
-  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { }
+  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
+  
+  }
 
   ngOnInit() 
   {
@@ -43,6 +43,13 @@ countries=["India","USA","Europe","Singapore"]
       this.completedYear.push(i);
     }
  */  
+    this.UserService.allCountries().subscribe((data:any)=>{
+      this.countryInfo=data.Countries;
+      console.log(data)
+    },
+    (error:any)=>{
+      console.log(error);
+    });
 
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
@@ -71,7 +78,7 @@ countries=["India","USA","Europe","Singapore"]
       'Address':['',Validators.required],
       'Country':['default',Validators.required],
       'State':['default',Validators.required],
-      'City':['default',[Validators.required,Validators.maxLength(15)]],
+      'City':['default',[Validators.required]],
       'StreetName':['',[Validators.required,Validators.maxLength(200)]],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
@@ -101,8 +108,7 @@ countries=["India","USA","Europe","Singapore"]
          }
         
         })
-
-        
+              
   }
 //Dynamic form of Education
     
@@ -133,7 +139,7 @@ addEmploymentFormGroup():FormGroup{
   return this.fb.group({
     "Organization":[null,[Validators.required,Validators.maxLength(100)]],
     "Fromdate":[null,Validators.required],
-    "Todate":[null,Validators.required,],
+    "Todate":[null,Validators.required],
     "Designation":[null,Validators.required],
     "Skills":[null,Validators.required],
     "CTC":[null,Validators.required],
@@ -213,6 +219,7 @@ onChangeCountry(countryValue:any) {
     this.CountryValueNull=false;
     this.stateInfo=this.countryInfo[countryValue].States;
     this.cityInfo=this.stateInfo[0].Cities;
+    console.log(event.target);
 }
 }
  onChangeState(stateValue) {
@@ -259,14 +266,12 @@ this.UserProfile.value.addEmployment[0].Fromdate=this.datepipe.transform(this.Us
 this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Todate'],'dd/MM/yyyy')
 console.log(this.UserProfile.value)
 console.log(this.UserProfile.status);
-
-  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-
-  //   this.UserProfile.reset();
-  //   console.log(data);
-  // },(error:any)=>{
-  //   console.log(error);
-  // });
+ this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    this.UserProfile.reset();
+      console.log(data);
+  },(error:any)=>{
+    console.log(error);
+  });
 }
 
 }
