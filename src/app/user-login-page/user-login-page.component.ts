@@ -107,13 +107,20 @@ return this.submitted=false
             }
           });
       });
-      this.router.navigateByUrl("/");
+      if(data){
+        $("#exampleModalCenter").modal('show');
+       }
+      // this.router.navigateByUrl("/");
       this.signUpUser.reset();
       console.log(data);
     },(error:any)=>{
+      if(error.status==408){
+        $("#exampleModalCenter1").modal('show');
+        }
       console.log(error);
     });
-  
+    $(document.body).removeClass("modal-open");
+    $(".modal-backdrop").remove();
  }
   
 }
