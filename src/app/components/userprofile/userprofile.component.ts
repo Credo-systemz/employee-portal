@@ -15,6 +15,8 @@ export class UserprofileComponent implements OnInit {
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
+  countryIndexValue:string;
+  stateIndexValue:string;
   completedYear:number[]=[];
   UserProfile:FormGroup;
   myval;url;
@@ -195,15 +197,21 @@ getCountries(){
   console.log(error);
 });
 }
-onChangeCountry(countryValue:any) {
+onChangeCountry(countryValue:string) {
   if(countryValue=="default"){
     this.CountryValueNull=true;
   }else{
-
     this.CountryValueNull=false;
-    this.stateInfo=this.countryInfo[countryValue].States;
-    this.cityInfo=this.stateInfo[0].Cities;
-    console.log(event.target);
+    
+for(var i in this.countryInfo){
+  if(this.countryInfo[i].CountryName==countryValue){
+    this.countryIndexValue=i;
+   break;
+  }
+}
+    this.stateInfo=this.countryInfo[this.countryIndexValue].States;
+    // this.cityInfo=this.stateInfo[0].Cities;
+    // console.log(event.target);
 }
 }
  onChangeState(stateValue) {
@@ -212,15 +220,23 @@ onChangeCountry(countryValue:any) {
 
   }else{
     this.StateValueNull=false;
-   this.cityInfo=this.stateInfo[stateValue].Cities;
+    for(var i in this.stateInfo){
+      if(this.stateInfo[i].StateName==stateValue){
+        this.stateIndexValue=i;
+       break;
+      }
+    }
+   this.cityInfo=this.stateInfo[this.stateIndexValue].Cities;
  }
  }
 
  onChangeCity(cityValue){
-   if(cityValue=="default"){
+  if(cityValue=="default"){
      this.CityValueNull=true;
    }else{
    this.CityValueNull=false;
+   
+   
    }
  }
 
