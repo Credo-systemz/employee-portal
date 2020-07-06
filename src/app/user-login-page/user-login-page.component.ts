@@ -15,6 +15,7 @@ export class UserLoginPageComponent implements OnInit {
   submitted=false;
   signUpUser:FormGroup;
   hide = true;
+  hide1 = true;
   recaptcha:any[];
   mail:string;
   constructor(public UserService: UserService, private router:Router) {   

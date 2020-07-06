@@ -96,9 +96,9 @@
                       <img src="/assets/images/pwd1.svg" class="mat-ic">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control"  #A formControlName="ConfirmPassword" placeholder="Confirm Password *" type="password">
-                    <button type="button" class="pwdhid" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                      <mat-icon class="pwdic">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <input class="form-control"  #A formControlName="ConfirmPassword" [type]="hide1 ? 'password' : 'text'" placeholder="Confirm Password *" type="password">
+                    <button type="button" class="pwdhid" matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon class="pwdic">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button> 
                   </div>
                    <div class="errorpopup-cpw regform" *ngIf="ConfirmPassCtrl.touched && PasswordCtrl.value!==ConfirmPassCtrl.value">
