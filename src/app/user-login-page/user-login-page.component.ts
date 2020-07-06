@@ -85,6 +85,7 @@ return this.submitted=false
 }
 //REGISTRATION
    SignUp(){
+
      delete this.signUpUser.value.ConfirmPassword;
     //  console.log(this.signUpUser.value);
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
@@ -114,6 +115,7 @@ return this.submitted=false
       // this.router.navigateByUrl("/");
       this.signUpUser.reset();
       console.log(data);
+      localStorage.clear();
     },(error:any)=>{
       if(error.status==408){
         $("#exampleModalCenter1").modal('show');
@@ -122,6 +124,7 @@ return this.submitted=false
     });
     $(document.body).removeClass("modal-open");
     $(".modal-backdrop").remove();
+    
  }
   
 }

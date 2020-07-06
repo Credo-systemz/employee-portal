@@ -10,8 +10,8 @@ import { SearchJobComponent } from './search-job/search-job.component';
 
 const routes: Routes = [
    {path:'', component: LoginComponent},
-   {path:'register', component: UserLoginPageComponent},
-   {path:'register/:Userid', component:UserLoginPageComponent},
+   {path:'register', component: UserLoginPageComponent, canActivate:[AuthGuard]},
+   {path:'register/:Userid', component:UserLoginPageComponent, canActivate:[AuthGuard]},
    {path:'resetpassword/:Userid', component:ResetpasswordComponent},
    {path:'userprofile', component:UserprofileComponent, canActivate:[AuthGuard]},
    {path:'findjob', component:SearchJobComponent, canActivate:[AuthGuard]}

@@ -114,9 +114,9 @@ close1(){
 
   
 checkemail(){
-  this.UserSer.emailCheck(this.emailCheckForm.value.NewEmail).subscribe((data1:any)=>{
-    
-   if(data1==true){
+  this.UserSer.emailCheck(this.emailCheckForm.value.NewEmail).subscribe((data1:any)=>{  
+   if(data1){
+    localStorage.setItem('token', data1);
     this.emailCheckForm.reset();  
     $("#pwdModal1").modal('hide');
     $("#exampleModal1").modal('show');
