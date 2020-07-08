@@ -25,7 +25,9 @@
         <h2 class="hed-txt"><strong>Log In</strong></h2>
         <div class="card-body px-lg-6 py-lg-5">
           <form (submit)="doLogin()" [formGroup]="loginForm">
-            <mat-error *ngIf="errorup">{{logMessage}}</mat-error>
+            <div class="errorup">
+            <mat-error   *ngIf="errorup">{{logMessage}}</mat-error>
+          </div>
             <div class="form-group mb-5" [ngClass]="{'has-error': EmailIdCtrl.invalid && EmailIdCtrl.touched }">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">

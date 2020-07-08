@@ -206,6 +206,10 @@ nav.navbar.navbar-expand-lg.navbar-dark{
     background-color: #FFFFFF !important;
 } 
 }
+
+.logoutbtn{
+    font-size:1.2em;
+}
 @media (max-width: 768px) {
     .flex-column {
         flex-direction: column !important;

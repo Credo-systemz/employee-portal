@@ -17,6 +17,7 @@ export class NavigationComponent implements OnInit {
 
   logout(){
     this.myRouter.navigateByUrl("/");
+    localStorage.clear();
     
 
   }
