@@ -23,6 +23,7 @@ export class UserprofileComponent implements OnInit {
   CityValueNull:boolean=true;
   DateofBirth: string;
   Todaydate = new Date();
+  ableToAdd:boolean=true;
 
 
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
@@ -118,6 +119,8 @@ addEducationFormGroup():FormGroup{
  removeEducationButtonClick(formGroupIndex:number){
   const group= this.UserProfile.get('addEduation')['controls'] 
   group.splice(formGroupIndex,1);
+  this.ableToAdd=false;
+
 }
 
 //Dynamic form of Employment
@@ -133,7 +136,6 @@ addEmploymentFormGroup():FormGroup{
     "Experience":[null,Validators.required],
     "InterestedinJobOpp":[null,Validators.required],
     "TrainingRequired":[null,Validators.required]
-    
   })
 }
 

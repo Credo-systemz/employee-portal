@@ -154,17 +154,16 @@
                     
                  </div>
                  <div class="addressBlock">
-                    <select class="form-control cascade" formControlName="City"
+                    <select class="form-control cascade" formControlName="City"(change)="onChangeCity($event.target.value)"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
                         <option value="default">Select City*</option>
                       <option *ngFor="let city of cityInfo;  let k = index" value="{{k}}">{{city}}</option>
                     </select>  
                     <div class="errortext" *ngIf="CityValueNull && Cityctrl.touched">
                         {{getErrorMessage()}}</div>               
-            </div>    
+                </div>  
+
         </mat-expansion-panel>
-
-
              <mat-expansion-panel (opened)="panelOpenState = true"
                                  (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
@@ -215,15 +214,24 @@
             </div>
 
         </div><!--FormGroup Closing-->
-          <div *ngIf="educationGroupLength>1">
-              <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick(i)">
+        <div class="row">
+
+            <div class=" col-3 addEduationBtn">
+                <button class="addEducationbtn" mat-button  color="primary" (click)="addEducationButtonClick()"
+                [disabled]="UserProfile.get('addEduation').invalid"><mat-icon>add</mat-icon>
+                Additional Education Info</button>
+            </div>
+    
+          <div class=" col-3 removebtn" *ngIf="educationGroupLength>1">
+              <button type="button" mat-button color="warn" (click)="removeEducationButtonClick(i)"><mat-icon>clear</mat-icon>
               Remove</button>
           </div>
+          
+    <!-- {{UserProfile.get('addEduation').invalid}} -->
+
+           </div>
     </div><!--Array Closing-->
-        <div class="addEduationBtn">
-            <button class="addEducationbtn" mat-raised-button  color="primary" (click)="addEducationButtonClick()"
-            [disabled]="UserProfile.get('addEduation').invalid">Add Additional Education Info</button>
-        </div>
+
 
         
             </mat-expansion-panel>
@@ -232,7 +240,7 @@
                                  (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Employement Data
+                    Employment Data
                 </mat-panel-title>
                 <mat-panel-description>
                   <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
@@ -262,7 +270,7 @@
                 placeholder="From Date" formControlName="Fromdate" [max]="Todaydate">
 
         
-<mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
+                <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
                 <mat-datepicker #Fromdate></mat-datepicker>
                 <mat-error *ngIf="emp.get('Fromdate').invalid && emp.get('Fromdate').touched">
                     {{getErrorMessage()}}</mat-error>
@@ -335,13 +343,14 @@
             </div>  
         </div><!--FormGroupClosing-->
         <span class="row groupClickButton">
-    <div class="col-2">            
-    <button type="button" mat-raised-button  color="primary" (click)="addEmploymentButtonClick()"
-            [disabled]="UserProfile.get('addEmployment').invalid">Add Additional Employment Info</button>
+    <div class="col-3">            
+    <button type="button" mat-button  color="primary" (click)="addEmploymentButtonClick()"
+            [disabled]="UserProfile.get('addEmployment').invalid"><mat-icon>add</mat-icon>
+            Additional Employment Info</button>
         </div>
-            <div  class="col-2" *ngIf="employmentGroupLength>1">
-                <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(e)">
-                Remove</button>
+            <div  class="col-3" *ngIf="employmentGroupLength>1">
+                <button type="button" mat-button color="warn" (click)="removeEmploymentButtonClick(e)">
+                    <mat-icon>clear</mat-icon>Remove</button>
             </div>
 
         </span>

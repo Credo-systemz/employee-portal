@@ -6,13 +6,17 @@
 mat-expansion-panel{
   border:1px solid #7c7c7c;
   box-shadow: 0px 0px 5px 4px rgb(128,128,128.0.75);
-  margin-bottom:0.7em;
+  margin-bottom:0.7em !important;
+}
+
+.mat-expansion-panel-body{
+  margin:2em !important;
 }
 mat-panel-title{
   font-weight: 500;
 }
 mat-form-field{
-  line-height:1.8;
+  line-height:2.0;
 }
 
 mat-form-field + .mat-form-field {
@@ -131,7 +135,7 @@ img {
   left:  0;
   bottom: 0;
   right: 0;
-  background-color:rgba(255, 255, 255, 0.5);
+  background-color:rgba(255, 255, 255, 0.5); 
   pointer-events: none;
   z-index: 1;
   border-radius: 7px;
