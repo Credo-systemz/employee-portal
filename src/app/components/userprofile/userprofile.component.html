@@ -30,6 +30,7 @@
             <mat-form-field>
                 <mat-label>Job Title</mat-label>
                 <select matNativeControl formControlName="JobTitle">
+                    <option value=""></option>
                     <option value="WebDev">Web developer</option>
                     <option value="SoftwareEngineer">Software Engineer</option>
                     <option value="SoftwareDev">Software Developer</option>
@@ -255,8 +256,21 @@
                 </mat-panel-description>
               </mat-expansion-panel-header>
 
+              <mat-form-field>
+                <mat-label>Employment Status</mat-label>
+                <select matNativeControl formControlName="EmploymentType" 
+                (change)="onChangeEmpStatus($event.target.value)">
+                    <option value=""></option>
+                    <option value="fresher">Freshers</option>
+                    <option value="experienced">Experienced</option>
+                    <option value="unemployed">Unemployed</option>
+                </select>
+                
+            </mat-form-field>
+                        
+            <ng-container *ngIf="isVisible">
 
-              <div formArrayName="addEmployment"
+              <div formArrayName="addEmployment" 
 
                *ngFor="let emp of UserProfile.get('addEmployment')['controls'];let e=index;">
 
@@ -364,7 +378,8 @@
         </span>
 
 
-        </div><!--Array   Closing-->
+    </div><!--Array   Closing-->
+</ng-container>
             </mat-expansion-panel>
           </mat-accordion>
           <div class="text-center">
@@ -372,6 +387,5 @@
           </div>
     </form>
 </article>
-<app-footer></app-footer>
 
 

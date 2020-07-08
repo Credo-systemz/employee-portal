@@ -26,6 +26,7 @@ export class UserprofileComponent implements OnInit {
   DateofBirth: string;
   Todaydate = new Date();
   ableToAdd:boolean=true;
+  isVisible:boolean=true;
 
 
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
@@ -73,6 +74,7 @@ export class UserprofileComponent implements OnInit {
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
          ]),
+      'EmploymentType':['',Validators.required],
       "addEmployment":this.fb.array([
         this.addEmploymentFormGroup()
          ])
@@ -242,6 +244,19 @@ for(var i in this.countryInfo){
    }
  }
 
+ onChangeEmpStatus(value:any){
+  const empFormGroup= (<FormArray>this.UserProfile.get("addEmployment"));
+if(value=="fresher" || value=="unemployed"){
+  this.isVisible=false;
+  empFormGroup.disable();
+
+}else{
+  this.isVisible=true;
+
+  empFormGroup.enable();
+}
+
+ }
 
  onSelectFile(event) {
   if (event.target.files && event.target.files[0]) {
@@ -264,8 +279,10 @@ for(var i in this.countryInfo){
 
 userform(){
 this.UserProfile.value.DOB=this.datepipe.transform(this.DOBctrl.value,'dd/MM/yyyy')
+if(this.isVisible==true){
 this.UserProfile.value.addEmployment[0].Fromdate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Fromdate'],'dd/MM/yyyy')
 this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Todate'],'dd/MM/yyyy')
+}
 console.log(this.UserProfile.value)
 console.log(this.UserProfile.status);
  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
