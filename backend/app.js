@@ -185,10 +185,10 @@ app.post("/login", (req,res)=>{
               {
                
                  if(response==true){
-
-                 var token =jwt.sign(data[0],'mykey');
                 
-                 delete data[0].Password;
+                    delete data[0].Password;
+            
+                 var token =jwt.sign(data[0],'mykey');
                 
                  res.json(token);
                  }
@@ -203,7 +203,10 @@ app.post("/login", (req,res)=>{
 });
 
 app.post('/userinfo', (req,res)=>{
-
+    
+    //req.body.CandidateId=CandidateId
+    const CandidateId=_id;
+    
     db.collection('userinfo').insert(req.body, (error,data)=>{
         
         if (error){

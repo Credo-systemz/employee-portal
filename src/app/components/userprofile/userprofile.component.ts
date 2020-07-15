@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common'
-
+import * as jwt_decode from 'jwt-decode'
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class UserprofileComponent implements OnInit {
   CityValueNull:boolean=true;
   DateofBirth: string;
   Todaydate = new Date();
-
+  CandidateId:number;
 
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { }
 
@@ -88,8 +88,13 @@ export class UserprofileComponent implements OnInit {
          }
         
         })
-              
-  }
+        var token = localStorage.getItem('token')
+       
+        const MyUserData=jwt_decode(token);
+       
+        this.CandidateId=MyUserData._id
+        
+          }
 //Dynamic form of Education
     
 addEducationFormGroup():FormGroup{
