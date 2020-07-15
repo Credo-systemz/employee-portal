@@ -141,7 +141,7 @@ app.put("/resetpassword",async (req,res)=>{
 
 });
 
-app.post("/register",async (req,res)=>{
+app.post("/register", async (req,res)=>{
   
     const Salt= await bcrypt.genSalt();
 
@@ -235,7 +235,7 @@ app.get("/emailCheck/:emailid",(req,res)=>{
           } 
           else
          {
-              var myid=111111111;
+              var myid=new Date().getTime();
 
              var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'30m'} );
                 
@@ -271,7 +271,7 @@ app.get("/emailCheck/:emailid",(req,res)=>{
             
          });
           
-            res.json(true);
+            res.json(jwttoken);
          }
                   
                     

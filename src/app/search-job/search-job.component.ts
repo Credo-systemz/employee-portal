@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchJobComponent implements OnInit {
 
+  url;
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
+
+
+
+
+

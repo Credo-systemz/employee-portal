@@ -12,25 +12,36 @@ import { UserService } from 'src/app/user.service';
 export class UserprofileComponent implements OnInit {
 
   panelOpenState = false;
-  imageurl="assets/images/profilePic.png"
-  countries=["India","USA","Europe","Singapore"]
   stateInfo: any[] = [];
   countryInfo: any[] = [];
   cityInfo: any[] = [];
+  countryIndexValue:string;
+  stateIndexValue:string;
+  completedYear:number[]=[];
   UserProfile:FormGroup;
-  myval;
-
+  myval;url;
   CountryValueNull:boolean=true;
   StateValueNull:boolean=true;
   CityValueNull:boolean=true;
   DateofBirth: string;
   Todaydate = new Date();
-  CandidateId:number;
+  ableToAdd:boolean=true;
+  isVisible:boolean=true;
 
-  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { }
+
+  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
+  }
 
   ngOnInit() 
-  {
+  { 
+    this.UserService.allCountries().subscribe((data:any)=>{
+      this.countryInfo=data.Countries;
+      console.log(data)
+    },
+    (error:any)=>{
+      console.log(error);
+    });
+
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
@@ -58,11 +69,12 @@ export class UserprofileComponent implements OnInit {
       'Address':['',Validators.required],
       'Country':['default',Validators.required],
       'State':['default',Validators.required],
-      'City':['default',[Validators.required,Validators.maxLength(15)]],
+      'City':['default',[Validators.required]],
       'StreetName':['',[Validators.required,Validators.maxLength(200)]],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
          ]),
+      'EmploymentType':['',Validators.required],
       "addEmployment":this.fb.array([
         this.addEmploymentFormGroup()
          ])
@@ -103,7 +115,7 @@ addEducationFormGroup():FormGroup{
   return this.fb.group({
     "EducationalType":[null,Validators.required],
     "CompletedYear":[null,[Validators.required,Validators.pattern(ValidYear)]],
-    "Percentile":[null,[Validators.required]],
+    "Percentile":[null,[Validators.required,Validators.pattern("^0*(?:[1-9][0-9]?|100)$")]],
     "Institution":[null,Validators.required]
     
   })
@@ -116,6 +128,8 @@ addEducationFormGroup():FormGroup{
  removeEducationButtonClick(formGroupIndex:number){
   const group= this.UserProfile.get('addEduation')['controls'] 
   group.splice(formGroupIndex,1);
+  this.ableToAdd=false;
+
 }
 
 //Dynamic form of Employment
@@ -131,7 +145,6 @@ addEmploymentFormGroup():FormGroup{
     "Experience":[null,Validators.required],
     "InterestedinJobOpp":[null,Validators.required],
     "TrainingRequired":[null,Validators.required]
-    
   })
 }
 
@@ -183,6 +196,7 @@ addEmploymentButtonClick():void {
 getErrorMessage(){
   return "Please enter a Valid value";
 }
+
 getCountries(){
   this.UserService.allCountries().subscribe((data:any)=>{
   this.countryInfo=data.Countries;
@@ -192,14 +206,21 @@ getCountries(){
   console.log(error);
 });
 }
-onChangeCountry(countryValue:any) {
+onChangeCountry(countryValue:string) {
   if(countryValue=="default"){
     this.CountryValueNull=true;
   }else{
-
     this.CountryValueNull=false;
-    this.stateInfo=this.countryInfo[countryValue].States;
-    this.cityInfo=this.stateInfo[0].Cities;
+    
+for(var i in this.countryInfo){
+  if(this.countryInfo[i].CountryName==countryValue){
+    this.countryIndexValue=i;
+   break;
+  }
+}
+    this.stateInfo=this.countryInfo[this.countryIndexValue].States;
+    // this.cityInfo=this.stateInfo[0].Cities;
+    // console.log(event.target);
 }
 }
  onChangeState(stateValue) {
@@ -208,44 +229,73 @@ onChangeCountry(countryValue:any) {
 
   }else{
     this.StateValueNull=false;
-   this.cityInfo=this.stateInfo[stateValue].Cities;
+    for(var i in this.stateInfo){
+      if(this.stateInfo[i].StateName==stateValue){
+        this.stateIndexValue=i;
+       break;
+      }
+    }
+   this.cityInfo=this.stateInfo[this.stateIndexValue].Cities;
  }
  }
 
  onChangeCity(cityValue){
-   if(cityValue=="default"){
+  if(cityValue=="default"){
      this.CityValueNull=true;
    }else{
    this.CityValueNull=false;
+   
+   
    }
  }
 
+ onChangeEmpStatus(value:any){
+  const empFormGroup= (<FormArray>this.UserProfile.get("addEmployment"));
+if(value=="fresher" || value=="unemployed"){
+  this.isVisible=false;
+  empFormGroup.disable();
 
+}else{
+  this.isVisible=true;
 
-imgSelection(event){
-  if(event.target.files){
-    let reader=new FileReader();
+  empFormGroup.enable();
+}
+
+ }
+
+ onSelectFile(event) {
+  if (event.target.files && event.target.files[0]) {
+    var reader = new FileReader();
+
     reader.readAsDataURL(event.target.files[0]);
-    reader.onload=(event:any)=>{
-      this.imageurl=event.target.result;
+
+    reader.onload = (event) => { 
+      this.url = event.target.result;
     }
   }
 }
+/*  delete(){
+  this.url = null;
+}
+ */
+
+
+
 
 userform(){
 this.UserProfile.value.DOB=this.datepipe.transform(this.DOBctrl.value,'dd/MM/yyyy')
+if(this.isVisible==true){
 this.UserProfile.value.addEmployment[0].Fromdate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Fromdate'],'dd/MM/yyyy')
 this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Todate'],'dd/MM/yyyy')
+}
 console.log(this.UserProfile.value)
 console.log(this.UserProfile.status);
-
-  // this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-
-  //   this.UserProfile.reset();
-  //   console.log(data);
-  // },(error:any)=>{
-  //   console.log(error);
-  // });
+ this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
+    this.UserProfile.reset();
+      console.log(data);
+  },(error:any)=>{
+    console.log(error);
+  });
 }
 
 }

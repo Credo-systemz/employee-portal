@@ -9,21 +9,28 @@
                     Personal Data
                 </mat-panel-title>
                 </mat-expansion-panel-header>
-              <div>
+            <div class="profilePic">
 
-                <div class="profilePic">
-                    <img [src]="imageurl"  alt="ProfilePic" height="150px" width="150px"><br>
-                    <input type="file" title="" (change)="imgSelection($event)" style="width:150px;">
-                </div>
+<label class="hoverable" for="fileInput">
+    <img [src]="url ? url : '/assets/images/profilePic.png'"> 
+    <div class="hover-text">Choose file</div>
+    <div class="background"></div>
+  </label>
+  <br/>
+  <input id="fileInput" type='file' (change)="onSelectFile($event)">
+  <!-- <button *ngIf="url" (click)="delete()" >delete</button> -->
+</div>
+
+
                 <!-- <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
                     <input matInput formControlName="CandidateId">
                 </mat-form-field> -->
-            </div>
             <div>
             <mat-form-field>
                 <mat-label>Job Title</mat-label>
                 <select matNativeControl formControlName="JobTitle">
+                    <option value=""></option>
                     <option value="WebDev">Web developer</option>
                     <option value="SoftwareEngineer">Software Engineer</option>
                     <option value="SoftwareDev">Software Developer</option>
@@ -118,30 +125,26 @@
                 </mat-form-field>
             </div>
             <div>
+                <mat-form-field class="Address">
+                    <mat-label>Door No*</mat-label>
+                    <input matInput formControlName="Address">
+                    <mat-error *ngIf="Addressctrl.invalid && Addressctrl.touched">
+                        {{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
                 <mat-form-field class="Streetname">
                     <mat-label>Street Name*</mat-label>
                     <input matInput formControlName="StreetName">
                     <mat-error *ngIf="Streetctrl.invalid && Streetctrl.touched">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
-<!-- 
-                <mat-form-field class="Streetname">
-                    <mat-label>Address*</mat-label>
-                    <input matInput formControlName="Address">
-                     <mat-error *ngIf="Addressctrl.invalid && Addressctrl.touched">
-                        {{getErrorMessage()}}</mat-error>
-                </mat-form-field> -->
-                
-
-                <div class="addressBlock" style="width: 200px;" >
-                    
-                 <label>Select Country</label>
-                  <select class="form-control" formControlName="Country"
-                  (blur)="onChangeCountry($event.target.value);"
-                  (change)="onChangeCountry($event.target.value)" 
+            </div>
+                <div class="addressBlock">
+                  <select class="form-control cascade" formControlName="Country" (change)="onChangeCountry($event.target.value)" 
                   [ngClass]="{'has-error':Countryctrl.touched && CountryValueNull}">
-                    <option value="default">Select Country</option>
-                 <option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</option>
+                    <option value="default">Select Country*</option>
+                 <option *ngFor="let country of countryInfo" value={{country.CountryName}} >{{country.CountryName}}</option>
     
                   </select>  
                   <div class="errortext" *ngIf="CountryValueNull && Countryctrl.touched">
@@ -149,35 +152,27 @@
                 
                  </div>
                 
-                 <div class="addressBlock"style="width: 200px;">
-                   <label>Select State</label>
-                    <select class="form-control"formControlName="State" (blur)="onChangeState($event.target.value);"
-                    (change)="onChangeState($event.target.value)"
+                 <div class="addressBlock">
+                    <select class="form-control cascade"formControlName="State" (change)="onChangeState($event.target.value)"
                     [ngClass]="{'has-error':Statectrl.touched && StateValueNull}">
-                        <option value="default">Select State</option>
-                        <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+                        <option value="default">Select State*</option>
+                        <option *ngFor="let state of stateInfo" value={{state.StateName}}>{{state.StateName}}</option>
                     </select>  
                     <div class="errortext" *ngIf="StateValueNull && Statectrl.touched">
                         {{getErrorMessage()}}</div>
                     
                  </div>
-                 <div class="addressBlock"style="width: 200px;">
-                    <label>Select City</label>
-                    <select class="form-control" formControlName="City"
-                    (blur)="onChangeCity($event.target.value);"
+                 <div class="addressBlock">
+                    <select class="form-control cascade" formControlName="City"(change)="onChangeCity($event.target.value)"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
-                        <option value="default">Select City</option>
-                      <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
+                        <option value="default">Select City*</option>
+                      <option *ngFor="let city of cityInfo" value={{city}}>{{city}}</option>
                     </select>  
                     <div class="errortext" *ngIf="CityValueNull && Cityctrl.touched">
-                        {{getErrorMessage()}}</div>
-                    
-                </div>
-                
-            </div>    
+                        {{getErrorMessage()}}</div>               
+                </div>  
+
         </mat-expansion-panel>
-
-
              <mat-expansion-panel (opened)="panelOpenState = true"
                                  (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
@@ -201,12 +196,14 @@
                     <mat-error *ngIf="edu.get('EducationalType').invalid && edu.get('EducationalType').touched">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
+
                 <mat-form-field>
                     <mat-label [attr.for]="'CompletedYear'+i">Completed year</mat-label>
-                    <input  [id]="'CompletedYear'+i"matInput formControlName="CompletedYear">
+                    <input  [id]="'CompletedYear'+i"matInput formControlName="CompletedYear" >
                     <mat-error *ngIf="edu.get('CompletedYear').invalid && edu.get('CompletedYear').dirty">
                         {{getErrorMessage()}}</mat-error>
                 </mat-form-field>
+
             </div>
             
             <div>
@@ -226,35 +223,54 @@
             </div>
 
         </div><!--FormGroup Closing-->
-        <span class="row groupClickButton">
-           
-          <div class="col-2" *ngIf="educationGroupLength>1">
-              <button type="button" mat-raised-button color="warn" (click)="removeEducationButtonClick(i)">
+        <div class="row">
+
+            <div class=" col-3 addEduationBtn">
+                <button class="addEducationbtn" mat-button  color="primary" (click)="addEducationButtonClick()"
+                [disabled]="UserProfile.get('addEduation').invalid"><mat-icon>add</mat-icon>
+                Additional Education Info</button>
+            </div>
+    
+          <div class=" col-3 removebtn" *ngIf="educationGroupLength>1">
+              <button type="button" mat-button color="warn" (click)="removeEducationButtonClick(i)"><mat-icon>clear</mat-icon>
               Remove</button>
           </div>
+          
+    <!-- {{UserProfile.get('addEduation').invalid}} -->
 
-          <div class="col-2" >
-            <button class="addEducationbtn" mat-raised-button  color="primary" (click)="addEducationButtonClick()"
-            [disabled]="UserProfile.get('addEduation').invalid">Add Additional Education Info</button>
-        </div>
+           </div>
+    </div><!--Array Closing-->
+
+
         
-        </span>
-        </div><!--Array Closing-->
             </mat-expansion-panel>
 
              <mat-expansion-panel (opened)="panelOpenState = true"
                                  (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Employement Data
+                    Employment Data
                 </mat-panel-title>
                 <mat-panel-description>
                   <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
 
+              <mat-form-field>
+                <mat-label>Employment Status</mat-label>
+                <select matNativeControl formControlName="EmploymentType" 
+                (change)="onChangeEmpStatus($event.target.value)">
+                    <option value=""></option>
+                    <option value="fresher">Freshers</option>
+                    <option value="experienced">Experienced</option>
+                    <option value="unemployed">Unemployed</option>
+                </select>
+                
+            </mat-form-field>
+                        
+            <ng-container *ngIf="isVisible">
 
-              <div formArrayName="addEmployment"
+              <div formArrayName="addEmployment" 
 
                *ngFor="let emp of UserProfile.get('addEmployment')['controls'];let e=index;">
 
@@ -276,7 +292,7 @@
                 placeholder="From Date" formControlName="Fromdate" [max]="Todaydate">
 
         
-<mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
+                <mat-datepicker-toggle matSuffix [for]="Fromdate"></mat-datepicker-toggle>
                 <mat-datepicker #Fromdate></mat-datepicker>
                 <mat-error *ngIf="emp.get('Fromdate').invalid && emp.get('Fromdate').touched">
                     {{getErrorMessage()}}</mat-error>
@@ -349,19 +365,21 @@
             </div>  
         </div><!--FormGroupClosing-->
         <span class="row groupClickButton">
-    <div class="col-2">            
-    <button type="button" mat-raised-button  color="primary" (click)="addEmploymentButtonClick()"
-            [disabled]="UserProfile.get('addEmployment').invalid">Add Additional Employment Info</button>
+    <div class="col-3">            
+    <button type="button" mat-button  color="primary" (click)="addEmploymentButtonClick()"
+            [disabled]="UserProfile.get('addEmployment').invalid"><mat-icon>add</mat-icon>
+            Additional Employment Info</button>
         </div>
-            <div  class="col-2" *ngIf="employmentGroupLength>1">
-                <button type="button" mat-raised-button color="warn" (click)="removeEmploymentButtonClick(e)">
-                Remove</button>
+            <div  class="col-3" *ngIf="employmentGroupLength>1">
+                <button type="button" mat-button color="warn" (click)="removeEmploymentButtonClick(e)">
+                    <mat-icon>clear</mat-icon>Remove</button>
             </div>
 
         </span>
 
 
-        </div><!--Array   Closing-->
+    </div><!--Array   Closing-->
+</ng-container>
             </mat-expansion-panel>
           </mat-accordion>
           <div class="text-center">
@@ -369,6 +387,5 @@
           </div>
     </form>
 </article>
-<app-footer></app-footer>
 
 
