@@ -251,7 +251,7 @@ app.get("/emailCheck/:emailid",(req,res)=>{
                 text:'Hi'+'\n'+
                 'You are recently requested to register for your account.'+'\n'+
                 'Click the Link below to complete registeration.'+'\n\n'+
-                'http://localhost:4200/register/'+'email:'+req.params.emailid+'end'+jwttoken+
+                'http://localhost:4200/register/'+req.params.emailid+jwttoken+
                 '\n\n' + 
                 'if you didnot make this request then you can safely ignore this email'+'\n'+
                 'Thanks'+'\n'+
