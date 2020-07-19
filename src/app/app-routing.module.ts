@@ -6,15 +6,16 @@ import { AuthGuard } from './auth.guard';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { SearchJobComponent } from './search-job/search-job.component';
+import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 
 
 const routes: Routes = [
    {path:'', component: LoginComponent},
-   {path:'register', component: UserLoginPageComponent, canActivate:[AuthGuard]},
-   {path:'register/:Userid', component:UserLoginPageComponent, canActivate:[AuthGuard]},
-   {path:'resetpassword/:Userid', component:ResetpasswordComponent},
-   {path:'userprofile', component:UserprofileComponent, canActivate:[AuthGuard]},
-   {path:'findjob', component:SearchJobComponent, canActivate:[AuthGuard]}
+   {path:'register', component: UserLoginPageComponent},
+   {path:'register/:Userid', component: EmailVerificationComponent},
+   {path:'resetpassword/:Userid', component: ResetpasswordComponent},
+   {path:'userprofile', component: UserprofileComponent, canActivate:[AuthGuard]},
+   {path:'findjob', component: SearchJobComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

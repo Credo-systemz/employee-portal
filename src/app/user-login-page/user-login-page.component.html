@@ -139,7 +139,7 @@
                   <re-captcha (resolved)='resolved($event)' formControlName="recaptchaReactive" siteKey='6LekZ6YZAAAAAJ3Yk45kRNRlY2eMW_zQNOAdbVbJ'></re-captcha>
                 </div>
                 <div class="bttn right">
-                  <button mat-raised-button color="primary" type="submit" [disabled]="signUpUser.invalid || submitted"  class="btn-sb my-4 my-4 cd-popup-trigger">Sign Up</button>
+                  <button mat-raised-button color="primary" type="submit" [disabled]="signUpUser.invalid || submitted"  class="btn-sb my-4 my-4 cd-popup-trigger" (click)="checkemailFrom()">Sign Up</button>
                 </div>
                 </div>
               </form>
@@ -147,7 +147,6 @@
           </div>
         </div>
             </div>
-    
     </div>
     <!--"signUpUser.invalid"-->
     <div class="cd-popup" role="alert">
@@ -180,7 +179,7 @@
   </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -197,6 +196,23 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">THANK YOU</h1>
+      </div>
+      <div class="modal-body">
+        A link sent to your given Email address. Please click to complete your registeration
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary " (click)="close1()" data-dismiss="modal" routerLink="/">OK</button>
+      </div>
+    </div>
+  </div>
+</div> -->
 
     <app-footer></app-footer>

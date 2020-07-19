@@ -17,7 +17,7 @@ export class UserLoginPageComponent implements OnInit {
   hide = true;
   hide1 = true;
   recaptcha:any[];
-  mail:string;
+  
   constructor(public UserService: UserService, private router:Router) {   
 
   }
@@ -28,17 +28,14 @@ export class UserLoginPageComponent implements OnInit {
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,32})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
 
-    var str=this.router.url;
-    var si=str.indexOf('email');
-    var ei=str.indexOf('end');
-    this.mail=str.slice(si+6, ei);
+    
 
     this.signUpUser = new FormGroup({
       'FirstName' : new FormControl(null,Validators.required),
       'LastName': new FormControl(null,Validators.required),
       'Password':new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'ConfirmPassword':new FormControl(null,Validators.required),
-      'EmailId': new FormControl(this.mail,[Validators.required,Validators.pattern(EmailPattern)]),
+      'EmailId': new FormControl(null,[Validators.required,Validators.pattern(EmailPattern)]),
       'Company': new FormControl(null,[Validators.required,Validators.minLength(4), Validators.maxLength(30)]),
      'MobileNo' :new FormControl(null,[Validators.required,Validators.pattern(mobNumberPattern)]),
      'recaptchaReactive': new FormControl(null, Validators.required)
@@ -83,12 +80,41 @@ this.UserService.userEmailCheck(Email).subscribe((data:any)=>{
 return this.submitted=false
 })
 }
+
+
+checkemailFrom(){
+  this.UserService.emailCheck(this.signUpUser.value.EmailId).subscribe((data1:any)=>{  
+   if(data1){
+    localStorage.setItem('token', data1);
+    // this.emailCheckForm.reset();  
+    // $("#pwdModal1").modal('hide');
+    // $("#exampleModal1").modal('show');
+    }
+  },
+  (error:any)=>{
+    // $("#pwdModal1").modal('show');
+    // this.errorup2=true;
+    // this.emailCheckForm.reset();
+    console.log(error);
+       
+  });
+
+  $(document.body).removeClass("modal-open");
+  $(".modal-backdrop").remove();
+  
+}
+
+close1(){
+  $("#exampleModal").modal('hide');
+  $("#pwdModal").modal('hide');
+}
+
 //REGISTRATION
    SignUp(){
 
      delete this.signUpUser.value.ConfirmPassword;
     //  console.log(this.signUpUser.value);
-    this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
+    this.UserService.UserRegistraion(this.signUpUser.value);
       let modal = jQuery(document).ready(function($){
         //open popup
         $('.cd-popup-trigger').on('click', function(event){
@@ -109,21 +135,50 @@ return this.submitted=false
             }
           });
       });
-      if(data){
+      
         $("#exampleModalCenter").modal('show');
-       }
+      
       // this.router.navigateByUrl("/");
-      this.signUpUser.reset();
-      console.log(data);
-      localStorage.clear();
-    },(error:any)=>{
-      if(error.status==408){
-        $("#exampleModalCenter1").modal('show');
-        }
-      console.log(error);
-    });
-    $(document.body).removeClass("modal-open");
-    $(".modal-backdrop").remove();
+      // this.signUpUser.reset();
+      
+      
+
+    // this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
+    //   let modal = jQuery(document).ready(function($){
+    //     //open popup
+    //     $('.cd-popup-trigger').on('click', function(event){
+    //       event.preventDefault();
+    //       $('.cd-popup').addClass('is-visible');
+    //     });      
+    //     //close popup
+    //     $('.cd-popup').on('click', function(event){
+    //       if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+    //         event.preventDefault();
+    //         $(this).removeClass('is-visible');
+    //       }
+    //     });
+    //     //close popup when clicking the esc keyboard button
+    //     $(document).keyup(function(event){
+    //         if(event.which=='27'){
+    //           $('.cd-popup').removeClass('is-visible');
+    //         }
+    //       });
+    //   });
+    //   if(data){
+    //     $("#exampleModalCenter").modal('show');
+    //    }
+    //   // this.router.navigateByUrl("/");
+    //   this.signUpUser.reset();
+    //   console.log(data);
+    //   localStorage.clear();
+    // },(error:any)=>{
+    //   if(error.status==408){
+    //     $("#exampleModalCenter1").modal('show');
+    //     }
+    //   console.log(error);
+    // });
+    // $(document.body).removeClass("modal-open");
+    // $(".modal-backdrop").remove();
     
  }
   
