@@ -15,11 +15,12 @@ export class UserService {
   }
   
   UserRegistraion(UserData:any){
-    localStorage.setItem('data', JSON.stringify(UserData))
+    // localStorage.setItem('data', JSON.stringify(UserData))
+    return this.http.post("http://localhost:3000/register",UserData);
   }
 
-  registeration(data:any){
-    return this.http.post("http://localhost:3000/register",data);
+  confirmEmail(data:any){
+    return this.http.put("http://localhost:3000/confirmEmail",data);
   }
 
   isLoggedIn(){

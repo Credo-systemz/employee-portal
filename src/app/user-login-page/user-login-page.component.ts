@@ -82,27 +82,7 @@ return this.submitted=false
 }
 
 
-checkemailFrom(){
-  this.UserService.emailCheck(this.signUpUser.value.EmailId).subscribe((data1:any)=>{  
-   if(data1){
-    localStorage.setItem('token', data1);
-    // this.emailCheckForm.reset();  
-    // $("#pwdModal1").modal('hide');
-    // $("#exampleModal1").modal('show');
-    }
-  },
-  (error:any)=>{
-    // $("#pwdModal1").modal('show');
-    // this.errorup2=true;
-    // this.emailCheckForm.reset();
-    console.log(error);
-       
-  });
 
-  $(document.body).removeClass("modal-open");
-  $(".modal-backdrop").remove();
-  
-}
 
 close1(){
   $("#exampleModal").modal('hide');
@@ -114,7 +94,14 @@ close1(){
 
      delete this.signUpUser.value.ConfirmPassword;
     //  console.log(this.signUpUser.value);
-    this.UserService.UserRegistraion(this.signUpUser.value);
+    // this.UserService.UserRegistraion(this.signUpUser.value);  
+        // $("#exampleModalCenter").modal('show');
+      
+      console.log(this.signUpUser.value);
+      
+      
+
+    this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       let modal = jQuery(document).ready(function($){
         //open popup
         $('.cd-popup-trigger').on('click', function(event){
@@ -135,50 +122,21 @@ close1(){
             }
           });
       });
-      
+      if(data){
         $("#exampleModalCenter").modal('show');
-      
+       }
       // this.router.navigateByUrl("/");
-      // this.signUpUser.reset();
-      
-      
-
-    // this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
-    //   let modal = jQuery(document).ready(function($){
-    //     //open popup
-    //     $('.cd-popup-trigger').on('click', function(event){
-    //       event.preventDefault();
-    //       $('.cd-popup').addClass('is-visible');
-    //     });      
-    //     //close popup
-    //     $('.cd-popup').on('click', function(event){
-    //       if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
-    //         event.preventDefault();
-    //         $(this).removeClass('is-visible');
-    //       }
-    //     });
-    //     //close popup when clicking the esc keyboard button
-    //     $(document).keyup(function(event){
-    //         if(event.which=='27'){
-    //           $('.cd-popup').removeClass('is-visible');
-    //         }
-    //       });
-    //   });
-    //   if(data){
-    //     $("#exampleModalCenter").modal('show');
-    //    }
-    //   // this.router.navigateByUrl("/");
-    //   this.signUpUser.reset();
-    //   console.log(data);
-    //   localStorage.clear();
-    // },(error:any)=>{
-    //   if(error.status==408){
-    //     $("#exampleModalCenter1").modal('show');
-    //     }
-    //   console.log(error);
-    // });
-    // $(document.body).removeClass("modal-open");
-    // $(".modal-backdrop").remove();
+      this.signUpUser.reset();
+      console.log(data);
+      localStorage.clear();
+    },(error:any)=>{
+      if(error.status==408){
+        $("#exampleModalCenter1").modal('show');
+        }
+      console.log(error);
+    });
+    $(document.body).removeClass("modal-open");
+    $(".modal-backdrop").remove();
     
  }
   

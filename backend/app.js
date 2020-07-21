@@ -153,6 +153,8 @@ app.post("/register", async (req,res)=>{
 
     req.body.Role="User"
 
+    req.body.Status="Inactive"
+
          db.collection("userdata").insert(req.body, (error, data)=>{
 
            if(error)
@@ -161,17 +163,53 @@ app.post("/register", async (req,res)=>{
               }
              else {
                
-              res.json("User Registered Successfully");
+            //   res.json("User Registered Successfully");
             
-             console.log(data);
+             console.log(req.body.EmailId);
+             var myid=req.body._id;
+             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'30m'} );
+                
+            const transporter = nodemailer.createTransport({
+                host:"smtp.gmail.com",
+                port:465,
+                auth:{
+                    user:'projectemployeeportal@gmail.com',
+                    pass:'Empportal@5'
+                }
+            })
+            var mailoption={
+                from:process.env.EMAIL,
+                to:req.body.EmailId,
+                subject:"Email Verification",
+                text:'Hi'+'\n'+
+                'You are recently requested to register for your account.'+'\n'+
+                'Click the Link below to complete registeration.'+'\n\n'+
+                'http://localhost:4200/register/'+jwttoken+
+                '\n\n' + 
+                'if you didnot make this request then you can safely ignore this email'+'\n'+
+                'Thanks'+'\n'+
+                'Team'
+             }
+               transporter.sendMail(mailoption,(error,res)=>{
+               if(error)
+               {
+                 console.log(error);
+                }
+                else{
+                    console.log(res);
+            }
+            
+         });
+        //  res.json(jwttoken);
+         res.json("User Registered Successfully");
              }
       }); 
-        
+          
 });
 
 app.post("/login", (req,res)=>{
 
-    db.collection("userdata").find({EmailId:req.body.EmailId},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
+    db.collection("userdata").find({EmailId:req.body.EmailId, Status:"Active"},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
         if(error){
             res.status(400).json("Error in select query");
         }
@@ -220,62 +258,92 @@ app.post('/userinfo', (req,res)=>{
 })
 
 // Email check
-app.get("/emailCheck/:emailid",(req,res)=>{
+// app.get("/emailCheck/:emailid",(req,res)=>{
    
-    const emailCheck=req.params.emailid;
+//     const emailCheck=req.params.emailid;
    
-    db.collection("userdata").find({EmailId:emailCheck}).toArray((error,data)=>{  
+//     db.collection("userdata").find({EmailId:emailCheck}).toArray((error,data)=>{  
         
-        if(data.length!==0 || data==!null)
-        {
-            res.status(404).json("Ready to register");                
-          } 
-          else
-         {
-              var myid=new Date().getTime();
+//         if(data.length!==0 || data==!null)
+//         {
+//         //     res.status(404).json("Ready to register");                
+//         //   } 
+//         //   else
+//         //  {
+//               var myid=data[0]._id;
 
-             var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'30m'} );
+//              var jwttoken =jwt.sign({myid},'mykey',{expiresIn :'30m'} );
                 
-            const transporter = nodemailer.createTransport({
-                host:"smtp.gmail.com",
-                port:465,
-                auth:{
-                    user:'projectemployeeportal@gmail.com',
-                    pass:'Empportal@5'
-                }
-            })
-            var mailoption={
-                from:process.env.EMAIL,
-                to:req.params.emailid,
-                subject:"Email Verification",
-                text:'Hi'+'\n'+
-                'You are recently requested to register for your account.'+'\n'+
-                'Click the Link below to complete registeration.'+'\n\n'+
-                'http://localhost:4200/register/'+req.params.emailid+jwttoken+
-                '\n\n' + 
-                'if you didnot make this request then you can safely ignore this email'+'\n'+
-                'Thanks'+'\n'+
-                'Team'
-             }
-               transporter.sendMail(mailoption,(error,res)=>{
-               if(error)
-               {
-                 console.log(error);
-                }
-                else{
-                    console.log(res);
-            }
+//             const transporter = nodemailer.createTransport({
+//                 host:"smtp.gmail.com",
+//                 port:465,
+//                 auth:{
+//                     user:'projectemployeeportal@gmail.com',
+//                     pass:'Empportal@5'
+//                 }
+//             })
+//             var mailoption={
+//                 from:process.env.EMAIL,
+//                 to:req.params.emailid,
+//                 subject:"Email Verification",
+//                 text:'Hi'+'\n'+
+//                 'You are recently requested to register for your account.'+'\n'+
+//                 'Click the Link below to complete registeration.'+'\n\n'+
+//                 'http://localhost:4200/register/'+jwttoken+
+//                 '\n\n' + 
+//                 'if you didnot make this request then you can safely ignore this email'+'\n'+
+//                 'Thanks'+'\n'+
+//                 'Team'
+//              }
+//                transporter.sendMail(mailoption,(error,res)=>{
+//                if(error)
+//                {
+//                  console.log(error);
+//                 }
+//                 else{
+//                     console.log(res);
+//             }
             
-         });
+//          });
           
-            res.json(jwttoken);
-         }
+//             res.json(jwttoken);
+//          }
                   
                     
+//     });
+//  });
+
+ 
+    app.put("/confirmEmail",async (req,res)=>{
+        
+        
+        // console.log(req.body);
+         const myUid=jwt.decode(req.body._id)   
+       var data="Active";
+
+      console.log(myUid)
+    //     console.log(Math.floor(Date.now() / 1000))
+    
+        if(Math.floor(Date.now() / 1000)>myUid.exp){
+    
+           res.status(408).json("Token Expired")
+        }
+        else
+          {
+            db.collection("userdata").updateOne({_id:myUid.myid},{$set:{Status:data}},(error,data)=>{
+            if(error){
+                console.log(error)
+            }
+        
+          });   
+        
+          res.json("success")
+    
+        }
+    
     });
- });
-
-
+    
+ 
 var loggedUser;
 
 function verifyToken(req, res, next)

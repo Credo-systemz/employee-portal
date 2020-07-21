@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 declare var $;
 @Component({
@@ -9,20 +10,22 @@ declare var $;
 })
 export class EmailVerificationComponent implements OnInit {
 
-  data:any;
-  constructor(public UserSer :UserService) {
-    if(localStorage.getItem('data')){
-      this.data=JSON.parse(localStorage.getItem('data'));
-    localStorage.clear();
-    }
+  data = {_id:""};
+  
+  constructor(public UserSer :UserService, public ActRoute:ActivatedRoute) {
+    
     
    }
 
   ngOnInit(): void {
     
-    this.UserSer.registeration(this.data).subscribe((data)=>{
+    this.ActRoute.params.subscribe((param:Params)=>{
+      this.data._id=param.Userid  
+        })
+console.log(this.data);
+
+    this.UserSer.confirmEmail(this.data).subscribe((data)=>{
       $("#exampleModal1").modal('show');
-      
     }, (error)=>{
       $("#exampleModalCenter1").modal('show');
       
