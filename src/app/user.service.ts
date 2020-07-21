@@ -15,7 +15,6 @@ export class UserService {
   }
   
   UserRegistraion(UserData:any){
-    // localStorage.setItem('data', JSON.stringify(UserData))
     return this.http.post("http://localhost:3000/register",UserData);
   }
 

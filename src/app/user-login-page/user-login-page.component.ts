@@ -93,14 +93,7 @@ close1(){
    SignUp(){
 
      delete this.signUpUser.value.ConfirmPassword;
-    //  console.log(this.signUpUser.value);
-    // this.UserService.UserRegistraion(this.signUpUser.value);  
-        // $("#exampleModalCenter").modal('show');
       
-      console.log(this.signUpUser.value);
-      
-      
-
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       let modal = jQuery(document).ready(function($){
         //open popup
