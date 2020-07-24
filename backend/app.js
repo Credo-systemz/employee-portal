@@ -8,14 +8,15 @@ const jwt = require('jsonwebtoken');
 
 const mongodb= require('mongodb').MongoClient;
 
-//const bcrypt= require('bcrypt');
-const bcrypt= require('bcryptjs');
+const bcrypt= require('bcrypt');
+//const bcrypt= require('bcryptjs');
  
 const nodemailer = require("nodemailer");
 
 const { resolveSoa } = require('dns');
 
 require("dotenv").config();
+
 
 const app= express();
 

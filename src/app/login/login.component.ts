@@ -3,7 +3,7 @@ import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcryptjs';
+//import * as bcrypt from 'bcryptjs';
 declare var $;
 @Component({
   selector: 'app-login',
