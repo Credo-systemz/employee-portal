@@ -8,7 +8,8 @@ const jwt = require('jsonwebtoken');
 
 const mongodb= require('mongodb').MongoClient;
 
-const bcrypt= require('bcrypt');
+//const bcrypt= require('bcrypt');
+const bcrypt= require('bcryptjs');
  
 const nodemailer = require("nodemailer");
 
@@ -170,7 +171,7 @@ app.post("/register", async (req,res)=>{
 });
 
 app.post("/login", (req,res)=>{
-
+console.log(req)
     db.collection("userdata").find({EmailId:req.body.EmailId},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
         if(error){
             res.status(400).json("Error in select query");

@@ -104,7 +104,7 @@ export class UserprofileComponent implements OnInit {
        
         const MyUserData=jwt_decode(token);
        
-        this.CandidateId=MyUserData._id
+       // this.CandidateId=MyUserData._id
         
           }
 //Dynamic form of Education

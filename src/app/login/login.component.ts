@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-
+import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcryptjs';
 declare var $;
 @Component({
   selector: 'app-login',
@@ -16,7 +17,6 @@ export class LoginComponent implements OnInit {
   errorup2=false;
   hide = true;
   logMessage:string="";
-
 
   loginForm:FormGroup;
   forgetForm:FormGroup
@@ -57,8 +57,12 @@ export class LoginComponent implements OnInit {
     }
     
   doLogin(){
+    console.log(jwt.sign(Date()))
 
-  this.UserSer.userLogin(this.loginForm.value).subscribe((data:any)=>{
+    // const Salt=bcrypt.genSaltSync();
+
+    // this.loginForm.value.Password=bcrypt.hashSync(this.loginForm.value.Password,Salt);
+ this.UserSer.userLogin(this.loginForm.value).subscribe((data:any)=>{
     
     if(data==null){
       this.logMessage="Invalid User";
