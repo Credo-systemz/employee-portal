@@ -119,16 +119,16 @@ close1(){
   
 checkemail(){
   this.UserSer.emailCheck(this.emailCheckForm.value.NewEmail).subscribe((data1:any)=>{  
-   if(data1){
-    localStorage.setItem('token', data1);
+  //  if(data1){
+  //   localStorage.setItem('token', data1);
     this.emailCheckForm.reset();  
-    $("#pwdModal1").modal('hide');
-    $("#exampleModal1").modal('show');
-    }
+    // $("#pwdModal1").modal('hide');
+    // $("#exampleModal1").modal('show');
+    // }
   },
   (error:any)=>{
-    $("#pwdModal1").modal('show');
-    this.errorup2=true;
+    // $("#pwdModal1").modal('show');
+    // this.errorup2=true;
     this.emailCheckForm.reset();   
   });
 

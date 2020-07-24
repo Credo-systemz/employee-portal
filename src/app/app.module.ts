@@ -37,6 +37,7 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchJobComponent } from './search-job/search-job.component';
+import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SearchJobComponent } from './search-job/search-job.component';
     ResetpasswordComponent,
     UserprofileComponent,
     SearchJobComponent,
+    EmailVerificationComponent,
   
   ],
   imports: [

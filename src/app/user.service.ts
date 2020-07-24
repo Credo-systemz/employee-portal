@@ -8,16 +8,18 @@ import { Observable} from 'rxjs';
 export class UserService {
 
   url :string = "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";
-
   constructor(public http:HttpClient) { }
   
   allCountries(): Observable<any>{
     return this.http.get(this.url);
   }
   
-  UserRegistraion(UserData){
-    
-    return this.http.post("http://localhost:3000/register",UserData);
+  UserRegistraion(UserData:any){
+    localStorage.setItem('data', JSON.stringify(UserData))
+  }
+
+  registeration(data:any){
+    return this.http.post("http://localhost:3000/register",data);
   }
 
   isLoggedIn(){
