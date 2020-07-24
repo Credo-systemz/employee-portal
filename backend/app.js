@@ -153,7 +153,7 @@ app.post("/register", async (req,res)=>{
 
     req.body.Role="User"
 
-    req.body.Status="Inactive"
+    req.body.Status="Inactive" 
 
          db.collection("userdata").insert(req.body, (error, data)=>{
 
