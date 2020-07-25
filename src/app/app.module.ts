@@ -38,6 +38,7 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchJobComponent } from './search-job/search-job.component';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
+import { LookupComponent } from './components/lookup/lookup.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { EmailVerificationComponent } from './components/email-verification/emai
     UserprofileComponent,
     SearchJobComponent,
     EmailVerificationComponent,
+    LookupComponent,
   
   ],
   imports: [
