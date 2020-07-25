@@ -9,6 +9,8 @@ const jwt = require('jsonwebtoken');
 const mongodb= require('mongodb').MongoClient;
 
 const bcrypt= require('bcrypt');
+
+const base64 = require('base-64');
  
 const nodemailer = require("nodemailer");
 
@@ -203,11 +205,14 @@ app.post("/register", async (req,res)=>{
         //  res.json(jwttoken);
          res.json("User Registered Successfully");
              }
-      }); 
+      });   
           
 });
 
 app.post("/login", (req,res)=>{
+ req.body.EmailId =base64.decode(req.body.EmailId);
+
+ req.body.Password=base64.decode(req.body.Password);
 
     db.collection("userdata").find({EmailId:req.body.EmailId, Status:"Active"},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
         if(error){
@@ -218,7 +223,6 @@ app.post("/login", (req,res)=>{
              res.status(404).json("User Not Availale")
             }
         else{ 
-
               bcrypt.compare(req.body.Password,data[0].Password).then((response)=>
               {
                

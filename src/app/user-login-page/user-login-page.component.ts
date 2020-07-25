@@ -81,9 +81,6 @@ return this.submitted=false
 })
 }
 
-
-
-
 close1(){
   $("#exampleModal").modal('hide');
   $("#pwdModal").modal('hide');

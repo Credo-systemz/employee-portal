@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-
+import * as base64 from 'base-64';
 declare var $;
 @Component({
   selector: 'app-login',
@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   errorup2=false;
   hide = true;
   logMessage:string="";
-
 
   loginForm:FormGroup;
   forgetForm:FormGroup
@@ -40,9 +39,6 @@ export class LoginComponent implements OnInit {
       $(".modal-backdrop").remove();     
   
   }
-
-    
-  
     get  EmailIdCtrl(){
       return this.loginForm.get('EmailId')
     }
@@ -57,8 +53,8 @@ export class LoginComponent implements OnInit {
     }
     
   doLogin(){
-
-  this.UserSer.userLogin(this.loginForm.value).subscribe((data:any)=>{
+    
+  this.UserSer.userLogin(base64.encode(this.loginForm.value.EmailId),base64.encode(this.loginForm.value.Password)).subscribe((data:any)=>{
     
     if(data==null){
       this.logMessage="Invalid User";
