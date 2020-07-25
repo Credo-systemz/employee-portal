@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 declare var $;
 @Component({
@@ -12,7 +12,7 @@ export class EmailVerificationComponent implements OnInit {
 
   data = {_id:""};
   
-  constructor(public UserSer :UserService, public ActRoute:ActivatedRoute) {
+  constructor(public UserSer :UserService, public ActRoute:ActivatedRoute, public myrouter:Router) {
     
     
    }
@@ -26,6 +26,7 @@ console.log(this.data);
 
     this.UserSer.confirmEmail(this.data).subscribe((data)=>{
       $("#exampleModal1").modal('show');
+      
     }, (error)=>{
       $("#exampleModalCenter1").modal('show');
       
@@ -39,9 +40,7 @@ window(){
   close1(){
     $("#exampleModal").modal('hide');
     $("#pwdModal").modal('hide');
+    this.myrouter.navigateByUrl('')
   }
-
-
-  
 
 }

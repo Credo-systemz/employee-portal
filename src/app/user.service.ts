@@ -22,8 +22,8 @@ export class UserService {
   userEmailCheck(email){
   return this.http.get("http://localhost:3000/checkEmail/"+email);
   }
-  userLogin(EmailID,Password){
-    return this.http.post("http://localhost:3000/login",{EmailID,Password});
+  userLogin(EmailId,Password){
+    return this.http.post("http://localhost:3000/login",{EmailId,Password});
   }
   forgetpasswords(emailid){
     return this.http.get("http://localhost:3000/forgetuser/"+emailid);

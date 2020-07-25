@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
-
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -33,8 +32,8 @@ export class UserprofileComponent implements OnInit {
   }
 
   ngOnInit() 
-  { 
-    this.UserService.allCountries().subscribe((data:any)=>{
+  {  
+      this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
       console.log(data)
     },
