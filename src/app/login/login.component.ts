@@ -68,9 +68,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("token",data);
       const token=jwt_decode(localStorage.getItem('token'));
       if(token.Role==='Admin'){
-        this.myRoute.navigateByUrl("/")
+        this.myRoute.navigateByUrl("/lookup")
       }else{
-        this.myRoute.navigateByUrl("/userprofile")
+        this.myRoute.navigateByUrl("/userprofile");
       }
     }
    },(error:any)=>{
