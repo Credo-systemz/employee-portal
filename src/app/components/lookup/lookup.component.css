@@ -1,0 +1,33 @@
+
+
+.lookUpTitle{
+    margin-top:3em;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  article .inlineSection{
+      display:inline-block !important;
+  }
+
+  article section mat-form-field{
+      margin-right:3em !important;
+  }
+
+.submitButton{
+    margin-top:1.2em;
+    margin-bottom: 1.2em;
+}
+
+  table {
+    width: 100%;
+  }
+  
+  
+  .table th,.table td{
+    font-family:'Roboto', sans-serif ;
+    font-size: 1.0em;
+  }
+
+  .table td{
+      padding-top:9px !important;
+  }
