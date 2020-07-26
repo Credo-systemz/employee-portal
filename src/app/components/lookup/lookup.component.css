@@ -25,9 +25,18 @@
   
   .table th,.table td{
     font-family:'Roboto', sans-serif ;
-    font-size: 1.0em;
+    font-size: 1.1em;
   }
 
   .table td{
       padding-top:9px !important;
   }
+
+  .table th{
+    background:rgb(216,216,216);
+
+  }
+  .table tr:nth-child(2n+0) {
+    background:rgb(240,240,240);
+  }
+  
