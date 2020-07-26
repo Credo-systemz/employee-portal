@@ -53,7 +53,7 @@ export class LookupComponent implements OnInit {
 
 getData(){
   this.UserService.getData().subscribe((data)=>{
-    console.log(data);
+    // console.log(data);
     this.dataSource=data;
   }, (error)=>{
     console.log(error);
