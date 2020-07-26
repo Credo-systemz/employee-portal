@@ -3,6 +3,8 @@ import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import * as base64 from 'base-64';
+const jwt_decode = require('jwt-decode');
+
 declare var $;
 @Component({
   selector: 'app-login',
@@ -62,9 +64,14 @@ export class LoginComponent implements OnInit {
     }
     else { 
       this.logMessage="Success"
+      this.loginForm.reset();
       localStorage.setItem("token",data);
-      this.loginForm.reset()
-      this.myRoute.navigateByUrl("/userprofile")
+      const token=jwt_decode(localStorage.getItem('token'));
+      if(token.Role==='Admin'){
+        this.myRoute.navigateByUrl("/lookup")
+      }else{
+        this.myRoute.navigateByUrl("/userprofile");
+      }
     }
    },(error:any)=>{
      //console.log(error);

@@ -90,7 +90,8 @@ close1(){
    SignUp(){
 
      delete this.signUpUser.value.ConfirmPassword;
-      
+     delete this.signUpUser.value.recaptchaReactive;
+     
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
       let modal = jQuery(document).ready(function($){
         //open popup

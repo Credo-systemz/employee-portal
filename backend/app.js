@@ -155,7 +155,7 @@ app.post("/register", async (req,res)=>{
 
     req.body.Role="User"
 
-    req.body.Status="Inactive" 
+    req.body.Status="Inactive"
 
          db.collection("userdata").insert(req.body, (error, data)=>{
 
@@ -210,9 +210,9 @@ app.post("/register", async (req,res)=>{
 });
 
 app.post("/login", (req,res)=>{
- req.body.EmailId =base64.decode(req.body.EmailId);
+    req.body.EmailId=base64.decode(req.body.EmailId);
 
- req.body.Password=base64.decode(req.body.Password);
+    req.body.Password=base64.decode(req.body.Password);
 
     db.collection("userdata").find({EmailId:req.body.EmailId, Status:"Active"},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
         if(error){
