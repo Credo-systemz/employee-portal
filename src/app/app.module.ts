@@ -28,6 +28,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material'
+
 import {DatePipe} from '@angular/common'
 
 
@@ -87,6 +89,10 @@ import { LookupComponent } from './components/lookup/lookup.component';
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
+<<<<<<< HEAD
+=======
+    MatTableModule
+>>>>>>> origin/master
     
    ],
 

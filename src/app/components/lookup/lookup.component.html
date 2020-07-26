@@ -1,1 +1,138 @@
-<p>lookup works!</p>
+<app-navigation></app-navigation>
+
+<article class="container">
+<section class=" inlineSection">
+    <div class="dropdown">
+    <h2 class="lookUpTitle">Look Up Page</h2>
+    <mat-form-field appearance="outline">
+        <mat-label></mat-label>
+        <select matNativeControl (change)="setValue($event)" formcontrolName="search" placeholder="Search By">
+            <option value="">----------Select------------</option>
+            <option value="skills">Search by Skills</option>
+            <option value="experience">Search by Experience</option>
+            <option value="name">Search by Name</option>
+            <option value="id">Search by Id Number</option>
+            <option value="mobile">Search by Mobile Number</option>
+        </select>
+    </mat-form-field>
+
+
+<div class="swichCase inlineSection ">
+
+        <div [ngSwitch]="choose">
+
+            <div *ngSwitchCase="'skills'">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter Skills</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+            </div>
+
+                <div *ngSwitchCase="'experience'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Enter Experience</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </div>
+
+
+                <div *ngSwitchCase="'name'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Enter Name</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </div>
+
+
+                <div *ngSwitchCase="'id'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Enter Id Number</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </div>
+
+                <div *ngSwitchCase="'mobile'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Enter Mobile Number</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                </div>
+        </div> 
+        </div> 
+        
+
+<div class="submitButton">
+<button type="submit" mat-raised-button color="basic">Submit</button>
+</div>
+</div>
+</section><!---End of dropdown-->
+
+
+<section class="table">
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource] = "dataSource">
+      
+          <!-- Number Column -->
+          <ng-container matColumnDef="No">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.No}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+
+          </ng-container>
+      
+          <!-- Skills Column -->
+          <ng-container matColumnDef="Skills">
+            <th mat-header-cell *matHeaderCellDef> Skills </th>
+            <td mat-cell *matCellDef="let element"> {{element.Skills}} </td>
+          </ng-container>
+      
+          <!-- Experience Column -->
+          <ng-container matColumnDef="Experience">
+            <th mat-header-cell *matHeaderCellDef> Experience </th>
+            <td mat-cell *matCellDef="let element"> {{element.Experience}} </td>
+
+          </ng-container>
+
+          <!-- Current Company Column -->
+          <ng-container matColumnDef="CurrentCompany">
+            <th mat-header-cell *matHeaderCellDef> Current Company </th>
+            <td mat-cell *matCellDef="let element"> {{element.CurrentCompany}} </td>
+
+          </ng-container>
+      
+          <!-- Mobile Number Column -->
+          <ng-container matColumnDef="Mobile">
+            <th mat-header-cell *matHeaderCellDef> Mobile</th>
+            <td mat-cell *matCellDef="let element"> {{element.Mobile}} </td>
+          </ng-container>
+      
+          <!-- Location Column -->
+          <ng-container matColumnDef="Location">
+            <th mat-header-cell *matHeaderCellDef> Location </th>
+            <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
+          </ng-container>
+
+          <!-- click to view more Column -->
+          <ng-container matColumnDef="MoreDetails">
+            <th mat-header-cell *matHeaderCellDef> More Details </th>
+            <td mat-cell *matCellDef="let element"> {{element.MoreDetails}} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+        
+
+</section><!---End of Table-->
+
+
+</article>
