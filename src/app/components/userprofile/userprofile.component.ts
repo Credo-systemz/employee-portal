@@ -29,7 +29,6 @@ export class UserprofileComponent implements OnInit {
   ableToAdd:boolean=true;
   isVisible:boolean=true;
 
-
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
   }
 
