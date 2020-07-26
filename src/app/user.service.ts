@@ -44,6 +44,8 @@ export class UserService {
   getMyToken(){
     return localStorage.getItem("token");
   }
-  
+  getData(){
+    return this.http.get("http://localhost:3000/getData/");
+  }
 
 }
