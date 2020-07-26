@@ -3,6 +3,7 @@ import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angul
 import {DatePipe} from '@angular/common';
 import { UserService } from 'src/app/user.service';
 
+
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
@@ -18,7 +19,8 @@ export class UserprofileComponent implements OnInit {
   stateIndexValue:string;
   completedYear:number[]=[];
   UserProfile:FormGroup;
-  myval;url;
+  myval;
+  url;
   CountryValueNull:boolean=true;
   StateValueNull:boolean=true;
   CityValueNull:boolean=true;
@@ -35,11 +37,15 @@ export class UserprofileComponent implements OnInit {
   {  
       this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
-      console.log(data)
+      //  console.log(data)
+       this.stateInfo=this.countryInfo[100].States;
+       this.cityInfo=this.stateInfo[34].Cities;
     },
     (error:any)=>{
       console.log(error);
-    });
+    }
+    
+    );
 
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
@@ -66,8 +72,8 @@ export class UserprofileComponent implements OnInit {
       'IdType':['',Validators.required],
       'IdNumber':[''],
       'Address':['',Validators.required],
-      'Country':['default',Validators.required],
-      'State':['default',Validators.required],
+      'Country':['India',Validators.required],
+      'State':['Tamil Nadu',Validators.required],
       'City':['default',[Validators.required]],
       'StreetName':['',[Validators.required,Validators.maxLength(200)]],
       "addEduation":this.fb.array([
@@ -194,7 +200,8 @@ getErrorMessage(){
 getCountries(){
   this.UserService.allCountries().subscribe((data:any)=>{
   this.countryInfo=data.Countries;
-  console.log(data)
+  // console.log(data)
+  
 },
 (error:any)=>{
   console.log(error);
