@@ -28,14 +28,18 @@ export class UserprofileComponent implements OnInit {
   Todaydate = new Date();
   ableToAdd:boolean=true;
   isVisible:boolean=true;
+  isLoading:boolean=true;
 
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
   }
 
   ngOnInit() 
   {  
+
+    
       this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
+      
       //  console.log(data)
        this.stateInfo=this.countryInfo[100].States;
        this.cityInfo=this.stateInfo[34].Cities;
@@ -44,8 +48,9 @@ export class UserprofileComponent implements OnInit {
       console.log(error);
     }
     
-    );
 
+    );
+    
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
     let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
@@ -70,11 +75,11 @@ export class UserprofileComponent implements OnInit {
       'AlternateContact':['',[Validators.pattern(mobNumberPattern)]],
       'IdType':['',Validators.required],
       'IdNumber':[''],
-      'Address':['',Validators.required],
+      'Address':['',Validators.maxLength(100)],
       'Country':['India',Validators.required],
       'State':['Tamil Nadu',Validators.required],
       'City':['default',[Validators.required]],
-      'StreetName':['',[Validators.required,Validators.maxLength(200)]],
+      'StreetName':['',[Validators.maxLength(200)]],
       "addEduation":this.fb.array([
         this.addEducationFormGroup()
          ]),
@@ -104,7 +109,7 @@ export class UserprofileComponent implements OnInit {
          }
         
         })
-              
+            
   }
 //Dynamic form of Education
     
@@ -200,13 +205,14 @@ getCountries(){
   this.UserService.allCountries().subscribe((data:any)=>{
   this.countryInfo=data.Countries;
   // console.log(data)
-  
 },
 (error:any)=>{
   console.log(error);
 });
+
 }
 onChangeCountry(countryValue:string) {
+  
   if(countryValue=="default"){
     this.CountryValueNull=true;
   }else{

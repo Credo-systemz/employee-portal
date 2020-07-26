@@ -29,6 +29,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DatePipe} from '@angular/common'
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
@@ -87,7 +88,8 @@ import { LookupComponent } from './components/lookup/lookup.component';
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
 
    ],
 

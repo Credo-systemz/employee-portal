@@ -127,16 +127,16 @@
                 <mat-form-field class="Address">
                     <mat-label>Door No</mat-label>
                     <input matInput formControlName="Address">
-                    <mat-error *ngIf="Addressctrl.invalid && Addressctrl.touched">
-                        {{getErrorMessage()}}</mat-error>
+                    <!-- <mat-error *ngIf="Addressctrl.invalid && Addressctrl.touched">
+                        {{getErrorMessage()}}</mat-error> -->
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field class="Streetname">
                     <mat-label>Street Name</mat-label>
                     <input matInput formControlName="StreetName">
-                    <mat-error *ngIf="Streetctrl.invalid && Streetctrl.touched">
-                        {{getErrorMessage()}}</mat-error>
+                    <!-- <mat-error *ngIf="Streetctrl.invalid && Streetctrl.touched">
+                        {{getErrorMessage()}}</mat-error> -->
                 </mat-form-field>
             </div>
                 <div class="addressBlock">
@@ -151,6 +151,7 @@
                     {{getErrorMessage()}}</div>
                 
                  </div>
+                 
                 
                  <div class="addressBlock">
                     <select class="form-control cascade"formControlName="State" (change)="onChangeState($event.target.value)"
@@ -163,10 +164,11 @@
                         {{getErrorMessage()}}</div>
                     
                  </div>
+                 
                  <div class="addressBlock">
                     <select class="form-control cascade" formControlName="City"(change)="onChangeCity($event.target.value)"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
-                        <option value="default">Select City <span class='ast'>*</span></option>
+                    <option value="default">Select City <span class='ast'>*</span></option>
                       <option *ngFor="let city of cityInfo" value={{city}}>{{city}}</option>
                     </select>  
                     
@@ -391,4 +393,11 @@
     
 </article>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <mat-spinner></mat-spinner>                
+      </div>
+    </div>
+  </div>
 
