@@ -23,6 +23,11 @@ export class LookupComponent implements OnInit {
   searchBy:string="";
   choose:string;
   dataSource: any;
+  results:any[] = [];
+  searchField:string;
+  searchValue:any;
+  
+
 
   displayedColumns: any[] = ['No', 'Name', 'Skills', 'Experience','CurrentCompany',"Mobile",'Location','MoreDetails'];
 
@@ -43,22 +48,52 @@ export class LookupComponent implements OnInit {
   constructor(public UserService: UserService) {}
    
   ngOnInit(): void {
-    this.getData();
+
   }
 
   setValue(drp:any){
     this.choose=drp.target.value;
     console.log(this.choose);
+    
+
+  }
+
+  search(text:any){
+this.searchValue=text;
+this.UserService.getData().subscribe((data)=>{
+  console.log(data);
+  
+  
+  for (var i=0 ; i < Object.keys(data).length ; i++)
+  {
+if(this.choose=="name"){
+  if(data[i].FName.toLowerCase()==this.searchValue.toLowerCase()) {
+         this.results.push(data[i]);
+        }else if(data[i].MName.toLowerCase()==this.searchValue.toLowerCase()) {
+          this.results.push(data[i]);
+         }else if(data[i].LName.toLowerCase()==this.searchValue.toLowerCase()) {
+          this.results.push(data[i]);
+         }
 }
 
-getData(){
-  this.UserService.getData().subscribe((data)=>{
-    // console.log(data);
-    this.dataSource=data;
-  }, (error)=>{
-    console.log(error);
-    
-  })
+
+  //  for(var key in data[i]){  
+  //    if(data[i][this.choose].toString().toLowerCase()==this.searchValue.toLowerCase()) {
+  //      this.results.push(data[i]);
+  //    }
+  // }
+ 
 }
+
+this.dataSource=this.results;
+console.log(this.searchValue);
+
+}, (error)=>{
+ console.log(error);
+ 
+})
+
+  }
+
 
 }
