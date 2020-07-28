@@ -8,6 +8,7 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 import { SearchJobComponent } from './search-job/search-job.component';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 import { LookupComponent } from './components/lookup/lookup.component';
+import { ViewrecordComponent } from './components/viewrecord/viewrecord.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
    {path:'resetpassword/:Userid', component: ResetpasswordComponent},
    {path:'userprofile', component: UserprofileComponent, canActivate:[AuthGuard]},
    {path:'lookup',component:LookupComponent,canActivate:[AuthGuard]},
+   {path:"viewrecord",component:ViewrecordComponent},
    {path:'findjob', component: SearchJobComponent, canActivate:[AuthGuard]}
 ];
 

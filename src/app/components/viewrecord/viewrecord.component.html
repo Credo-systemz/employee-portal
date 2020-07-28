@@ -1,0 +1,170 @@
+<app-navigation></app-navigation>
+
+<article class="container">
+    <h2 class="usertitle">Username Information</h2>
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            Personal Data
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list>
+        <mat-list-item>
+            <span class="label">Candidate Id</span> 
+            <span>10767</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Title</span>
+            <span>Web developer</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <span class="label">First Name</span>
+            <span>Archana</span></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Middle Name</span>
+            <span>M</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <span class="label">Last Name</span>
+            <span>Archana</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Email</span>
+            <span>archana@gmail.com</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Id Type</span>
+            <span>Passport</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Id Number</span>
+            <span>37676767</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Mobile Number</span>
+            <span>98364367667</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Alternate Contact Number</span>
+            <span>37437634364</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Address</span>
+            <span>Brook drive</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">City</span>
+            <span>Nagar</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">State</span>
+            <span>Tamil Nadu</span></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <span class="label">Country</span>
+            <span>India</span>
+        </mat-list-item>
+      </mat-list>
+
+    </mat-expansion-panel><!--Personal Data Closing-->
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        Educational Data   
+         </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+      <mat-list-item>
+          <span class="label">Educational Type</span>
+          <span>B.E</span>
+        </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Completed Year</span>
+        <span>1990</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Percentile/CGP</span>
+          <span>90</span>
+        </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Name of the Institution</span>
+        <span>Anna University</span>
+    </mat-list-item>
+    </mat-list>
+
+    </mat-expansion-panel><!--Educational Data Closing-->
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        Empolyment Data   
+         </mat-panel-title>
+      </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+          <span class="label">Name of the Organization</span>
+          <span>Anna University</span>
+        </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">From Data</span>
+          <span>10/12/1992</span>
+        </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">To Date</span>
+          <span>10/12/1994</span>
+        </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Designation/Role</span>
+        <span>Engineer</span>
+        </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span class="label">Skills</span>
+        <span>Javascript</span>
+     </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Current CTC</span>
+          <span>1000000</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Total Experience</span>
+          <span>2 Years</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Interested for new opportunities </span>
+          <span>Yes</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+          <span class="label">Training  Required</span>
+          <span>Yes</span>
+        </mat-list-item>
+    </mat-list>
+    </mat-expansion-panel><!--Employment Data Closing-->
+
+  </mat-accordion>
+</article>

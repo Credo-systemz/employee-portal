@@ -30,6 +30,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDividerModule} from '@angular/material'
+
 import {DatePipe} from '@angular/common'
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
@@ -41,6 +43,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SearchJobComponent } from './search-job/search-job.component';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 import { LookupComponent } from './components/lookup/lookup.component';
+import { ViewrecordComponent } from './components/viewrecord/viewrecord.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import { LookupComponent } from './components/lookup/lookup.component';
     SearchJobComponent,
     EmailVerificationComponent,
     LookupComponent,
+    ViewrecordComponent,
   
   ],
   imports: [
@@ -89,7 +93,8 @@ import { LookupComponent } from './components/lookup/lookup.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDividerModule
 
    ],
 
