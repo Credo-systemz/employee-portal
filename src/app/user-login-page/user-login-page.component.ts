@@ -26,7 +26,7 @@ export class UserLoginPageComponent implements OnInit {
    
     let PasswordPattern='^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\])$'
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,32})$';
-    let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
+    let mobNumberPattern = "^([9876]{1})([0-9]{9})$";  
 
     
 
