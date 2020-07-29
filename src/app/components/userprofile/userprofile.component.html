@@ -41,7 +41,7 @@
 
             <div>
                 <mat-form-field>
-                    <mat-label>First Name <span class='ast'>*</span></mat-label>
+                    <mat-label class="asterisk_input">First Name</mat-label>
                     <input matInput formControlName="FName">
                     <mat-error *ngIf="Fnamectrl.invalid && Fnamectrl.touched">
                         {{getErrorMessage()}}</mat-error>
@@ -54,7 +54,7 @@
                     </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>Last Name <span class='ast'>*</span></mat-label>
+                    <mat-label class="asterisk_input">Last Name</mat-label>
                     <input matInput formControlName="LName">
                     <mat-error *ngIf="Lnamectrl.invalid && Lnamectrl.touched">
                         {{getErrorMessage()}}</mat-error>
@@ -63,7 +63,7 @@
 
             <div>
                 <mat-form-field>
-                    <mat-label>Email ID <span class='ast'>*</span></mat-label>
+                    <mat-label class="asterisk_input">Email ID</mat-label>
                     <input matInput formControlName="Email">
                     <mat-error *ngIf="Emailctrl.invalid && Emailctrl.touched">
                         {{getErrorMessage()}}</mat-error>
@@ -72,7 +72,7 @@
 
 
                 <mat-form-field >
-                    <mat-label>Date Of Birth <span class='ast'>*</span></mat-label>
+                    <mat-label class="asterisk_input">Date Of Birth</mat-label>
                     <input matInput [matDatepicker]="picker"
                     placeholder="Date Of Birth" formControlName="DOB" [max]="Todaydate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -85,7 +85,7 @@
 
             <div>
                 <mat-form-field>
-                    <mat-label>Mobile Number <span class='ast'>*</span></mat-label>
+                    <mat-label class="asterisk_input">Mobile Number</mat-label>
                     <input matInput formControlName="Mobile">
                     <mat-error *ngIf="Mobilectrl.invalid && Mobilectrl.touched">
                         {{getErrorMessage()}}</mat-error>
@@ -106,7 +106,7 @@
     </div><br>
             <div>
                 <mat-form-field>
-                    <mat-label>ID Type <span class='ast'>*</span></mat-label>
+                    <mat-label class="asterisk_input">ID Type</mat-label>
                      <select matNativeControl formControlName="IdType">
                         <option value=""></option>
                          <option value='1'>Passport</option>
@@ -118,8 +118,8 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>ID Number</mat-label>
-                    <input required matInput formControlName="IdNumber">
+                    <mat-label class="asterisk_input">ID Number</mat-label>
+                    <input matInput formControlName="IdNumber">
                     <mat-error *ngIf="Idnumberctrl.invalid && Idnumberctrl.touched">Enter Valid Id </mat-error>
                 </mat-form-field>
             </div>
@@ -142,7 +142,7 @@
                 <div class="addressBlock">
                   <select class="form-control cascade" formControlName="Country" (change)="onChangeCountry($event.target.value)" 
                   [ngClass]="{'has-error':Countryctrl.touched && CountryValueNull}">
-                    <option value="default">Select Country <span class='ast'>*</span></option>
+                    <option value="default" class="asterisk_input">Select Country</option>
                  <option *ngFor="let country of countryInfo" value={{country.CountryName}} >{{country.CountryName}}</option>
     
                   </select>  
@@ -156,7 +156,7 @@
                  <div class="addressBlock">
                     <select class="form-control cascade"formControlName="State" (change)="onChangeState($event.target.value)"
                     [ngClass]="{'has-error':Statectrl.touched && StateValueNull}">
-                        <option value="default">Select state <span class='ast'>*</span></option>
+                        <option value="default" class="asterisk_input">Select state</option>
                         <option *ngFor="let state of stateInfo" value={{state.StateName}}>{{state.StateName}}</option>
                     </select>  
                     
@@ -168,7 +168,7 @@
                  <div class="addressBlock">
                     <select class="form-control cascade" formControlName="City"(change)="onChangeCity($event.target.value)"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
-                    <option value="default">Select City <span class='ast'>*</span></option>
+                    <option selected value="default">Select City</option>
                       <option *ngFor="let city of cityInfo" value={{city}}>{{city}}</option>
                     </select>  
                     

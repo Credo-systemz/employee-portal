@@ -151,7 +151,17 @@ img {
 #fileInput{
     display:none;
 }
-.ast
+
+
+.asterisk_input::after 
 {
-color:red;
+    content:" *"; 
+    color: red;
+}
+
+.cascade option[selected]:after{
+  
+  content:" *"; 
+  color: red;
+
 }
