@@ -45,8 +45,11 @@ select.cascade.form-control:active, select.cascade.form-control:hover{
   width: 180px;
   cursor: pointer;
   border-radius: 2px;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #999;  
+
 }
+
+
 .img-file {
   width: 88px;
   margin: 1px 31px;
@@ -159,9 +162,3 @@ img {
     color: red;
 }
 
-.cascade option[selected]:after{
-  
-  content:" *"; 
-  color: red;
-
-}
