@@ -338,7 +338,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Experience</mat-label>
-                    <input matInput formControlName="Experience">
+                    <input matInput type="number" formControlName="Experience">
                     <mat-error *ngIf="emp.get('Experience').invalid && emp.get('Experience').touched">
                         {{getErrorMessage()}}</mat-error>
                

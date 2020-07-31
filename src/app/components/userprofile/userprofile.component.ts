@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import { UserService } from 'src/app/user.service';
-
+const jwt_decode =require("jwt-decode")
 
 @Component({
   selector: 'app-userprofile',
@@ -35,8 +35,6 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit() 
   {  
-
-    
       this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
       
@@ -47,8 +45,6 @@ export class UserprofileComponent implements OnInit {
     (error:any)=>{
       console.log(error);
     }
-    
-
     );
     
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
@@ -225,8 +221,6 @@ for(var i in this.countryInfo){
   }
 }
     this.stateInfo=this.countryInfo[this.countryIndexValue].States;
-    // this.cityInfo=this.stateInfo[0].Cities;
-    // console.log(event.target);
 }
 }
  onChangeState(stateValue) {
@@ -294,8 +288,7 @@ if(this.isVisible==true){
 this.UserProfile.value.addEmployment[0].Fromdate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Fromdate'],'dd/MM/yyyy')
 this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Todate'],'dd/MM/yyyy')
 }
-console.log(this.UserProfile.value)
-console.log(this.UserProfile.status);
+
  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
     this.UserProfile.reset();
       console.log(data);
