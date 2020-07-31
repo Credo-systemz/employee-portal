@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-viewrecord',
@@ -7,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewrecordComponent implements OnInit {
   panelOpenState = false;
+  UserInfo;
+  constructor(public UserSer:UserService) { }
 
-
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(){
+    this.UserSer.viewdata.subscribe((data)=>{
+      this.UserInfo=data;
+      console.log(data)
+    });
   }
 
 }

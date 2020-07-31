@@ -39,4 +39,7 @@
   .table tr:nth-child(2n+0) {
     background:rgb(240,240,240);
   }
-  
+  #searchfield{
+    border: 1px solid gainsboro;
+    text-decoration: none;
+  }

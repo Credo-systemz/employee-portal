@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable} from 'rxjs';
+import { Observable, BehaviorSubject} from 'rxjs';
 
 
 @Injectable({
@@ -10,7 +10,9 @@ export class UserService {
 
   url :string = "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";
   constructor(public http:HttpClient) { }
-  
+
+  viewdata = new BehaviorSubject('')
+
   allCountries(): Observable<any>{
     return this.http.get(this.url);
   }

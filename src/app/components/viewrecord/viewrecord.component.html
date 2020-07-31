@@ -18,67 +18,67 @@
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Title</span>
-            <span>Web developer</span>
+            <span>{{UserInfo.JobTitle}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
 
         <mat-list-item>
             <span class="label">First Name</span>
-            <span>Archana</span></mat-list-item>
+            <span>{{UserInfo.FName}}</span></mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Middle Name</span>
-            <span>M</span>
+            <span>{{UserInfo.MName}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
 
         <mat-list-item>
             <span class="label">Last Name</span>
-            <span>Archana</span>
+            <span>{{UserInfo.LName}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Email</span>
-            <span>archana@gmail.com</span>
+            <span>{{UserInfo.Email}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Id Type</span>
-            <span>Passport</span>
+            <span>{{UserInfo.IdType}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Id Number</span>
-            <span>37676767</span>
+            <span>{{UserInfo.Number}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Mobile Number</span>
-            <span>98364367667</span>
+            <span>{{UserInfo.Mobile}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Alternate Contact Number</span>
-            <span>37437634364</span>
+            <span>{{UserInfo.AlternateContact}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Address</span>
-            <span>Brook drive</span>
+            <span>{{UserInfo.Address}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">City</span>
-            <span>Nagar</span>
+            <span>{{UserInfo.City}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">State</span>
-            <span>Tamil Nadu</span></mat-list-item>
+            <span>{{UserInfo.State}}</span></mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <span class="label">Country</span>
-            <span>India</span>
+            <span>{{UserInfo.Country}}</span>
         </mat-list-item>
       </mat-list>
 
@@ -90,24 +90,24 @@
         Educational Data   
          </mat-panel-title>
       </mat-expansion-panel-header>
-      <mat-list>
+      <mat-list *ngFor="let user of UserInfo.addEduation">
       <mat-list-item>
           <span class="label">Educational Type</span>
-          <span>B.E</span>
+          <span>{{user.EducationalType}}</span>
         </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Completed Year</span>
-        <span>1990</span></mat-list-item>
+        <span>{{user.CompletedYear}}</span></mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Percentile/CGP</span>
-          <span>90</span>
+          <span>{{user.Percentile}}</span>
         </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Name of the Institution</span>
-        <span>Anna University</span>
+        <span>{{user.Institution}}</span>
     </mat-list-item>
     </mat-list>
 
@@ -121,47 +121,47 @@
         Empolyment Data   
          </mat-panel-title>
       </mat-expansion-panel-header>
-    <mat-list>
+    <mat-list *ngFor="let company of UserInfo.addEmployment">
       <mat-list-item>
           <span class="label">Name of the Organization</span>
-          <span>Anna University</span>
+          <span>{{company.Organization}}</span>
         </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">From Data</span>
-          <span>10/12/1992</span>
+          <span>{{company.Fromdate}}</span>
         </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">To Date</span>
-          <span>10/12/1994</span>
+          <span>{{company.Todate}}</span>
         </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Designation/Role</span>
-        <span>Engineer</span>
+        <span>{{company.Designation}}</span>
         </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
         <span class="label">Skills</span>
-        <span>Javascript</span>
+        <span>{{company.Skills}}</span>
      </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Current CTC</span>
-          <span>1000000</span></mat-list-item>
+          <span>{{company.CTC}}</span></mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Total Experience</span>
-          <span>2 Years</span></mat-list-item>
+          <span>{{company.Experience}}</span></mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Interested for new opportunities </span>
-          <span>Yes</span></mat-list-item>
+          <span>{{company.InterestedinJobOpp}}</span></mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           <span class="label">Training  Required</span>
-          <span>Yes</span>
+          <span>{{company.TrainingRequired}}</span>
         </mat-list-item>
     </mat-list>
     </mat-expansion-panel><!--Employment Data Closing-->

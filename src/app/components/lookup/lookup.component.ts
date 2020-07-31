@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit,ViewChild, SimpleChanges} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {Sort} from '@angular/material';
 import { UserService } from 'src/app/user.service';
+import { Router } from '@angular/router';
 export interface userData {
   No: number;
   Name: string;
@@ -23,10 +23,11 @@ export class LookupComponent implements OnInit {
   searchBy:string="";
   choose:string;
   dataSource: any;
-  results:any;
+  results;
   searchField:string;
   searchValue:any;
-  
+  mdata;
+  text='';  
 
 
   displayedColumns: any[] = ['No', 'Name', 'Skills', 'Experience','CurrentCompany',"Mobile",'Location','MoreDetails'];
@@ -44,74 +45,86 @@ export class LookupComponent implements OnInit {
   // Mobile:"900434343",Location:"Chennai",'MoreDetails':""}]
   
 
-mdata;
-  constructor(public UserService: UserService) {}
-   
+
+  constructor(public UserService: UserService,public myRouter:Router) {}
+  
   ngOnInit(){
     this.UserService.getData().subscribe((data)=>{
-      this.mdata=data
-      console.log(data);
+      this.mdata=data;
     });
   }
-
-  setValue(drp:any){
-    this.choose=drp.target.value;
-    console.log(this.choose);
+  ViewMore(mydata:any){
+    this.UserService.viewdata.next(mydata)
+    this.myRouter.navigateByUrl('/viewrecord')
   }
 
-  search(text:any){
-    if(this.choose==='skills'){
-   for( let i=0;i<this.mdata.length;i++)
-   {
-      for(let j=0;j<this.mdata[i].addEmployment.length;j++)
-      {
-         if(text.includes(this.mdata[i].addEmployment[j].Skills))
-         {
-         this.results.push(this.mdata[i])  
-         }
-      }
-    }
-   } else if(this.choose==='experience'){
-    for( let i=0;i<this.mdata.length;i++)
-    {
-       for(let j=0;j<this.mdata[i].addEmployment.length;j++)
-       {
-          if(text.includes(this.mdata[i].addEmployment[j].Experience))
-          {
-          this.results.push(this.mdata[i])  
-          }
-       }
-     }
-    }
-     else if(this.choose==='name'){
+  // }
+  //search(){
 
-      for( let i=0;i<this.mdata.length;i++)
-       {
-         if(text.includes(this.mdata[i].FName)||text.includes(this.mdata[i].LName))
-         {
-          this.results.push(this.mdata[i])  
-         }
-       }
-     }
-  else if(this.choose==='id'){
-    for( let i=0;i<this.mdata.length;i++)
-    {
-      if(text.includes(this.mdata[i].IdNumber))
-      {
-       this.results.push(this.mdata[i])  
+  //   if(this.text.length==0|| this.text==undefined || this.text==null){
+  //     this.results=this.mdata
+  //   }
+  //   else if(this.choose==='skills'){
+  //  for( let i=0;i<this.mdata.length;i++)
+  //  {
+  //     for(let j=0;j<this.mdata[i].addEmployment.length;j++)
+  //     {
+  //        if(this.text.includes(this.mdata[i].addEmployment[j].Skills))
+  //        {
+  //          this.results=[this.mdata[i]]
+  //        } else if(this.text.includes!(this.mdata[i].addEmployment[j].Skills)){
+  //          this.results
+  //        }
+  //     }
+  //   }
+  //  } else if(this.choose==='experience'){
+  //   for( let i=0;i<this.mdata.length;i++)
+  //   {
+  //      for(let j=0;j<this.mdata[i].addEmployment.length;j++)
+  //      {
+  //         if(this.text.includes(this.mdata[i].addEmployment[j].Experience))
+  //         {
+  //         this.results=[(this.mdata[i])] 
+  //         }
+  //      }
+  //    }
+  //   }
+  //    else if(this.choose==='name'){
+
+  //     for( let i=0;i<this.mdata.length;i++)
+  //      {
+  //        if(this.text.includes(this.mdata[i].FName)||this.text.includes(this.mdata[i].LName))
+  //        {
+  //         this.results.push(this.mdata[i])  
+  //        }
+  //      }
+  //    }
+  // else if(this.choose==='id'){
+  //   for( let i=0;i<this.mdata.length;i++)
+  //   {
+  //     if(this.text.includes(this.mdata[i].IdNumber))
+  //     {
+  //      this.results.push(this.mdata[i])  
   
-       }
-     }
-  }else if(this.choose==='mobile'){
-    for( let i=0;i<this.mdata.length;i++)
-    {
-      if(text.includes(this.mdata[i].Mobile))
-      {
-       this.results.push(this.mdata[i])  
-      }
-    }
-  }
- }
+  //      }
+  //    }
+  // }else if(this.choose==='mobile'){
+  //   for( let i=0;i<this.mdata.length;i++)
+  //   {
+  //     if(this.text.includes(this.mdata[i].Mobile))
+  //     {
+  //      this.results.push(this.mdata[i])  
+  //     }
+  //   }
+  // }
+}
+
+
+
+
+
+
+
  // 
 //   for (var i=0 ; i < Object.keys(data).length ; i++) 
 //   {
@@ -145,4 +158,5 @@ mdata;
 //  }
 
 
-}
+//
+

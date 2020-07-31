@@ -44,6 +44,7 @@ import { SearchJobComponent } from './search-job/search-job.component';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 import { LookupComponent } from './components/lookup/lookup.component';
 import { ViewrecordComponent } from './components/viewrecord/viewrecord.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ViewrecordComponent } from './components/viewrecord/viewrecord.componen
     EmailVerificationComponent,
     LookupComponent,
     ViewrecordComponent,
+    FilterPipe,
   
   ],
   imports: [
