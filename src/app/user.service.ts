@@ -17,6 +17,7 @@ export class UserService {
     return this.http.get(this.url);
   }
   UserRegistraion(UserData:any){
+    console.log(UserData)
     return this.http.post("http://localhost:3000/register",UserData);
   }
   confirmEmail(data:any){

@@ -145,7 +145,7 @@ app.put("/resetpassword",async (req,res)=>{
 });
 
 app.post("/register", async (req,res)=>{
-  
+  console.log(req.body)
     const Salt= await bcrypt.genSalt();
 
     const HashPassword= await bcrypt.hash(req.body.Password,Salt);
@@ -153,12 +153,10 @@ app.post("/register", async (req,res)=>{
     req.body._id = new Date().getTime();
 
     req.body.Password=HashPassword;
-
     req.body.Role="User"
-
     req.body.Status="Inactive"
-
-         db.collection("userdata").insert(req.body, (error, data)=>{
+    req.body.isUpdate=false
+         db.collection("userdata").insertOne(req.body, (error, data)=>{
 
            if(error)
              {
@@ -215,7 +213,7 @@ app.post("/login", (req,res)=>{
 
     req.body.Password=base64.decode(req.body.Password);
 
-    db.collection("userdata").find({EmailId:req.body.EmailId, Status:"Active"},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1}}).toArray((error,data)=>{
+    db.collection("userdata").find({EmailId:req.body.EmailId, Status:"Active"},{projection:{FirstName:1,Password:1,LastName:1,_id:1,Role:1,isUpdate:1}}).toArray((error,data)=>{
         if(error){
             res.status(400).json("Error in select query");
         }
@@ -246,16 +244,19 @@ app.post("/login", (req,res)=>{
 });
 
 app.post('/userinfo', (req,res)=>{
-
-    db.collection('userinfo').insert(req.body, (error,data)=>{
+   req.body._id=req.body.CandidateId;
+  delete req.body.CandidateId
+console.log(req.body)
+    db.collection('userinfo').insertOne(req.body, (error,data)=>{
         
         if (error){
             res.status(400).json("Error in select query");
         }
         else{
+            db.collection("userdata").updateOne({_id:req.body._id},{$set:{isUpdate:true}},(error,data))
                
                 res.json("Information Saved");
-              
+            
                console.log(data);
         }
 

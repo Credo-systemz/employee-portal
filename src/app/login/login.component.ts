@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   errorup2=false;
   hide = true;
   logMessage:string="";
-
+  token;
   loginForm:FormGroup;
   forgetForm:FormGroup
   emailCheckForm:FormGroup
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     }
     
   doLogin(){
-    
+   
   this.UserSer.userLogin(base64.encode(this.loginForm.value.EmailId),base64.encode(this.loginForm.value.Password)).subscribe((data:any)=>{
     
     if(data==null){
@@ -66,11 +66,16 @@ export class LoginComponent implements OnInit {
       this.logMessage="Success"
       this.loginForm.reset();
       localStorage.setItem("token",data);
-      const token=jwt_decode(localStorage.getItem('token'));
-      if(token.Role==='Admin'){
+      this.token=jwt_decode(localStorage.getItem('token'));    
+      if(this.token.Role==='Admin'){
         this.myRoute.navigateByUrl("/lookup")
       }else{
-        this.myRoute.navigateByUrl("/userprofile");
+        if(this.token.isUpdate==false){
+          console.log(this.token.isUpdate); 
+          this.myRoute.navigateByUrl("/userprofile");
+        }else{
+          this.myRoute.navigateByUrl('/findjob')
+        }
       }
     }
    },(error:any)=>{

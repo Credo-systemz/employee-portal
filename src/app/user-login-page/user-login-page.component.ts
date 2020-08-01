@@ -93,6 +93,7 @@ close1(){
      delete this.signUpUser.value.recaptchaReactive;
      
     this.UserService.UserRegistraion(this.signUpUser.value).subscribe((data:any)=>{
+      console.log(this.signUpUser.value)
       let modal = jQuery(document).ready(function($){
         //open popup
         $('.cd-popup-trigger').on('click', function(event){

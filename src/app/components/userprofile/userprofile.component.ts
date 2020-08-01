@@ -29,12 +29,12 @@ export class UserprofileComponent implements OnInit {
   ableToAdd:boolean=true;
   isVisible:boolean=true;
   isLoading:boolean=true;
-
+token;
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
   }
 
   ngOnInit() 
-  {  
+  {  this.token=jwt_decode(localStorage.getItem('token'));
       this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
       
@@ -288,10 +288,10 @@ if(this.isVisible==true){
 this.UserProfile.value.addEmployment[0].Fromdate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Fromdate'],'dd/MM/yyyy')
 this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.UserProfile.get('addEmployment')['controls']['0']['value']['Todate'],'dd/MM/yyyy')
 }
-
+ this.UserProfile.value.CandidateId=this.token._id;
  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
-    this.UserProfile.reset();
-      console.log(data);
+  this.UserProfile.reset();
+  
   },(error:any)=>{
     console.log(error);
   });
