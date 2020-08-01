@@ -74,7 +74,7 @@
                 <mat-form-field >
                     <mat-label class="asterisk_input">Date Of Birth</mat-label>
                     <input matInput [matDatepicker]="picker"
-                    placeholder="Date Of Birth" formControlName="DOB" [max]="Todaydate">
+                    placeholder="MM/DD/YYYY" formControlName="DOB" [max]="Todaydate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="DOBctrl.invalid && DOBctrl.touched">

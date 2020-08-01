@@ -48,7 +48,7 @@ token;
     );
     
     let EmailPattern='^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$';
-    let mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";
+    let mobNumberPattern = "^([9876]{1})([0-9]{9})$";
     let numeric = "/^[a-zA-Z0-9]+$/";/* for CTC,percentile */
     let VoterId = "^([a-zA-Z]){3}([0-9]){7}?$";
     let PanCard ="^[A-Z]{5}[0-9]{4}[A-Z]{1}$";
