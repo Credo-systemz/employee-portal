@@ -17,7 +17,7 @@
     </mat-form-field>
     <ng-container *ngIf="choose !==''"> 
     <mat-form-field >
-        <mat-label >{{ "Enter"+choose.value}}</mat-label>
+        <mat-label >{{ "Enter "+choose.value}}</mat-label>
         <input  matInput type="text" [(ngModel)]="text">
     </mat-form-field>
   </ng-container>
@@ -38,7 +38,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of mdata | filter:choose.value:text;let i=index"> 
+    <tr *ngFor="let user of mdata | filter:choose.value:text; let i=index"> 
       <td>{{i+1}}</td>
       <td>{{user.FName+" "+user.MName+" "+user.LName}}</td>
       <!-- <td>{{user.addEmployment[0].Experience}}</td> -->

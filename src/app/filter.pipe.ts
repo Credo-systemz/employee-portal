@@ -16,14 +16,16 @@ export class FilterPipe implements PipeTransform {
        {
           for(let j=0;j<value[i].addEmployment.length;j++)
           {
-             if(myinput.includes(value[i].addEmployment[j].Skills))
+            //  if(myinput.includes(value[i].addEmployment[j].Skills))
+            if(value[i].addEmployment[j].Skills.toLowerCase().includes(myinput.toLowerCase()))
              {
                return [value[i]]
 
-             } else if(myinput.includes!(value[i].addEmployment[j].Skills)){
+              } else if(myinput.includes!(value[i].addEmployment[j].Skills)){
+             
               
               return value;
-             }
+              } 
           }
         }
        } else if(choose==='experience'){
@@ -31,7 +33,8 @@ export class FilterPipe implements PipeTransform {
         {
            for(let j=0;j<value[i].addEmployment.length;j++)
            {
-              if(myinput.includes(value[i].addEmployment[j].Experience))
+              // if(myinput.includes(value[i].addEmployment[j].Experience))
+              if(value[i].addEmployment[j].Experience.includes(myinput))
               {
               return [value[i]] 
 
