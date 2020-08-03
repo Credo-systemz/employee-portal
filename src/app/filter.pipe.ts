@@ -23,7 +23,7 @@ export class FilterPipe implements PipeTransform {
             //  if(myinput.includes(value[i].addEmployment[j].Skills))
             if(value[i].addEmployment[j].Skills.toLowerCase().includes(myinput.toLowerCase()))
              {
-                return [value[i]]
+               return [value[i]]
               
 
               } else if(myinput.includes!(value[i].addEmployment[j].Skills)){
@@ -74,7 +74,8 @@ export class FilterPipe implements PipeTransform {
       else if(choose==='id'){
         for( let i=0;i<value.length;i++)
         {
-          if(myinput.includes(value[i].IdNumber))
+          // if(myinput.includes(value[i].IdNumber))
+          if(value[i].IdNumber.includes(myinput))
           {
             return [value[i]]
            }else if(myinput.includes!(value[i].IdNumber)){
@@ -85,7 +86,7 @@ export class FilterPipe implements PipeTransform {
          
         for( let i=0;i<value.length;i++)
          {
-          if(myinput.includes(value[i].Mobile))
+          if(value[i].Mobile.includes(myinput))
           {
            return [value[i]]
           }else if(myinput.includes!(value[i].Mobile)){
