@@ -3,10 +3,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'filter'
 })
+
+
+
 export class FilterPipe implements PipeTransform {
+  
 
   transform(value:any,choose:any,myinput:string):any[] {
-    
+        
     if(myinput.length==0|| myinput==undefined || myinput==null || choose==""){
       return value;
        }
@@ -19,7 +23,8 @@ export class FilterPipe implements PipeTransform {
             //  if(myinput.includes(value[i].addEmployment[j].Skills))
             if(value[i].addEmployment[j].Skills.toLowerCase().includes(myinput.toLowerCase()))
              {
-               return [value[i]]
+                return [value[i]]
+              
 
               } else if(myinput.includes!(value[i].addEmployment[j].Skills)){
              
@@ -49,12 +54,17 @@ export class FilterPipe implements PipeTransform {
     
           for( let i=0;i<value.length;i++)
            {
-             if(myinput.includes(value[i].FName))
+            //  if(myinput.includes(value[i].FName))
+            if(value[i].FName.toLowerCase().includes(myinput.toLowerCase()))
              {
               return [value[i]]
-             }else if(myinput.includes(value[i].LName)){
+             }else if(value[i].MName.toLowerCase().includes(myinput.toLowerCase())){
+              return [value[i]] 
+             }else if(value[i].LName.toLowerCase().includes(myinput.toLowerCase())){
               return [value[i]] 
              }else if(myinput.includes!(value[i].FName)){
+              return value
+             }else if(myinput.includes!(value[i].MName)){
               return value
              }else if(myinput.includes!(value[i].LName)){
               return value
