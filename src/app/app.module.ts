@@ -88,7 +88,6 @@ import { FilterPipe } from './filter.pipe';
     MatExpansionModule,
     MatOptionModule,
     MatSidenavModule,
-    MatSelectModule,
     MatListModule,
     MatTabsModule,
     MatAutocompleteModule,
