@@ -7,92 +7,75 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 
 export class FilterPipe implements PipeTransform {
-  
 
-  transform(value:any,choose:any,myinput:string):any[] {
-        
-    if(myinput.length==0|| myinput==undefined || myinput==null || choose==""){
+
+  transform(value: any, choose: any, myinput: string): any[] {
+
+
+    var temp = [];
+    var result = [];
+    if (myinput.length == 0 || myinput == undefined || myinput == null || choose == "") {
       return value;
-       }
-       else if(choose==='skills'){
-       
-       for( let i=0;i<value.length;i++)
-       {
-          for(let j=0;j<value[i].addEmployment.length;j++)
-          {
-            //  if(myinput.includes(value[i].addEmployment[j].Skills))
-            if(value[i].addEmployment[j].Skills.toLowerCase().includes(myinput.toLowerCase()))
-             {
-               return [value[i]]
-              
-
-              } else if(myinput.includes!(value[i].addEmployment[j].Skills)){
-             
-              
-              return value;
-              } 
-          }
-        }
-       } else if(choose==='experience'){
-        for( let i=0;i<value.length;i++)
-        {
-           for(let j=0;j<value[i].addEmployment.length;j++)
-           {
-              // if(myinput.includes(value[i].addEmployment[j].Experience))
-              if(value[i].addEmployment[j].Experience.includes(myinput))
-              {
-              return [value[i]] 
-
-              }else if(myinput.includes!(value[i].addEmployment[j].Experience)){
-
-                return value
+    }
+    else if (choose === 'skills') {
+      for (let key of value) {
+        for (let key1 of key.addEmployment) {
+          if (key1.Skills.toLowerCase().includes(myinput.toLowerCase())) {
+            temp.push(key);
+            for (var value of temp) {
+              if (result.indexOf(value) === -1) {
+                result.push(value);
               }
-           }
-         }
-        }
-         else if(choose==='name'){
-    
-          for( let i=0;i<value.length;i++)
-           {
-            //  if(myinput.includes(value[i].FName))
-            if(value[i].FName.toLowerCase().includes(myinput.toLowerCase()))
-             {
-              return [value[i]]
-             }else if(value[i].MName.toLowerCase().includes(myinput.toLowerCase())){
-              return [value[i]] 
-             }else if(value[i].LName.toLowerCase().includes(myinput.toLowerCase())){
-              return [value[i]] 
-             }else if(myinput.includes!(value[i].FName)){
-              return value
-             }else if(myinput.includes!(value[i].MName)){
-              return value
-             }else if(myinput.includes!(value[i].LName)){
-              return value
-             }
-           }
-         }
-      else if(choose==='id'){
-        for( let i=0;i<value.length;i++)
-        {
-          // if(myinput.includes(value[i].IdNumber))
-          if(value[i].IdNumber.includes(myinput))
-          {
-            return [value[i]]
-           }else if(myinput.includes!(value[i].IdNumber)){
-             return value
-           }
-         }
-      }else if(choose==='mobile'){
-         
-        for( let i=0;i<value.length;i++)
-         {
-          if(value[i].Mobile.includes(myinput))
-          {
-           return [value[i]]
-          }else if(myinput.includes!(value[i].Mobile)){
-            return value
+            }
           }
         }
       }
+      return result;
+    } else if (choose === 'experience') {
+
+      for (let key of value) {
+        for (let key1 of key.addEmployment) {
+          if (key1.Experience.toLowerCase().includes(myinput.toLowerCase())) {
+            temp.push(key);
+            for (var value of temp) {
+              if (result.indexOf(value) === -1) {
+                result.push(value);
+              }
+            }
+          }
+        }
+      }
+      return result;
+    }
+    else if (choose === 'name') {
+      for (let key of value) {
+        var fullName = key.FName + ' ' + key.MName + ' ' + key.LName;
+        if (fullName.toLowerCase().includes(myinput.toLowerCase())) {
+          temp.push(key);
+          for (var value of temp) {
+            if (result.indexOf(value) === -1) {
+              result.push(value);
+            }
+          }
+        }
+      }
+      return result;
+    }
+    else if (choose === 'id') {
+      for (let key of value) {
+        if (key.IdNumber.toLowerCase().includes(myinput.toLowerCase())) {
+          temp.push(key);
+        }
+      }
+      return temp;
+    }
+    else {
+      for (let key of value) {
+        if (key.Mobile.includes(myinput)) {
+          temp.push(key);
+        }
+      }
+      return temp;
+    }
   }
 }
