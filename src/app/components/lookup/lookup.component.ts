@@ -27,7 +27,8 @@ export class LookupComponent implements OnInit {
   searchField:string;
   searchValue:any;
   mdata;
-  text='';  
+  text='';
+  stext='';  
 
 
   displayedColumns: any[] = ['No', 'Name', 'Skills', 'Experience','CurrentCompany',"Mobile",'Location','MoreDetails'];
@@ -56,6 +57,9 @@ export class LookupComponent implements OnInit {
   ViewMore(mydata:any){
     this.UserService.viewdata.next(mydata)
     this.myRouter.navigateByUrl('/viewrecord')
+  }
+  doSearch(){
+this.stext=this.text;
   }
 
   // }
