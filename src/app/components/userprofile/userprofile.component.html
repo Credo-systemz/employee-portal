@@ -166,7 +166,7 @@
                  </div>
                  
                  <div class="addressBlock">
-                    <select class="form-control cascade" formControlName="City"(change)="onChangeCity($event.target.value)"
+                    <select class="form-control cascade" formControlName="City" (change)="onChangeCity($event.target.value)"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
                     <option value="default" class="asterisk_input">Select City</option>
                       <option *ngFor="let city of cityInfo" value={{city}}>{{city}}</option>
