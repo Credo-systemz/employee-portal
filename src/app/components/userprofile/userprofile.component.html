@@ -166,7 +166,7 @@
                  </div>
                  
                  <div class="addressBlock">
-                    <select class="form-control cascade" formControlName="City" (change)="onChangeCity($event.target.value)"
+                    <select class="form-control cascade" formControlName="City"(change)="onChangeCity($event.target.value)"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
                     <option value="default" class="asterisk_input">Select City</option>
                       <option *ngFor="let city of cityInfo" value={{city}}>{{city}}</option>
@@ -227,22 +227,24 @@
             </div>
 
         </div><!--FormGroup Closing-->
-        <div class="row">
-
-            <div class=" col-3 addEduationBtn">
-                <button class="addEducationbtn" mat-button  color="primary" (click)="addEducationButtonClick()"
-                [disabled]="UserProfile.get('addEduation').invalid"><mat-icon>add</mat-icon>
-                Additional Education Info</button>
-            </div>
+        
     
           <div class=" col-3 removebtn" *ngIf="educationGroupLength>1">
-              <button type="button" mat-button color="warn" (click)="removeEducationButtonClick(i)"><mat-icon>clear</mat-icon>
+              <button type="button" mat-button color="warn" (click)="removeEducationButtonClick(i)">
+                  <mat-icon>clear</mat-icon>
               Remove</button>
           </div>
           
     <!-- {{UserProfile.get('addEduation').invalid}} -->
 
            </div>
+           <div class="row">
+
+            <div class=" col-3 addEduationBtn">
+                <button class="addEducationbtn" mat-button  color="primary" (click)="addEducationButtonClick()"
+                [disabled]="UserProfile.get('addEduation').invalid"><mat-icon>add</mat-icon>
+                Additional Education Info</button>
+            </div>
     </div><!--Array Closing-->
 
 
