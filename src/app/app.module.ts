@@ -32,7 +32,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDividerModule} from '@angular/material'
 
-import {DatePipe} from '@angular/common'
+import {DatePipe, CommonModule} from '@angular/common'
 
 import { UserLoginPageComponent } from './user-login-page/user-login-page.component';
 import { LoginComponent } from './login/login.component';
@@ -64,6 +64,7 @@ import { FilterPipe } from './filter.pipe';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
