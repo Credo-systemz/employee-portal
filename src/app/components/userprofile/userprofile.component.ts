@@ -34,7 +34,10 @@ token;
   }
 
   ngOnInit() 
-  {  this.token=jwt_decode(localStorage.getItem('token'));
+  {  
+    
+    
+    this.token=jwt_decode(localStorage.getItem('token'));
       this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
       
