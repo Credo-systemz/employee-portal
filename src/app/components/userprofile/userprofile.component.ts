@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import { UserService } from 'src/app/user.service';
+import { Router } from '@angular/router';
 const jwt_decode =require("jwt-decode")
 
 @Component({
@@ -30,14 +31,11 @@ export class UserprofileComponent implements OnInit {
   isVisible:boolean=true;
   isLoading:boolean=true;
 token;
-  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
+  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe,public myRouter:Router) { 
   }
 
   ngOnInit() 
-  {  
-    
-    
-    this.token=jwt_decode(localStorage.getItem('token'));
+  {  this.token=jwt_decode(localStorage.getItem('token'));
       this.UserService.allCountries().subscribe((data:any)=>{
       this.countryInfo=data.Countries;
       
@@ -294,9 +292,10 @@ this.UserProfile.value.addEmployment[0].Todate=this.datepipe.transform(this.User
  this.UserProfile.value.CandidateId=this.token._id;
  this.UserService.userinfo(this.UserProfile.value).subscribe((data:any)=>{
   this.UserProfile.reset();
-  
+  alert("User profile data updated sucessfully..");
+  this.myRouter.navigateByUrl('/findjob')
   },(error:any)=>{
-    alert("Please fill the mandatory fields..")
+    alert("Your data already updated... you can't able to update again..");
     console.log(error);
   });
 }

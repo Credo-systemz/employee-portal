@@ -164,7 +164,7 @@
                         {{getErrorMessage()}}</div>
                     
                  </div>
-
+                 
                  <div class="addressBlock">
                     <select class="form-control cascade" formControlName="City" (change)="onChangeCity($event.target.value)"
                     [ngClass]="{'has-error':Cityctrl.touched && CityValueNull}">
@@ -389,8 +389,8 @@
             </mat-expansion-panel>
           </mat-accordion>
           <div class="text-left">
-          <button type="Submit" class="btn btn-primary submit" >Submit</button>&nbsp;&nbsp;&nbsp;
-          <button type="reset" class="btn btn-primary reset">Reset</button>
+          <button type="Submit" class="btn btn-primary submit">Submit</button>&nbsp;&nbsp;
+          <button type="Reset" class="btn btn-primary reset">Reset</button>
           </div>
     </form>
      
