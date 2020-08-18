@@ -29,7 +29,8 @@ color: #7c7c7c;
 }
 .addressBlock {
   display: inline-block;
-  margin: 5px 23px 3px -9px;
+  margin: 5px 23px 30px -9px;
+
 }
 select.cascade.form-control {
   border: none;
@@ -100,6 +101,11 @@ mat-error{
   font-size: 1.2em;
 }
 
+mat-select-content :hover{
+  background-color: red;
+  font-size: 1.5em;
+}
+
 /* profile Img Alignment */
 
 .profilePic{
@@ -160,5 +166,14 @@ img {
 {
     content:" *"; 
     color: red;
+}
+
+small{
+  font-size:1em;
+}
+
+.example-section{
+  margin-top:1.5em;
+  margin-bottom: 1.5em;
 }
 
