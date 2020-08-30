@@ -10,8 +10,8 @@
                 </mat-panel-title>
                 </mat-expansion-panel-header>
             <div class="profilePic">
-
-<label class="hoverable" for="fileInput">
+                <div>
+    <label class="hoverable" for="fileInput">
     <img [src]="url ? url : '/assets/images/profilePic.png'"> 
     <div class="hover-text">Choose file</div>
     <div class="background"></div>
@@ -19,6 +19,12 @@
   <br/>
   <input id="fileInput" type='file' (change)="onSelectFile($event)">
   <!-- <button *ngIf="url" (click)="delete()" >delete</button> -->
+</div>
+  <div>
+  <small class="noteImg">Note:Image should be JPEG or PNG formats<br><br>
+Width and Height must be 150px each</small>
+</div>
+  
 </div>
                 <!-- <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
@@ -108,7 +114,7 @@
                     <mat-label class="asterisk_input">ID Type</mat-label>
                      <select matNativeControl formControlName="IdType">
                         <option value=""></option>
-                         <option value='1'>Passport</option>
+                        <option value='1'>Passport</option>
                         <option value='2'>Aadhar Card</option>
                         <option value='3'>Driving License</option>
                         <option value='4'>Voter Id</option>
@@ -235,19 +241,16 @@
                 [disabled]="UserProfile.get('addEduation').invalid"><mat-icon>add</mat-icon>
                 Additional Education Info</button>
             </div>
-    
+
+
           <div class=" col-3 removebtn" *ngIf="educationGroupLength>1">
               <button type="button" mat-button color="warn" (click)="removeEducationButtonClick(i)"><mat-icon>clear</mat-icon>
               Remove</button>
           </div>
-          
-    <!-- {{UserProfile.get('addEduation').invalid}} -->
-
+    
            </div>
     </div><!--Array Closing-->
 
-
-        
             </mat-expansion-panel>
 
              <mat-expansion-panel (opened)="panelOpenState = true"

@@ -66,7 +66,8 @@
               </label>
             </div>
             <div class="text-center">
-              <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Sign Up</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" data-target="#loginModal"
+              data-toggle="modal">Login</button>
             </div>
           </form>
         </div>       
@@ -122,7 +123,7 @@
                                     </div>
                                     <input class="btn btn-lg btn-primary btn-block" [disabled]="ForgetEmailCtrl.invalid" value="Reset My Password" type="submit">
                                   </form>    
-                                    
+                                   
                             </div>
                         </div>
                     </div>
@@ -138,23 +139,27 @@
   </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="exampleModalLabel">THANK YOU</h1>
+        <h1 class="modal-title" >Login </h1>
       </div>
       <div class="modal-body">
-        Reset Password Link sent to your Register Email Address
-      </div>
+        You are successfully logged in  
+          </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary " (click)="close1()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-secondary" value="Close"  data-dismiss="modal">Okay</button>
       </div>
     </div>
   </div>
-</div>
+</div>  -->
 
-<!-- Veriy Email address -->
+
+
+
+
 <!-- <div id="pwdModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">

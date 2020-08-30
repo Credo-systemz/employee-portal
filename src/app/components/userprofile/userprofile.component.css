@@ -16,7 +16,7 @@ mat-panel-title{
   font-weight: 500;
 }
 mat-form-field{
-  line-height:2.0;
+  line-height:2.5;
 }
 
 mat-form-field + .mat-form-field {
@@ -110,7 +110,7 @@ mat-select-content :hover{
 
 .profilePic{
   float:right;
-  margin-right:50px;
+  line-height:0.8 !important;
 
 }
 img {
@@ -172,8 +172,11 @@ small{
   font-size:1em;
 }
 
+div .noteImg{
+  font-size:0.9em !important;
+}
+
 .example-section{
   margin-top:1.5em;
   margin-bottom: 1.5em;
 }
-
