@@ -11,14 +11,14 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatNativeDateModule} from '@angular/material/core';
-import {MatInputModule} from '@angular/material/Input';
+import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/Form-field';
-import {MatDialogModule } from '@angular/material/Dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/Icon';
-import { MatToolbarModule } from '@angular/material/Toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import {RecaptchaModule, RecaptchaFormsModule} from 'ng-recaptcha';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatRippleModule } from '@angular/material/core';
@@ -84,7 +84,6 @@ import { FilterPipe } from './filter.pipe';
     MatIconModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatToolbarModule,
     MatFormFieldModule,
     MatExpansionModule,
     MatOptionModule,
@@ -97,7 +96,6 @@ import { FilterPipe } from './filter.pipe';
     MatTableModule,
     MatProgressSpinnerModule,
     MatDividerModule
-
    ],
 
   providers: [DatePipe],

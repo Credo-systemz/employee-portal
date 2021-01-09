@@ -180,3 +180,13 @@ div .noteImg{
   margin-top:1.5em;
   margin-bottom: 1.5em;
 }
+
+.submitButton{
+  padding-bottom:3rem;
+}
+.footer{
+  position:absolute !important;
+  bottom:0 !important;
+  width:100% !important;
+  height:2.5rem !important;
+}

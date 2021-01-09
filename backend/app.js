@@ -107,7 +107,7 @@ app.get("/forgetuser/:emailid",(req,res)=>{
           }
              else
            {
-             res.status(404).json("EMail ID Not Availale");                
+             res.status(404).json("EMail ID is Not Availale");                
            }          
     });
 });
@@ -296,7 +296,9 @@ console.log(req.body)
     
 
     app.get("/getData",(req,res)=>{
+
         db.collection("userinfo").find({}).toArray((error,data)=>{
+            
             if(error){
                 console.log("error");
             }else{
