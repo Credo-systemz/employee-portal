@@ -16,6 +16,7 @@ export class UserLoginPageComponent implements OnInit {
   signUpUser:FormGroup;
   hide = true;
   hide1 = true;
+  spinner=false;
   recaptcha:any[];
   
   constructor(public UserService: UserService, private router:Router) {   
@@ -88,7 +89,7 @@ close1(){
 
 //REGISTRATION
    SignUp(){
-
+    this.spinner=true;
      delete this.signUpUser.value.ConfirmPassword;
      delete this.signUpUser.value.recaptchaReactive;
      
@@ -121,11 +122,13 @@ close1(){
       this.signUpUser.reset();
       console.log(data);
       localStorage.clear();
+      this.spinner=false;
     },(error:any)=>{
       if(error.status==408){
         $("#exampleModalCenter1").modal('show');
         }
       console.log(error);
+      this.spinner=false;
     });
     $(document.body).removeClass("modal-open");
     $(".modal-backdrop").remove();

@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   errorup1=false;
   errorup2=false;
   hide = true;
+  spinner=false;
+  submitted=false;
   logMessage:string="";
   token;
   loginForm:FormGroup;
@@ -53,11 +55,19 @@ export class LoginComponent implements OnInit {
     get NewEmailCtrl(){
       return this.emailCheckForm.get('NewEmail')
     }
-    
+    checkemails(Email:string){
+
+      this.UserSer.userEmailCheck(Email).subscribe((data:any)=>{
+       if(data==true){
+         this.submitted=false
+         return this.submitted
+       }
+      return this.submitted=true
+      })
+      }
   doLogin(){
-   
+    this.spinner=true;
   this.UserSer.userLogin(base64.encode(this.loginForm.value.EmailId),base64.encode(this.loginForm.value.Password)).subscribe((data:any)=>{
-    
     if(data==null){
       this.logMessage="Invalid User";
       this.errorup=true
@@ -78,6 +88,7 @@ export class LoginComponent implements OnInit {
         }
       }
     }
+
    },(error:any)=>{
      //console.log(error);
      if(error.status==404){
@@ -89,10 +100,12 @@ export class LoginComponent implements OnInit {
       this.errorup=true
       this.loginForm.reset()
     }
-     
+    this.spinner=false;
    });
+   
  }
  forgetpassword(){
+  this.spinner=true;
    this.UserSer.forgetpasswords(this.forgetForm.value.ForgetEmail).subscribe((data1:any)=>{
      
     if(data1==true){
@@ -107,6 +120,7 @@ export class LoginComponent implements OnInit {
    });
    $(document.body).removeClass("modal-open");
    $(".modal-backdrop").remove();
+   this.spinner=false;
  }
 
  close(){
@@ -122,6 +136,7 @@ close1(){
 
   
 checkemail(){
+  this.spinner=true;
   this.UserSer.emailCheck(this.emailCheckForm.value.NewEmail).subscribe((data1:any)=>{  
   //  if(data1){
   //   localStorage.setItem('token', data1);
@@ -129,11 +144,13 @@ checkemail(){
     // $("#pwdModal1").modal('hide');
     // $("#exampleModal1").modal('show');
     // }
+    this.spinner=false;
   },
   (error:any)=>{
     // $("#pwdModal1").modal('show');
     // this.errorup2=true;
-    this.emailCheckForm.reset();   
+    this.emailCheckForm.reset();
+    this.spinner=false;   
   });
 
   $(document.body).removeClass("modal-open");

@@ -62,12 +62,12 @@
                         <img src="/assets/images/email.svg" class="mat-ic">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" formControlName="EmailId" required (keyup)="checkemail(emailCtrl.value)"placeholder="Email" type="email">
+                      <input class="form-control" formControlName="EmailId" required (blur)="checkemail(emailCtrl.value)" placeholder="Email" type="email">
                     </div>
                     <div class="errorpopup-emal regform" *ngIf='emailCtrl.invalid && emailCtrl.touched'>
                               Please Enter Valid Email
                            </div>
-                           <div class="errorpopup-emal" *ngIf='submitted'>
+                           <div class="errorpopup-emal regform" *ngIf='submitted'>
                             Email Id Already Exist
                          </div>
                   </div>
@@ -213,6 +213,10 @@
       </div>
     </div>
   </div>
-</div> -->
+</div> 
+<div class="spinoverlay, spincenter" *ngIf="spinner">
+  <mat-progress-spinner diameter=50 mode="indeterminate">
+</mat-progress-spinner> 
+</div>
 
     <app-footer></app-footer>

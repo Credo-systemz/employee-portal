@@ -33,12 +33,14 @@
                 <div class="input-group-prepend">
                   <img src="/assets/images/name.svg" class="mat-ic">
                 </div>
-                <input class="form-control" placeholder="Email" type="email" formControlName="EmailId" required="">
+                <input class="form-control" placeholder="Email" type="email" formControlName="EmailId" required="" (blur)="checkemails(EmailIdCtrl.value)">
               </div>
               <div class="errorpopup" *ngIf='EmailIdCtrl.invalid && EmailIdCtrl.touched'>
                 Please Enter Valid Email
              </div>
-              
+             <div class="errorpopup" *ngIf='submitted'>
+              Please regiseter first
+           </div>              
             </div>
 
             <div class="form-group" [ngClass]="{'has-error':PasswordCtrl.touched && PasswordCtrl.invalid }" >
@@ -93,6 +95,11 @@
   </div>
 
 </div>
+<div class="spinoverlay, spincenter" *ngIf="spinner">
+  <mat-progress-spinner diameter=50 mode="indeterminate">
+</mat-progress-spinner> 
+</div>
+
 
 <div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -154,6 +161,8 @@
   </div>
 </div>
 
+
+
 <!-- Veriy Email address -->
 <!-- <div id="pwdModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -200,4 +209,4 @@
   </div>
 </div> -->
 
-
+<app-footer></app-footer>

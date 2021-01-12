@@ -74,9 +74,11 @@ app.get("/forgetuser/:emailid",(req,res)=>{
             const transporter = nodemailer.createTransport({
                 host:"smtp.gmail.com",
                 port:465,
+                secure: true, // use SSL
                 auth:{
                     user:'projectemployeeportal@gmail.com',
-                    pass:'Empportal@5'
+                    // pass:'Empportal@5'
+                    pass:'dxazxbbkzovukvfh'
                 }
             })
             var mailoption={
