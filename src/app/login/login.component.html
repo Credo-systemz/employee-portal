@@ -33,14 +33,14 @@
                 <div class="input-group-prepend">
                   <img src="/assets/images/name.svg" class="mat-ic">
                 </div>
-                <input class="form-control" placeholder="Email" type="email" formControlName="EmailId" required="" (blur)="checkemails(EmailIdCtrl.value)">
+                <input class="form-control" placeholder="Email" type="email" formControlName="EmailId" required="" (blur)="checkemails(EmailIdCtrl.value)" (keyup)="clean(EmailIdCtrl.value)">
               </div>
               <div class="errorpopup" *ngIf='EmailIdCtrl.invalid && EmailIdCtrl.touched'>
                 Please Enter Valid Email
              </div>
-             <div class="errorpopup" *ngIf='submitted'>
-              Please regiseter first
-           </div>              
+             <!-- <div class="errorpopup" *ngIf='submitted' routerLink="/register">
+              Please Create new account first...
+           </div>               -->
             </div>
 
             <div class="form-group" [ngClass]="{'has-error':PasswordCtrl.touched && PasswordCtrl.invalid }" >

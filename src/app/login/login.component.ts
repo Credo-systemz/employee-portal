@@ -62,7 +62,10 @@ export class LoginComponent implements OnInit {
          this.submitted=false
          return this.submitted
        }
-      return this.submitted=true
+       alert("Please check your login email or Create new account first...");
+       this.submitted=true;
+      return this.submitted;
+      
       })
       }
   doLogin(){
@@ -74,6 +77,7 @@ export class LoginComponent implements OnInit {
     }
     else { 
       this.logMessage="Success"
+      alert("Successfully login...");
       this.loginForm.reset();
       localStorage.setItem("token",data);
       this.token=jwt_decode(localStorage.getItem('token'));    
@@ -162,6 +166,10 @@ checkMailClose(){
   $("#pwdModal1").modal('hide');
 }
 
+clean(){
+  this.logMessage="";
+  this.submitted=false;
+}
  
 }
 
