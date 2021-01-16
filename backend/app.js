@@ -76,7 +76,7 @@ app.get("/forgetuser/:emailid",(req,res)=>{
                 port:465,
                 auth:{
                     user:'projectemployeeportal@gmail.com',
-                    pass:'Empportal@5'
+                    pass:'dxazxbbkzovukvfh'
                 }
             })
             var mailoption={
