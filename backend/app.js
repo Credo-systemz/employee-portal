@@ -77,7 +77,7 @@ app.get("/forgetuser/:emailid",(req,res)=>{
                 secure: true, // use SSL
                 auth:{
                     user:'projectemployeeportal@gmail.com',
-                    pass:'Empportal@5'
+                    pass:'dxazxbbkzovukvfh'
                 }
             })
             var mailoption={
@@ -176,7 +176,7 @@ app.post("/register", async (req,res)=>{
                 port:465,
                 auth:{
                     user:'projectemployeeportal@gmail.com',
-                    pass:'Empportal@5'
+                    pass:'dxazxbbkzovukvfh'
                 }
             })
             var mailoption={
