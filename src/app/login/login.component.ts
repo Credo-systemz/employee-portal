@@ -134,7 +134,7 @@ export class LoginComponent implements OnInit {
    this.errorup2=false;
 }
 close1(){
-  $("#exampleModal").modal('hide');
+  $("exampleModal").modal('hide');
   $("#pwdModal").modal('hide');
 }
 

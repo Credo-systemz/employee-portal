@@ -2,6 +2,7 @@ import {Component, OnInit,ViewChild, SimpleChanges} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import { UserService } from 'src/app/user.service';
 import { Router } from '@angular/router';
+
 export interface userData {
   No: number;
   Name: string;

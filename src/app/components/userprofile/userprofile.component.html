@@ -10,8 +10,8 @@
                 </mat-panel-title>
                 </mat-expansion-panel-header>
             <div class="profilePic">
-
-<label class="hoverable" for="fileInput">
+                <div>
+    <label class="hoverable" for="fileInput">
     <img [src]="url ? url : '/assets/images/profilePic.png'"> 
     <div class="hover-text">Choose file</div>
     <div class="background"></div>
@@ -20,13 +20,18 @@
   <input id="fileInput" type='file' (change)="onSelectFile($event)">
   <!-- <button *ngIf="url" (click)="delete()" >delete</button> -->
 </div>
-
-
+  <div>
+  <small class="noteImg">Note:Image should be JPEG or PNG formats<br><br>
+Width and Height must be 150px each</small>
+</div>
+  
+</div>
                 <!-- <mat-form-field>
                     <mat-label>Candidate ID</mat-label>
                     <input matInput formControlName="CandidateId">
                 </mat-form-field> -->
-            <div>
+
+                <div>
             <mat-form-field>
                 <mat-label>Job Title</mat-label>
                 <select matNativeControl formControlName="JobTitle">
@@ -99,17 +104,17 @@
 
             </div><br>
             <div>
-            <section class="example-section checkWhatsapp">
+            <section class="checkWhatsapp">
                 <mat-checkbox formControlName="WhatsAppCheck"
-                class="example-margin">Check Mobile Number is same as WhatsApp number</mat-checkbox>
+                class="example-margin">Check,if Mobile Number is same as WhatsApp number</mat-checkbox>
         </section>
-    </div><br>
+    </div>
             <div>
                 <mat-form-field>
                     <mat-label class="asterisk_input">ID Type</mat-label>
                      <select matNativeControl formControlName="IdType">
                         <option value=""></option>
-                         <option value='1'>Passport</option>
+                        <option value='1'>Passport</option>
                         <option value='2'>Aadhar Card</option>
                         <option value='3'>Driving License</option>
                         <option value='4'>Voter Id</option>
@@ -187,7 +192,9 @@
                   <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
-
+              <small>Note:User is required to enter atleast one Educational field.But adding multiple field of education will help
+                   getting in suitable job Opportunities.
+              </small>
             <div formArrayName="addEduation" 
             *ngFor="let edu of UserProfile.get('addEduation')['controls'];let i=index;">
 
@@ -215,7 +222,7 @@
                    <mat-label [attr.for]="'Percentile'+i">Percentile/CGP</mat-label>
                     <input [id]="'Percentile'+i" matInput formControlName="Percentile">
                     <mat-error *ngIf="edu.get('Percentile').invalid && edu.get('Percentile').touched">
-                        {{getErrorMessage()}}</mat-error>
+                        {{getPercentileErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label [attr.for]="'Institution'+i">Name of the Institution</mat-label>
@@ -227,16 +234,26 @@
             </div>
 
         </div><!--FormGroup Closing-->
+<<<<<<< HEAD
         
     
+=======
+        <div class="row">
+
+            <div class=" col-3 addEduationBtn">
+                <button class="addEducationbtn" mat-button  color="primary" (click)="addEducationButtonClick()"
+                [disabled]="UserProfile.get('addEduation').invalid"><mat-icon>add</mat-icon>
+                Additional Education Info</button>
+            </div>
+
+
+>>>>>>> origin/master
           <div class=" col-3 removebtn" *ngIf="educationGroupLength>1">
               <button type="button" mat-button color="warn" (click)="removeEducationButtonClick(i)">
                   <mat-icon>clear</mat-icon>
               Remove</button>
           </div>
-          
-    <!-- {{UserProfile.get('addEduation').invalid}} -->
-
+    
            </div>
            <div class="row">
 
@@ -247,8 +264,6 @@
             </div>
     </div><!--Array Closing-->
 
-
-        
             </mat-expansion-panel>
 
              <mat-expansion-panel (opened)="panelOpenState = true"
@@ -261,15 +276,18 @@
                   <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
+              <div>
+            <small> Note:User is allowed to add multiple employment details, at least one detail is mandatory.
+     If fresher then they can select as fresher</small></div>
 
               <mat-form-field>
                 <mat-label>Employment Status</mat-label>
                 <select matNativeControl formControlName="EmploymentType" 
                 (change)="onChangeEmpStatus($event.target.value)">
-                    <option value=""></option>
-                    <option value="fresher">Freshers</option>
-                    <option value="experienced">Experienced</option>
-                    <option value="unemployed">Unemployed</option>
+                    <option  class="option" value=""></option>
+                   <option class="option"value="fresher">Freshers</option>
+                   <option class="option"value="experienced">Experienced</option>
+                   <option class="option"value="unemployed">Unemployed</option>
                 </select>
                 
             </mat-form-field>
@@ -332,12 +350,14 @@
             </div>
             <div>
                 <mat-form-field>
-                    <mat-label>Current CTC</mat-label>
+                    <mat-label>Current CTC/annum</mat-label>
                     <input matInput formControlName="CTC">
+                    
                     <mat-error *ngIf="emp.get('CTC').invalid && emp.get('CTC').touched">
+                        
                         {{getErrorMessage()}}</mat-error>
-               
                 </mat-form-field>
+
                 <mat-form-field>
                     <mat-label>Experience</mat-label>
                     <input matInput type="number" formControlName="Experience">
@@ -346,13 +366,17 @@
                
                 </mat-form-field>
             </div>
+
+            <div>
+                <small>Note: Providing CTC is optional.But will help you in getting more suitable job offers.</small>
+            </div>
+
              <div>
             <section class="example-section ">
                 <span class="example-list-section">
                     <mat-checkbox formControlName="InterestedinJobOpp"> Interested for Job Opportunities </mat-checkbox>
                     <mat-error *ngIf="emp.get('InterestedinJobOpp').invalid && emp.get('InterestedinJobOpp').touched">
                         {{getErrorMessage()}}</mat-error>
-               
                 </span>
               </section>
             </div>
@@ -384,13 +408,18 @@
         </span>
 
 
-    </div><!--Array   Closing-->
+    </div><!--Array Closing-->
 </ng-container>
             </mat-expansion-panel>
           </mat-accordion>
+<<<<<<< HEAD
           <div class="text-left">
           <button type="Submit" class="btn btn-primary submit">Submit</button>&nbsp;&nbsp;
           <button type="Reset" class="btn btn-primary reset">Reset</button>
+=======
+          <div class="text-center submitButton">
+          <button type="Submit" class="btn btn-primary submit" [disabled]="UserProfile.invalid" >Submit</button>
+>>>>>>> origin/master
           </div>
     </form>
      
@@ -403,6 +432,10 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 
 
   <app-footer></app-footer>
+=======
+  
+>>>>>>> origin/master

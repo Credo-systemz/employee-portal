@@ -2,8 +2,13 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup,Validators, FormBuilder, FormArray, FormControl} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import { UserService } from 'src/app/user.service';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
+=======
+
+>>>>>>> origin/master
 const jwt_decode =require("jwt-decode")
+
 
 @Component({
   selector: 'app-userprofile',
@@ -31,7 +36,13 @@ export class UserprofileComponent implements OnInit {
   isVisible:boolean=true;
   isLoading:boolean=true;
 token;
+<<<<<<< HEAD
   constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe,public myRouter:Router) { 
+=======
+
+
+  constructor(public UserService: UserService,public fb:FormBuilder,public datepipe:DatePipe) { 
+>>>>>>> origin/master
   }
 
   ngOnInit() 
@@ -197,6 +208,11 @@ addEmploymentButtonClick():void {
 getErrorMessage(){
   return "Please enter a Valid value";
 }
+getPercentileErrorMessage(){
+  return "Please enter valid number";
+}
+
+
 
 getCountries(){
   this.UserService.allCountries().subscribe((data:any)=>{

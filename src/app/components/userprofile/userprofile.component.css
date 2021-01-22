@@ -16,7 +16,7 @@ mat-panel-title{
   font-weight: 500;
 }
 mat-form-field{
-  line-height:2.0;
+  line-height:2.5;
 }
 
 mat-form-field + .mat-form-field {
@@ -29,7 +29,8 @@ color: #7c7c7c;
 }
 .addressBlock {
   display: inline-block;
-  margin: 5px 23px 3px -9px;
+  margin: 5px 23px 30px -9px;
+
 }
 select.cascade.form-control {
   border: none;
@@ -105,11 +106,16 @@ mat-error{
   font-size: 1.2em;
 }
 
+mat-select-content :hover{
+  background-color: red;
+  font-size: 1.5em;
+}
+
 /* profile Img Alignment */
 
 .profilePic{
   float:right;
-  margin-right:50px;
+  line-height:0.8 !important;
 
 }
 img {
@@ -167,3 +173,25 @@ img {
     color: red;
 }
 
+small{
+  font-size:1em;
+}
+
+div .noteImg{
+  font-size:0.9em !important;
+}
+
+.example-section{
+  margin-top:1.5em;
+  margin-bottom: 1.5em;
+}
+
+.submitButton{
+  padding-bottom:3rem;
+}
+.footer{
+  position:absolute !important;
+  bottom:0 !important;
+  width:100% !important;
+  height:2.5rem !important;
+}
